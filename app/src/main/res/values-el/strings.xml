@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">DEA</string>
+    <string name="login">Είσοδος</string>
+    <string name="register">Εγραφή</string>
+    <string name="email">Ηλεκτρονική διεύθυνση</string>
+    <string name="passwd">Κωδικός Πρόσβασης</string>
+    <string name="forget_email">Εάν έχεις ξεχάσει τον κωδικό πάτα με !!</string>
+    <string name="sign_in">Είσοδος</string>
+    <string name="sign_up">Δεν έχεις λογαριασμό; Φτιάξε έναν εδώ!!</string>
+</resources>
