@@ -7,5 +7,9 @@
     <string name="passwd">Κωδικός Πρόσβασης</string>
     <string name="forget_email">Εάν έχεις ξεχάσει τον κωδικό πάτα με !!</string>
     <string name="sign_in">Είσοδος</string>
-    <string name="sign_up">Δεν έχεις λογαριασμό; Φτιάξε έναν εδώ!!</string>
+    <string name="sign_up">Εγραφή</string>
+    <string name="sign_up_message">Δεν έχεις λογαριασμό; Φτιάξε έναν εδώ!!</string>
+    <string name="name">Όνομα</string>
+    <string name="lastname">Επίθετο</string>
+    <string name="emptyTextInputEditText">Παρακαλώ γεμίστε το κελί</string>
 </resources>

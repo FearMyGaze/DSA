@@ -7,9 +7,106 @@
     android:layout_height="match_parent"
     tools:context=".view.fragment.Sign_up">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_horizontal_name_begin"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_horizontal_lastname_begin"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_horizontal_email_begin"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.35" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_horizontal_passwd_begin"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/register_name_error"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_height="wrap_content"
+        android:hint="@string/name"
+        app:endIconMode="clear_text"
+        app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_name_begin">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/register_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/register_lastname_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/lastname"
+        app:endIconMode="clear_text"
+        app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_lastname_begin">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/register_lastname"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPersonName"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/register_email_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/email"
+        app:endIconMode="clear_text"
+        app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_email_begin">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/register_email"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textEmailAddress"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/register_passwd_error"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="@string/passwd"
+        app:endIconMode="password_toggle"
+        app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_passwd_begin">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/register_passwd"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textPassword"/>
+
+    </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+        android:id="@+id/sign_up"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/sign_up"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/register_passwd_error"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

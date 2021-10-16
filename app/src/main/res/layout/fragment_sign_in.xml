@@ -20,22 +20,10 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.20" />
-
-    <TextView
-        android:id="@+id/forget_passwd"
-        android:visibility="invisible"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="5dp"
-        android:text="@string/forget_email"
-        android:textColor="@drawable/item_text_view_on_touch"
-        app:layout_constraintBottom_toTopOf="@id/login_email"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintGuide_percent="0.2" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/login_email"
+        android:id="@+id/login_email_error"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/email"
@@ -43,6 +31,7 @@
         app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_email_begin">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/login_email"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"/>
@@ -50,7 +39,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/login_passwd"
+        android:id="@+id/login_passwd_error"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/passwd"
@@ -58,6 +47,7 @@
         app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_passwd_begin">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/login_passwd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"/>
@@ -70,7 +60,7 @@
         android:layout_height="wrap_content"
         android:text="@string/sign_in"
         android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@id/login_passwd"
+        app:layout_constraintTop_toBottomOf="@id/login_passwd_error"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -81,7 +71,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/sign_in"
-        android:text="@string/sign_up"
+        android:text="@string/sign_up_message"
         android:textColor="@drawable/item_text_view_on_touch"
         android:textStyle="italic"/>
 
