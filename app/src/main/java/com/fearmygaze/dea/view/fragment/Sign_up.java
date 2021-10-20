@@ -13,21 +13,26 @@ import android.widget.Toast;
 
 import com.fearmygaze.dea.R;
 import com.fearmygaze.dea.model.ViewTextHandler;
-import com.fearmygaze.dea.view.activity.MainActivity;
+import com.fearmygaze.dea.view.activity.StartingActivity;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
-import java.util.UUID;
 
 
 public class Sign_up extends Fragment {
 
+    /*
+     * TODO: After finishing the code part of the class start refactoring the names
+     * */
+
     View view;
+
+    Button sign_up;
     TextInputEditText register_name_view , register_lastname_view , register_email_view , register_passwd_view;
     TextInputLayout register_name_view_error , register_lastname_view_error , register_email_view_error , register_passwd_view_error;
-    Button sign_up;
-    String uuid , register_name , register_lastname ,register_email , register_passwd;
+
+    String register_name , register_lastname ,register_email , register_passwd;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,10 +51,7 @@ public class Sign_up extends Fragment {
         register_lastname_view = view.findViewById(R.id.register_lastname);
         register_lastname_view_error = view.findViewById(R.id.register_lastname_error);
 
-
         sign_up = view.findViewById(R.id.sign_up);
-
-
 
         /*
         * The moment the TextInputEditText is filled with a text after an error occurred th error
@@ -62,39 +64,31 @@ public class Sign_up extends Fragment {
 
         sign_up.setOnClickListener(v -> {
 
-            /*
-             * TODO: Add all the stuff we need for the register form
-             * */
+            ViewTextHandler.IsTextInputEmpty(register_name_view,register_name_view_error,requireActivity());
+            ViewTextHandler.IsTextInputEmpty(register_lastname_view,register_lastname_view_error,requireActivity());
+            ViewTextHandler.IsTextInputEmpty(register_email_view,register_email_view_error,requireActivity());
+            ViewTextHandler.IsTextInputEmpty(register_passwd_view,register_passwd_view_error,requireActivity());
 
-            /*
-            * Getting the text
-            * */
+            if(!register_name_view_error.isErrorEnabled() && !register_lastname_view_error.isErrorEnabled() &&
+                !register_email_view_error.isErrorEnabled() && !register_passwd_view_error.isErrorEnabled()){
 
-            register_name = Objects.requireNonNull(register_name_view.getText()).toString().trim();
-            register_lastname = Objects.requireNonNull(register_lastname_view.getText()).toString().trim();
-            register_email = Objects.requireNonNull(register_email_view.getText()).toString().trim();
-            register_passwd = Objects.requireNonNull(register_passwd_view.getText()).toString().trim();
+                    register_name = Objects.requireNonNull(register_name_view.getText()).toString().trim();
+                    register_lastname = Objects.requireNonNull(register_lastname_view.getText()).toString().trim();
+                    register_email = Objects.requireNonNull(register_email_view.getText()).toString().trim();
+                    register_passwd = Objects.requireNonNull(register_passwd_view.getText()).toString().trim();
+//
+//                /*
+//                 * TODO: Add all the stuff we need for the register form
+//                 * */
+                Toast.makeText(requireActivity(), register_name+register_lastname+register_email+register_passwd, Toast.LENGTH_SHORT).show();
+            }
 
-            /*
-             * Checks if is the TextViews are empty
-             * */
-            ViewTextHandler.checkIfTextViewIsEmptyThenAddError(register_name_view,register_name_view_error,requireActivity());
-            ViewTextHandler.checkIfTextViewIsEmptyThenAddError(register_lastname_view,register_lastname_view_error,requireActivity());
-            ViewTextHandler.checkIfTextViewIsEmptyThenAddError(register_email_view,register_email_view_error,requireActivity());
-            ViewTextHandler.checkIfTextViewIsEmptyThenAddError(register_passwd_view,register_passwd_view_error,requireActivity());
-
-            /*
-            * TODO: Create a new class file that will handle all the errors that will occur during user creation
-            * */
-            uuid = UUID.randomUUID().toString();
-
-            Toast.makeText(requireActivity(), register_name+register_lastname+register_email+register_passwd+uuid, Toast.LENGTH_SHORT).show();
         });
 
         OnBackPressedCallback callback = new OnBackPressedCallback(true ) {
             @Override
             public void handleOnBackPressed() {
-                ((MainActivity)requireActivity()).replaceFragment(((MainActivity)requireActivity()).sign_in_fragment);
+                ((StartingActivity)requireActivity()).replaceFragment(((StartingActivity)requireActivity()).sign_in_fragment);
             }
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);

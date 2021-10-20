@@ -11,14 +11,14 @@ import com.fearmygaze.dea.R;
 import com.fearmygaze.dea.view.fragment.Sign_in;
 import com.fearmygaze.dea.view.fragment.Sign_up;
 
-public class MainActivity extends AppCompatActivity {
+public class StartingActivity extends AppCompatActivity {
 
     public Fragment sign_in_fragment , sign_up_fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_starting);
 
         sign_in_fragment = new Sign_in();
         sign_up_fragment = new Sign_up();

@@ -8,11 +8,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.fearmygaze.dea.R;
 import com.fearmygaze.dea.model.ViewTextHandler;
-import com.fearmygaze.dea.view.activity.MainActivity;
+import com.fearmygaze.dea.view.activity.StartingActivity;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -20,10 +22,14 @@ import java.util.Objects;
 
 public class Sign_in extends Fragment {
 
+    /*
+    * TODO: After finishing the code part of the class start refactoring the names
+    * */
     View view;
 
     TextView sign_up;
     Button button_sign_in;
+    CheckBox remember_me;
     TextInputLayout login_email_view_error , login_passwd_view_error;
     TextInputEditText login_email_view , login_passwd_view;
 
@@ -37,31 +43,50 @@ public class Sign_in extends Fragment {
         login_email_view_error = view.findViewById(R.id.login_email_error);
 
         login_passwd_view = view.findViewById(R.id.login_passwd);
-        login_passwd_view_error = view.findViewById(R.id.register_passwd_error);
+        login_passwd_view_error = view.findViewById(R.id.login_passwd_error);
+
+        remember_me = view.findViewById(R.id.login_remember_me);
 
         button_sign_in = view.findViewById(R.id.sign_in);
 
         sign_up = view.findViewById(R.id.sign_up);
 
-        sign_up.setOnClickListener(v -> ((MainActivity)requireActivity()).replaceFragment(((MainActivity)requireActivity()).sign_up_fragment));
+        sign_up.setOnClickListener(v -> ((StartingActivity)requireActivity()).replaceFragment(((StartingActivity)requireActivity()).sign_up_fragment));
+
+        /*
+         * The moment the TextInputEditText is filled with a text after an error occurred th error
+         *   vanishes from the text that was changed
+         * */
+
+        login_email_view.addTextChangedListener(new ViewTextHandler(login_email_view_error));
+        login_passwd_view.addTextChangedListener(new ViewTextHandler(login_passwd_view_error));
 
         button_sign_in.setOnClickListener(v -> {
 
-            /*
-             * TODO: Add the stuff for the login
-             * */
-            login_email = Objects.requireNonNull(login_email_view.getText()).toString().trim();
-            login_passwd = Objects.requireNonNull(login_passwd_view.getText()).toString().trim();
+            ViewTextHandler.IsTextInputEmpty(login_email_view,login_email_view_error,requireActivity());
+            ViewTextHandler.IsTextInputEmpty(login_passwd_view,login_passwd_view_error,requireActivity());
 
-            /*
-            * Checks if is the TextViews are empty
-            * */
-            ViewTextHandler.checkIfTextViewIsEmptyThenAddError(login_email_view,login_email_view_error,requireActivity());
-            ViewTextHandler.checkIfTextViewIsEmptyThenAddError(login_passwd_view,login_passwd_view_error,requireActivity());
+            if (!login_email_view_error.isErrorEnabled() && !login_passwd_view_error.isErrorEnabled()){
+                login_email = Objects.requireNonNull(login_email_view.getText()).toString().trim();
+                login_passwd = Objects.requireNonNull(login_passwd_view.getText()).toString().trim();
 
-            /*
-             * TODO: Create a new class file that will handle all the errors that will occur during user creation
-             * */
+                if (remember_me.isChecked()){
+                    /*
+                    * TODO: Add the remember me function here
+                    * */
+                    Toast.makeText(requireActivity(), login_email+login_passwd+"remember_me", Toast.LENGTH_SHORT).show();
+                }
+
+                /*
+                 * TODO: Add the stuff to complete the login form
+                 * */
+
+
+
+                Toast.makeText(requireActivity(), login_email+login_passwd, Toast.LENGTH_SHORT).show();
+            }
+
+
         });
 
 

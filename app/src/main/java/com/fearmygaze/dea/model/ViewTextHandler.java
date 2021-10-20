@@ -36,10 +36,20 @@ public class ViewTextHandler implements TextWatcher {
         this.textInputLayout = textInputLayout;
     }
 
-    public static void checkIfTextViewIsEmptyThenAddError(TextInputEditText textInputEditText , TextInputLayout textInputLayout , Context context){
+    /*
+    * TODO: MAYBE add a version for multiple cells(3,5) so the code be more clear and the if's are smaller
+    * */
+
+    /*
+    * TODO: Add regex for email and (Maybe)password
+    * */
+
+    public static boolean IsTextInputEmpty(TextInputEditText textInputEditText , TextInputLayout textInputLayout , Context context){
         if (Objects.requireNonNull(textInputEditText.getText()).toString().isEmpty()){
             textInputLayout.setError(context.getString(R.string.emptyTextInputEditText));
             textInputLayout.setErrorEnabled(true);
+            return true;
         }
+        return false;
     }
 }

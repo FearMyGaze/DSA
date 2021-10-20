@@ -12,4 +12,5 @@
     <string name="name">Όνομα</string>
     <string name="lastname">Επίθετο</string>
     <string name="emptyTextInputEditText">Παρακαλώ γεμίστε το κελί</string>
+    <string name="RememberMe">Να παραμείνω συνδεμένος</string>
 </resources>

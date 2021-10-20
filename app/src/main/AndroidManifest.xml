@@ -11,7 +11,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DEA">
         <activity
-            android:name=".view.activity.MainActivity"
+            android:name=".view.activity.StartingActivity"
             android:configChanges="orientation"
             android:screenOrientation="portrait"
             android:exported="true"

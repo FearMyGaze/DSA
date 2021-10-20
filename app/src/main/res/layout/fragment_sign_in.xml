@@ -54,13 +54,22 @@
 
     </com.google.android.material.textfield.TextInputLayout>
 
+    <CheckBox
+        android:id="@+id/login_remember_me"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/RememberMe"
+        android:layout_marginTop="10dp"
+        app:layout_constraintTop_toBottomOf="@id/login_passwd_error"
+        app:layout_constraintBottom_toTopOf="@id/sign_in"/>
+
     <Button
         android:id="@+id/sign_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/sign_in"
         android:layout_marginTop="10dp"
-        app:layout_constraintTop_toBottomOf="@id/login_passwd_error"
+        app:layout_constraintTop_toBottomOf="@id/login_remember_me"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
 
