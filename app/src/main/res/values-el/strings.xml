@@ -5,6 +5,7 @@
     <string name="register">Εγραφή</string>
     <string name="email">Ηλεκτρονική διεύθυνση</string>
     <string name="passwd">Κωδικός Πρόσβασης</string>
+    <string name="confirm_passwd">Eπαλήθευση κωδικού πρόσβασης</string>
     <string name="forget_email">Εάν έχεις ξεχάσει τον κωδικό πάτα με !!</string>
     <string name="sign_in">Είσοδος</string>
     <string name="sign_up">Εγραφή</string>
@@ -12,5 +13,8 @@
     <string name="name">Όνομα</string>
     <string name="lastname">Επίθετο</string>
     <string name="emptyTextInputEditText">Παρακαλώ γεμίστε το κελί</string>
-    <string name="RememberMe">Να παραμείνω συνδεμένος</string>
+    <string name="rememberMe">Να παραμείνω συνδεμένος</string>
+    <string name="agreeToTOS">Πατώντας αυτό το κουμπί  <b>συμφωνείς</b> με το T.O.S </string>
+    <string name="alreadyHaveAccount">Εάν έχεις ήδη λογαριασμό πάτα εδώ!</string>
+    <string name="passwordNotEqual">Οι κωδικοί πρόσβασης δεν ταιρίαζουν</string>
 </resources>
