@@ -6,7 +6,6 @@
     <string name="email">Ηλεκτρονική διεύθυνση</string>
     <string name="passwd">Κωδικός Πρόσβασης</string>
     <string name="confirm_passwd">Eπαλήθευση κωδικού πρόσβασης</string>
-    <string name="forget_email">Εάν έχεις ξεχάσει τον κωδικό πάτα με !!</string>
     <string name="sign_in">Είσοδος</string>
     <string name="sign_up">Εγραφή</string>
     <string name="sign_up_message">Δεν έχεις λογαριασμό; Φτιάξε έναν εδώ!!</string>
@@ -17,4 +16,8 @@
     <string name="agreeToTOS">Πατώντας αυτό το κουμπί  <b>συμφωνείς</b> με το T.O.S </string>
     <string name="alreadyHaveAccount">Εάν έχεις ήδη λογαριασμό πάτα εδώ!</string>
     <string name="passwordNotEqual">Οι κωδικοί πρόσβασης δεν ταιρίαζουν</string>
+    <string name="Home">Κεντρική</string>
+    <string name="Notifications">Ειδοποιήσεις</string>
+    <string name="PatientFiles">Αρχεία</string>
+    <string name="Profile">Προφίλ</string>
 </resources>

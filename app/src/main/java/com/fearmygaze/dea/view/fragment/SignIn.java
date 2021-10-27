@@ -1,5 +1,6 @@
 package com.fearmygaze.dea.view.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,13 +14,14 @@ import androidx.fragment.app.Fragment;
 
 import com.fearmygaze.dea.R;
 import com.fearmygaze.dea.model.TextHandler;
-import com.fearmygaze.dea.view.activity.StartingActivity;
+import com.fearmygaze.dea.view.activity.Main;
+import com.fearmygaze.dea.view.activity.Starting;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
 
-public class Sign_in extends Fragment {
+public class SignIn extends Fragment {
     View view;
 
     @Override
@@ -39,7 +41,7 @@ public class Sign_in extends Fragment {
 
         Button confirmLogIn = view.findViewById(R.id.confirmLogIn);
 
-        gotoRegister.setOnClickListener(v -> ((StartingActivity)requireActivity()).replaceFragment(((StartingActivity)requireActivity()).registerFragment));
+        gotoRegister.setOnClickListener(v -> ((Starting)requireActivity()).replaceFragment(((Starting)requireActivity()).registerFragment));
 
         /*
          * The moment the TextInputEditText is filled with a text after an error occurred th error
@@ -62,6 +64,14 @@ public class Sign_in extends Fragment {
                     /*
                     * TODO: Add the remember me function here
                     * */
+
+                    /*
+                    * TODO: Remove it
+                    * */
+                    Intent intent = new Intent(requireActivity(), Main.class);
+                    startActivity(intent);
+
+
                     Toast.makeText(requireActivity(), email+" "+passwd+" "+"rememberMe", Toast.LENGTH_SHORT).show();
                 }
 

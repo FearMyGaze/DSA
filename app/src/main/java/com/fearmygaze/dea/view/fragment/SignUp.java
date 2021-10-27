@@ -14,13 +14,13 @@ import androidx.fragment.app.Fragment;
 
 import com.fearmygaze.dea.R;
 import com.fearmygaze.dea.model.TextHandler;
-import com.fearmygaze.dea.view.activity.StartingActivity;
+import com.fearmygaze.dea.view.activity.Starting;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
 
-public class Sign_up extends Fragment {
+public class SignUp extends Fragment {
     View view;
 
     @Override
@@ -59,7 +59,7 @@ public class Sign_up extends Fragment {
         registerPasswd.addTextChangedListener(new TextHandler(registerPasswdError));
         registerConfirmPasswd.addTextChangedListener(new TextHandler(registerConfirmPasswdError));
 
-        gotoLogIn.setOnClickListener(v -> ((StartingActivity)requireActivity()).replaceFragment(((StartingActivity)requireActivity()).logInFragment));
+        gotoLogIn.setOnClickListener(v -> ((Starting)requireActivity()).replaceFragment(((Starting)requireActivity()).logInFragment));
 
         TOS.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked){
@@ -107,7 +107,7 @@ public class Sign_up extends Fragment {
             @Override
             public void handleOnBackPressed() {
                 remove();
-                ((StartingActivity)requireActivity()).replaceFragment(((StartingActivity)requireActivity()).logInFragment);
+                ((Starting)requireActivity()).replaceFragment(((Starting)requireActivity()).logInFragment);
             }
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);

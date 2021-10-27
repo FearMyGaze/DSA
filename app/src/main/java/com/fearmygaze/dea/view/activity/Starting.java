@@ -8,12 +8,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.fearmygaze.dea.R;
-import com.fearmygaze.dea.view.fragment.Sign_in;
-import com.fearmygaze.dea.view.fragment.Sign_up;
+import com.fearmygaze.dea.view.fragment.SignIn;
+import com.fearmygaze.dea.view.fragment.SignUp;
 
 import java.util.Objects;
 
-public class StartingActivity extends AppCompatActivity {
+public class Starting extends AppCompatActivity {
 
     public Fragment logInFragment, registerFragment;
 
@@ -26,8 +26,8 @@ public class StartingActivity extends AppCompatActivity {
         * */
         Objects.requireNonNull(getSupportActionBar()).hide();
 
-        logInFragment = new Sign_in();
-        registerFragment = new Sign_up();
+        logInFragment = new SignIn();
+        registerFragment = new SignUp();
 
         replaceFragment(logInFragment);
     }

@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="10dp"
-    tools:context=".view.activity.StartingActivity">
+    tools:context=".view.activity.Starting">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_horizontal_image_begin"
@@ -26,7 +26,7 @@
         android:layout_width="85dp"
         android:layout_height="85dp"
         android:scaleType="centerCrop"
-        android:src="@drawable/ic_baseline_event_note_32"
+        android:src="@drawable/ic_outline_event_note_24"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_image_begin"

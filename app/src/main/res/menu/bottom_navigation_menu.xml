@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/itemHome"
+        android:title="@string/Home"
+        android:icon="@drawable/ic_outline_home_24">
+    </item>
+
+    <item
+        android:id="@+id/itemPatientFiles"
+        android:title="@string/PatientFiles"
+        android:icon="@drawable/ic_outline_folder_24">
+    </item>
+
+    <item
+        android:id="@+id/itemNotifications"
+        android:title="@string/Notifications"
+        android:icon="@drawable/ic_outline_notifications_24">
+    </item>
+
+    <item
+        android:id="@+id/itemProfile"
+        android:title="@string/Profile"
+        android:icon="@drawable/ic_outline_person_24">
+    </item>
+
+</menu>
