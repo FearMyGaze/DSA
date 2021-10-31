@@ -7,12 +7,12 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 
 import com.fearmygaze.dea.R;
+import com.fearmygaze.dea.custom.MyToast.CustomToast;
 import com.fearmygaze.dea.model.TextHandler;
 import com.fearmygaze.dea.view.activity.Starting;
 import com.google.android.material.textfield.TextInputEditText;
@@ -27,6 +27,7 @@ public class SignUp extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_sign_up, container, false);
+        //CustomToast customToast = ((Starting) requireActivity()).customToast;
 
         TextInputEditText registerName = view.findViewById(R.id.registerName);
         TextInputLayout registerNameError = view.findViewById(R.id.registerNameError);
@@ -44,10 +45,12 @@ public class SignUp extends Fragment {
         TextInputLayout registerConfirmPasswdError = view.findViewById(R.id.registerConfirmPasswdError);
 
         TextView gotoLogIn = view.findViewById(R.id.gotoLogIn);
+        TextView errorShower = view.findViewById(R.id.registerErrorShower);
 
-        CheckBox TOS = view.findViewById(R.id.registerTOS);
+        CheckBox registerTOS = view.findViewById(R.id.registerTOS);
 
         Button confirmRegistration = view.findViewById(R.id.confirmRegistration);
+
 
         /*
         * The moment the TextInputEditText is filled with a text after an error occurred the error
@@ -61,7 +64,7 @@ public class SignUp extends Fragment {
 
         gotoLogIn.setOnClickListener(v -> ((Starting)requireActivity()).replaceFragment(((Starting)requireActivity()).logInFragment));
 
-        TOS.setOnCheckedChangeListener((buttonView, isChecked) -> {
+        registerTOS.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked){
                 confirmRegistration.setEnabled(true);
                 confirmRegistration.setOnClickListener(v -> {
@@ -83,12 +86,17 @@ public class SignUp extends Fragment {
                         String email = Objects.requireNonNull(registerEmail.getText()).toString().trim();
                         String passwd = Objects.requireNonNull(registerPasswd.getText()).toString().trim();
 
+                        if (TextHandler.IsEmailValid(email,registerEmailError,requireActivity()) && TextHandler.IsPasswdValid(passwd,errorShower,requireActivity())){
 
-                        /*
-                         * TODO: Add all the stuff we need for the register form
-                         * */
+                            /*
+                             * TODO: Add all the stuff we need for the register form
+                             * */
+                            System.out.println("Account created"+name+lastName+email+passwd);
 
-                        Toast.makeText(requireActivity(), name+" "+lastName+" "+email+" "+passwd, Toast.LENGTH_LONG).show();
+//                            customToast.setOnSuccessMsg("This is the end");
+//                            customToast.onSuccess();
+
+                        }
                     }
                 });
 

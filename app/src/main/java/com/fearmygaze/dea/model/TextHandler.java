@@ -3,12 +3,15 @@ package com.fearmygaze.dea.model;
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.widget.TextView;
 
 import com.fearmygaze.dea.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TextHandler implements TextWatcher {
 
@@ -36,9 +39,41 @@ public class TextHandler implements TextWatcher {
         this.textInputLayout = textInputLayout;
     }
 
-    /*
-    * TODO: Add regex for email and (Maybe)password
-    * */
+    public static boolean IsEmailValid(String email, TextInputLayout textInputLayout, Context context){
+        Pattern pattern = Pattern.compile("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$");
+        Matcher matcher = pattern.matcher(email);
+        boolean matches = matcher.matches();
+        if (!matches) {
+            textInputLayout.setError(context.getString(R.string.emailRegExError));
+            textInputLayout.setErrorEnabled(true);
+        }
+        return matches;
+    }
+
+    public static boolean IsPasswdValid(String passwd , TextView textView, Context context){
+        Pattern pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$");
+        Matcher matcher = pattern.matcher(passwd);
+        boolean matches = matcher.matches();
+        /*
+        * TODO: ADD THIS TO SPECIAL CHARACTER !@#$%^&*
+        * */
+
+        /*
+         *
+         * (?=.*[0-9])       # a digit must occur at least once
+         * (?=.*[a-z])       # a lower case letter must occur at least once
+         * (?=.*[A-Z])       # an upper case letter must occur at least once
+         * (?=.*[@#$%^&+=])  # a special character must occur at least once
+         * (?=\S+$)          # no whitespace allowed in the entire string
+         * .{8,}             # anything, at least eight places though
+         *
+         * */
+
+        if (!matches) {
+            textView.setText(context.getString(R.string.passwdRegExError));
+        }
+        return matches;
+    }
 
     public static void IsTextInputEmpty(TextInputEditText textInputEditText , TextInputLayout textInputLayout , Context context){
         if (Objects.requireNonNull(textInputEditText.getText()).toString().isEmpty()){

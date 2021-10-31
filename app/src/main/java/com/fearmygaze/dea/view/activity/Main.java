@@ -1,15 +1,14 @@
 package com.fearmygaze.dea.view.activity;
 
+import android.annotation.SuppressLint;
+import android.os.Bundle;
+import android.view.MenuItem;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
-
-import android.annotation.SuppressLint;
-import android.os.Bundle;
-import android.view.MenuItem;
-import android.widget.FrameLayout;
 
 import com.fearmygaze.dea.R;
 import com.fearmygaze.dea.view.fragment.Home;
@@ -40,7 +39,7 @@ public class Main extends AppCompatActivity {
         replaceFragment(home);
 
         /*
-        * TODO: This is for badge number but change the language
+        * TODO: This is for badge number but change the language(is kotlin)
         * var badge = bottomNavigation.getOrCreateBadge(menuItemId)
         * badge.isVisible = true
         * An icon only badge will be displayed unless a number is set:

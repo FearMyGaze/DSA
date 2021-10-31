@@ -3,25 +3,25 @@
 
     <item
         android:id="@+id/itemHome"
-        android:title="@string/Home"
+        android:title="@string/home"
         android:icon="@drawable/ic_outline_home_24">
     </item>
 
     <item
         android:id="@+id/itemPatientFiles"
-        android:title="@string/PatientFiles"
+        android:title="@string/patientFiles"
         android:icon="@drawable/ic_outline_folder_24">
     </item>
 
     <item
         android:id="@+id/itemNotifications"
-        android:title="@string/Notifications"
+        android:title="@string/notifications"
         android:icon="@drawable/ic_outline_notifications_24">
     </item>
 
     <item
         android:id="@+id/itemProfile"
-        android:title="@string/Profile"
+        android:title="@string/profile"
         android:icon="@drawable/ic_outline_person_24">
     </item>
 

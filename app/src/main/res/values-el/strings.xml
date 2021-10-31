@@ -13,11 +13,13 @@
     <string name="lastname">Επίθετο</string>
     <string name="emptyTextInputEditText">Παρακαλώ γεμίστε το κελί</string>
     <string name="rememberMe">Να παραμείνω συνδεμένος</string>
-    <string name="agreeToTOS">Πατώντας αυτό το κουμπί  <b>συμφωνείς</b> με το T.O.S </string>
+    <string name="agreeToTOS">Πατώντας αυτό το κουμπί <b>συμφωνείς</b> με το T.O.S </string>
     <string name="alreadyHaveAccount">Εάν έχεις ήδη λογαριασμό πάτα εδώ!</string>
     <string name="passwordNotEqual">Οι κωδικοί πρόσβασης δεν ταιρίαζουν</string>
-    <string name="Home">Κεντρική</string>
-    <string name="Notifications">Ειδοποιήσεις</string>
-    <string name="PatientFiles">Αρχεία</string>
-    <string name="Profile">Προφίλ</string>
+    <string name="home">Κεντρική</string>
+    <string name="notifications">Ειδοποιήσεις</string>
+    <string name="patientFiles">Αρχεία</string>
+    <string name="profile">Προφίλ</string>
+    <string name="passwdRegExError">* Λιγότεροο 8 χαρακτήρες \n * 1 μικρό χαρακτήρα \n * 1 κεφαλαίο χαρακτήρα \n * 1 αριθμό \n * 1 ειδικό χαρακτήρα</string>
+    <string name="emailRegExError">Το email σου δεν είναι σωστό</string>
 </resources>
