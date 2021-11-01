@@ -27,7 +27,7 @@ public class SignUp extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_sign_up, container, false);
-        //CustomToast customToast = ((Starting) requireActivity()).customToast;
+        CustomToast customToast = ((Starting) requireActivity()).customToast;
 
         TextInputEditText registerName = view.findViewById(R.id.registerName);
         TextInputLayout registerNameError = view.findViewById(R.id.registerNameError);
@@ -93,8 +93,8 @@ public class SignUp extends Fragment {
                              * */
                             System.out.println("Account created"+name+lastName+email+passwd);
 
-//                            customToast.setOnSuccessMsg("This is the end");
-//                            customToast.onSuccess();
+                            customToast.setOnSuccessMsg("User has successfully created");
+                            customToast.onSuccess();
 
                         }
                     }

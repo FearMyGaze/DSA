@@ -1,6 +1,5 @@
 package com.fearmygaze.dea.custom.MyToast;
 
-import android.annotation.SuppressLint;
 import android.app.Activity;
 import android.graphics.Color;
 import android.view.Gravity;
@@ -16,56 +15,53 @@ import com.fearmygaze.dea.R;
 public class CustomToast implements ICustomToast{
     private final Toast toast;
     private final TextView textView;
+    private final AppCompatImageView appCompatImageView;
     private String onErrorMsg;
     private String onWarningMsg;
     private String onSuccessMsg;
 
 
     public CustomToast (Activity activity, String onErrorMsg , String onSuccessMsg , String onWarningMsg){
-        @SuppressLint("InflateParams") View view = activity.getLayoutInflater().inflate(R.layout.custom_toast, (ViewGroup) activity.findViewById(R.id.rootLayout));
-        textView = view.findViewById(R.id.CustomToast);
+        View view = activity.getLayoutInflater().inflate(R.layout.custom_toast, (ViewGroup) activity.findViewById(R.id.rootLayout));
+        textView = view.findViewById(R.id.customToastTextView);
+        appCompatImageView = view.findViewById(R.id.customToastImage);
         toast = new Toast(activity);
-        toast.setView(view);
+        toast.setView(view); //TODO: This will become deprecated with 31 API
         this.onErrorMsg = onErrorMsg;
         this.onSuccessMsg = onSuccessMsg;
         this.onWarningMsg = onWarningMsg;
     }
 
     public CustomToast(Activity activity){
-        @SuppressLint("InflateParams") View view = activity.getLayoutInflater().inflate(R.layout.custom_toast, (ViewGroup) activity.findViewById(R.id.rootLayout));
-        textView = view.findViewById(R.id.CustomToast);
+        View view = activity.getLayoutInflater().inflate(R.layout.custom_toast, (ViewGroup) activity.findViewById(R.id.rootLayout));
+        textView = view.findViewById(R.id.customToastTextView);
+        appCompatImageView = view.findViewById(R.id.customToastImage);
         toast = new Toast(activity);
-        toast.setGravity(Gravity.TOP,0,0);
+        toast.setGravity(Gravity.TOP|Gravity.CENTER,0,0);
         toast.setView(view);
     }
 
     @Override
     public void onError() {
-        /*
-        * Add stuff for onError Toast
-        * */
         textView.setText(onErrorMsg);
         textView.setTextColor(Color.rgb(1,1,1));
+        appCompatImageView.setImageResource(R.drawable.ic_outline_error_outline_24);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.show();
     }
 
     public void onWarning(){
-        /*
-         * Add stuff for onWarning Toast
-         * */
         textView.setText(onWarningMsg);
         textView.setTextColor(Color.rgb(10,10,10));
+        appCompatImageView.setImageResource(R.drawable.ic_outline_warning_amber_24);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.show();
     }
 
     public void onSuccess(){
-        /*
-         * Add stuff for onSuccess Toast
-         * */
         textView.setText(onSuccessMsg);
         textView.setTextColor(Color.rgb(10,10,10));
+        appCompatImageView.setImageResource(R.drawable.ic_outline_check_24);
         toast.setDuration(Toast.LENGTH_SHORT);
         toast.show();
     }

@@ -17,7 +17,7 @@ import java.util.Objects;
 public class Starting extends AppCompatActivity {
 
     public Fragment logInFragment, registerFragment;
-    //public CustomToast customToast;
+    public CustomToast customToast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +29,7 @@ public class Starting extends AppCompatActivity {
         Objects.requireNonNull(getSupportActionBar()).hide();
 
 
-        //customToast =new CustomToast(Starting.this);
+        customToast =new CustomToast(Starting.this);
         logInFragment = new SignIn();
         registerFragment = new SignUp();
 

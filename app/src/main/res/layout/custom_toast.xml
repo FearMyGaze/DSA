@@ -9,8 +9,20 @@
     android:paddingEnd="10dp"
     android:background="@drawable/custom_rounded_layout">
 
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/customToastImage"
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="15dp"
+        android:scaleType="centerCrop"
+        android:src="@drawable/ic_outline_check_24"
+        app:layout_constraintTop_toTopOf="@id/rootLayout"
+        app:layout_constraintBottom_toBottomOf="@id/rootLayout"
+        app:layout_constraintStart_toStartOf="@id/rootLayout"
+        app:layout_constraintEnd_toStartOf="@id/customToastTextView"/>
+
     <TextView
-        android:id="@+id/CustomToast"
+        android:id="@+id/customToastTextView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
