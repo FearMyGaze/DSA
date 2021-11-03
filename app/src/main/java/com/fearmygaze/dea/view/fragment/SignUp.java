@@ -1,5 +1,6 @@
 package com.fearmygaze.dea.view.fragment;
 
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,9 +13,11 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 
 import com.fearmygaze.dea.R;
+import com.fearmygaze.dea.custom.MySnackBar.CustomSnackBar;
 import com.fearmygaze.dea.custom.MyToast.CustomToast;
 import com.fearmygaze.dea.model.TextHandler;
 import com.fearmygaze.dea.view.activity.Starting;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -50,6 +53,8 @@ public class SignUp extends Fragment {
         CheckBox registerTOS = view.findViewById(R.id.registerTOS);
 
         Button confirmRegistration = view.findViewById(R.id.confirmRegistration);
+
+        View view1 = inflater.inflate(R.layout.custom_snackbar,container,false);
 
 
         /*
@@ -104,8 +109,18 @@ public class SignUp extends Fragment {
             else confirmRegistration.setEnabled(false);
         });
 
+//        CustomSnackBar.onSnackBar(view1,"this is a text", Snackbar.LENGTH_INDEFINITE, Color.BLUE);
+//        Snackbar snackbar = Snackbar
+//                .make(view, "This is a Snackbar", Snackbar.LENGTH_INDEFINITE)
+//                .setActionTextColor(Color.RED);
+//        View snackView = snackbar.getView();
+//        TextView textView = snackView.findViewById(R.id.snackbar_text);
+//        textView.setTextColor(Color.YELLOW);
+//        snackbar.show();
 
-
+        /*
+         * ERROR: java.lang.IllegalStateException: ScrollView can host only one direct child
+         * */
 
         /*
         * TODO: MAKE THE FORM CLEAR WHEN THE BACK BUTTON IS PRESSED

@@ -1,6 +1,7 @@
 package com.fearmygaze.dea.view.fragment;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +17,7 @@ import com.fearmygaze.dea.R;
 import com.fearmygaze.dea.model.TextHandler;
 import com.fearmygaze.dea.view.activity.Main;
 import com.fearmygaze.dea.view.activity.Starting;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -86,6 +88,18 @@ public class SignIn extends Fragment {
 
 
         });
+
+//        Snackbar snackbar = Snackbar
+//                .make(view, "This is a Snackbar", Snackbar.LENGTH_INDEFINITE)
+//                .setActionTextColor(Color.RED);
+//        View snackView = snackbar.getView();
+//        TextView textView = snackView.findViewById(R.id.snackbar_text);
+//        textView.setTextColor(Color.YELLOW);
+//        snackbar.show();
+
+        /*
+        * ERROR: java.lang.IllegalArgumentException: No suitable parent found from the given view. Please provide a valid view.
+        * */
 
 
         return view;
