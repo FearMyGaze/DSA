@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
-    android:id="@+id/registerRootCoordinator"
+    android:id="@+id/registerRootLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -16,35 +16,35 @@
             android:layout_height="wrap_content">
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_horizontal_name_begin"
+                android:id="@+id/guideline_horizontal_register_name_begin"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.05" />
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_horizontal_lastname_begin"
+                android:id="@+id/guideline_horizontal_register_lastname_begin"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.2" />
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_horizontal_email_begin"
+                android:id="@+id/guideline_horizontal_register_email_begin"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.35" />
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_horizontal_passwd_begin"
+                android:id="@+id/guideline_horizontal_register_passwd_begin"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
                 app:layout_constraintGuide_percent="0.5" />
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_horizontal_confirm_passwd_begin"
+                android:id="@+id/guideline_horizontal_register_confirm_passwd_begin"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
@@ -56,7 +56,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/name"
                 app:endIconMode="clear_text"
-                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_name_begin">
+                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_register_name_begin">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/registerName"
@@ -74,7 +74,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/lastname"
                 app:endIconMode="clear_text"
-                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_lastname_begin">
+                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_register_lastname_begin">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/registerLastName"
@@ -92,7 +92,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
                 app:endIconMode="clear_text"
-                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_email_begin">
+                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_register_email_begin">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/registerEmail"
@@ -110,7 +110,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/passwd"
                 app:endIconMode="password_toggle"
-                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_passwd_begin">
+                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_register_passwd_begin">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/registerPasswd"
@@ -128,7 +128,7 @@
                 android:layout_height="wrap_content"
                 android:hint="@string/confirm_passwd"
                 app:endIconMode="password_toggle"
-                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_confirm_passwd_begin"
+                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_register_confirm_passwd_begin"
                 app:layout_constraintBottom_toTopOf="@id/registerTOS">
 
                 <com.google.android.material.textfield.TextInputEditText

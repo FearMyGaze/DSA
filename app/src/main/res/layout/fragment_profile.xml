@@ -2,22 +2,186 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout
     android:id="@+id/profileRootLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".view.fragment.Profile">
 
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
 
-<TextView
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:text="@string/profile"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintBottom_toTopOf="parent"/>
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_horizontal_profile_name_begin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.05" />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_horizontal_profile_lastname_begin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.15" />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_horizontal_profile_birthday_begin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.25" />
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_horizontal_profile_email_begin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.35" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_horizontal_profile_SSN_begin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.45" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_horizontal_profile_Location_begin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.55" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/profileNameError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/name"
+            app:endIconMode="clear_text"
+            app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_profile_name_begin">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/profileName"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:textColorHint="@color/textColorHint"
+                tools:ignore="TextContrastCheck,TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/profileLastnameError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/lastname"
+            app:endIconMode="clear_text"
+            app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_profile_lastname_begin">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/profileLastname"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPersonName"
+                android:textColorHint="@color/textColorHint"
+                tools:ignore="TextContrastCheck,TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/profileBirthdayError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/birthday"
+            app:endIconMode="clear_text"
+            app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_profile_birthday_begin">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/profileBirthday"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="date"
+                android:textColorHint="@color/textColorHint"
+                tools:ignore="TextContrastCheck,TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/profileEmailError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/email"
+            app:endIconMode="clear_text"
+            app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_profile_email_begin">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/profileEmail"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress"
+                android:textColorHint="@color/textColorHint"
+                tools:ignore="TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/profileSSNError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/SSN"
+            app:endIconMode="clear_text"
+            app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_profile_SSN_begin">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/profileSSN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:textColorHint="@color/textColorHint"
+                tools:ignore="TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/profileLocationError"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/location"
+            app:endIconMode="clear_text"
+            app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_profile_Location_begin">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/profileLocation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="text"
+                android:textColorHint="@color/textColorHint"
+                tools:ignore="TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:id="@+id/profileUpdate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/buttonUpdate"
+            android:layout_marginTop="10dp"
+            android:enabled="false"
+            app:layout_constraintTop_toBottomOf="@id/profileLocationError"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/appNotSupporting"
+            android:textSize="15sp"
+            android:textStyle="italic"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profileUpdate" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
