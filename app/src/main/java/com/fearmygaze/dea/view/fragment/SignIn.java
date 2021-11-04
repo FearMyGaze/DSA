@@ -1,7 +1,6 @@
 package com.fearmygaze.dea.view.fragment;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,10 +13,10 @@ import android.widget.Toast;
 import androidx.fragment.app.Fragment;
 
 import com.fearmygaze.dea.R;
+import com.fearmygaze.dea.custom.MyToast.CustomToast;
 import com.fearmygaze.dea.model.TextHandler;
 import com.fearmygaze.dea.view.activity.Main;
 import com.fearmygaze.dea.view.activity.Starting;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -29,7 +28,7 @@ public class SignIn extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_sign_in, container, false);
-
+        CustomToast customToast = ((Starting) requireActivity()).customToast;
 
         TextInputEditText loginEmail = view.findViewById(R.id.loginEmail);
         TextInputLayout loginEmailError = view.findViewById(R.id.loginEmailError);
@@ -74,7 +73,8 @@ public class SignIn extends Fragment {
                     startActivity(intent);
 
 
-                    Toast.makeText(requireActivity(), email+" "+passwd+" "+"rememberMe", Toast.LENGTH_SHORT).show();
+                    customToast.setOnSuccessMsg(email+" "+passwd+" "+rememberMe);
+                    customToast.onSuccess();
                 }
 
                 /*
@@ -88,19 +88,6 @@ public class SignIn extends Fragment {
 
 
         });
-
-//        Snackbar snackbar = Snackbar
-//                .make(view, "This is a Snackbar", Snackbar.LENGTH_INDEFINITE)
-//                .setActionTextColor(Color.RED);
-//        View snackView = snackbar.getView();
-//        TextView textView = snackView.findViewById(R.id.snackbar_text);
-//        textView.setTextColor(Color.YELLOW);
-//        snackbar.show();
-
-        /*
-        * ERROR: java.lang.IllegalArgumentException: No suitable parent found from the given view. Please provide a valid view.
-        * */
-
 
         return view;
     }

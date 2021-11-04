@@ -18,8 +18,6 @@ import com.fearmygaze.dea.view.fragment.Profile;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-import java.util.Objects;
-
 public class Main extends AppCompatActivity {
 
     public Fragment home, patientFiles, notifications, profile;
@@ -30,6 +28,9 @@ public class Main extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+        /*
+        * TODO: CHANGE THE BottomNavigationView Like Monsta
+        * */
 
         home = new Home();
         profile = new Profile();
@@ -57,15 +58,10 @@ public class Main extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.itemHome:
-                        /*
-                        * TODO: There is a big chance that the hide/show will be removed
-                        * */
-                        Objects.requireNonNull(getSupportActionBar()).hide();
                         replaceFragment(home);
                         return true;
                     case R.id.itemNotifications:
                         replaceFragment(notifications);
-                        Objects.requireNonNull(getSupportActionBar()).show();
                         return true;
                     case R.id.itemPatientFiles:
                         replaceFragment(patientFiles);

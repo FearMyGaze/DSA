@@ -4,7 +4,6 @@ import android.app.Activity;
 import android.graphics.Color;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,23 +21,23 @@ public class CustomToast implements ICustomToast{
 
 
     public CustomToast (Activity activity, String onErrorMsg , String onSuccessMsg , String onWarningMsg){
-        View view = activity.getLayoutInflater().inflate(R.layout.custom_toast, (ViewGroup) activity.findViewById(R.id.rootLayout));
+        View view = activity.getLayoutInflater().inflate(R.layout.custom_toast, activity.findViewById(R.id.customToastRootLayout));
         textView = view.findViewById(R.id.customToastTextView);
         appCompatImageView = view.findViewById(R.id.customToastImage);
         toast = new Toast(activity);
-        toast.setView(view); //TODO: This will become deprecated with 31 API
+        toast.setView(view); //This will become deprecated with 31 API
         this.onErrorMsg = onErrorMsg;
         this.onSuccessMsg = onSuccessMsg;
         this.onWarningMsg = onWarningMsg;
     }
 
     public CustomToast(Activity activity){
-        View view = activity.getLayoutInflater().inflate(R.layout.custom_toast, (ViewGroup) activity.findViewById(R.id.rootLayout));
+        View view = activity.getLayoutInflater().inflate(R.layout.custom_toast, activity.findViewById(R.id.customToastRootLayout));
         textView = view.findViewById(R.id.customToastTextView);
         appCompatImageView = view.findViewById(R.id.customToastImage);
         toast = new Toast(activity);
         toast.setGravity(Gravity.TOP|Gravity.CENTER,0,0);
-        toast.setView(view);
+        toast.setView(view); //This will become deprecated with 31 API
     }
 
     @Override
