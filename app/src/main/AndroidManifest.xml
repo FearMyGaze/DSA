@@ -12,7 +12,10 @@
         android:theme="@style/Theme.DEA">
         <activity
             android:name=".view.activity.Main"
-            android:exported="false" />
+            android:configChanges="orientation"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity"/>
         <activity
             android:name=".view.activity.Starting"
             android:configChanges="orientation"
