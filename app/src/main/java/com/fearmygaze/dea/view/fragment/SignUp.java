@@ -70,11 +70,12 @@ public class SignUp extends Fragment {
                 confirmRegistration.setEnabled(true);
                 confirmRegistration.setOnClickListener(v -> {
 
-                    TextHandler.IsMultipleTextInputsEmpty(registerName , registerNameError,
-                            registerLastName ,registerLastNameError ,
-                            registerEmail ,registerEmailError,
-                            registerPasswd,registerPasswdError,
-                            registerConfirmPasswd,registerConfirmPasswdError ,
+                    TextHandler.IsMultipleTextInputsEmpty(
+                            registerName , registerNameError,
+                            registerLastName , registerLastNameError,
+                            registerEmail , registerEmailError,
+                            registerPasswd , registerPasswdError,
+                            registerConfirmPasswd , registerConfirmPasswdError,
                             requireActivity());
 
                     if(!registerNameError.isErrorEnabled() && !registerLastNameError.isErrorEnabled() &&

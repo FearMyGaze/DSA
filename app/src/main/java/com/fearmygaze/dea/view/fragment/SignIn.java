@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -83,7 +82,8 @@ public class SignIn extends Fragment {
 
 
 
-                Toast.makeText(requireActivity(), email+" "+passwd+" ", Toast.LENGTH_SHORT).show();
+                customToast.setOnSuccessMsg(email+" "+passwd);
+                customToast.onSuccess();
             }
 
 
