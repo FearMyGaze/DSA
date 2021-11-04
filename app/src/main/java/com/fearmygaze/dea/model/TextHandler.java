@@ -51,7 +51,7 @@ public class TextHandler implements TextWatcher {
     }
 
     public static boolean IsPasswdValid(String passwd , TextView textView, Context context){
-        Pattern pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=])(?=\\S+$).{8,}$");
+        Pattern pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=\\S+$).{8,}$");
         Matcher matcher = pattern.matcher(passwd);
         boolean matches = matcher.matches();
         /*
