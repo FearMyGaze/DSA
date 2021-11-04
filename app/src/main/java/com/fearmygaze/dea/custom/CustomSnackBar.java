@@ -1,4 +1,4 @@
-package com.fearmygaze.dea.custom.MySnackBar;
+package com.fearmygaze.dea.custom;
 
 
 import android.app.Activity;

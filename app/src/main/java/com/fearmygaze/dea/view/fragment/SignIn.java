@@ -65,12 +65,13 @@ public class SignIn extends Fragment {
                     * TODO: Add the remember me function here
                     * */
 
+
+
                     /*
                     * TODO: Remove it
                     * */
                     Intent intent = new Intent(requireActivity(), Main.class);
                     startActivity(intent);
-
 
                     customToast.setOnSuccessMsg(email+" "+passwd+" "+rememberMe);
                     customToast.onSuccess();

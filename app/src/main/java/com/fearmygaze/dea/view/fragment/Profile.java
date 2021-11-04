@@ -15,6 +15,7 @@ import com.fearmygaze.dea.view.activity.Main;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
+import java.util.Date;
 import java.util.Objects;
 
 public class Profile extends Fragment {
@@ -81,7 +82,7 @@ public class Profile extends Fragment {
 
                 String updatedName = Objects.requireNonNull(profileName.getText()).toString().trim();
                 String updatedLastname = Objects.requireNonNull(profileLastname.getText()).toString().trim();
-                String updatedBirthday = Objects.requireNonNull(profileBirthday.getText()).toString().trim();
+                Date updatedBirthday = (Date) profileBirthday.getText();
                 String updatedEmail = Objects.requireNonNull(profileEmail.getText()).toString().trim();
                 String updatedSSN = Objects.requireNonNull(profileSSN.getText()).toString().trim();
                 String updatedLocation = Objects.requireNonNull(profileLocation.getText()).toString().trim();

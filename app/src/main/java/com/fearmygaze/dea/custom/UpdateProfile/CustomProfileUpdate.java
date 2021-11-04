@@ -5,6 +5,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 
 import com.fearmygaze.dea.R;
+import com.fearmygaze.dea.custom.RegEx;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -36,6 +37,9 @@ public class CustomProfileUpdate implements TextWatcher {
 
     }
 
+    /*
+    * TODO: Maybe add something to check if the email is valid but check for the previous version of the email
+    * */
 
     public static void IsMultipleTextInputsEmpty(TextInputEditText input1 , TextInputLayout error1 ,
                                                  TextInputEditText input2 , TextInputLayout error2 ,

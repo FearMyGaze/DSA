@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment;
 
 import com.fearmygaze.dea.R;
 import com.fearmygaze.dea.custom.MyToast.CustomToast;
+import com.fearmygaze.dea.custom.RegEx;
 import com.fearmygaze.dea.model.TextHandler;
 import com.fearmygaze.dea.view.activity.Starting;
 import com.google.android.material.textfield.TextInputEditText;
@@ -88,7 +89,7 @@ public class SignUp extends Fragment {
                         String email = Objects.requireNonNull(registerEmail.getText()).toString().trim();
                         String passwd = Objects.requireNonNull(registerPasswd.getText()).toString().trim();
 
-                        if (TextHandler.IsEmailValid(email,registerEmailError,requireActivity()) && TextHandler.IsPasswdValid(passwd,errorShower,requireActivity())){
+                        if (RegEx.IsEmailValid(email,registerEmailError,requireActivity()) && RegEx.IsPasswdValid(passwd,errorShower,requireActivity())){
 
                             /*
                              * TODO: Add all the stuff we need for the register form
