@@ -21,4 +21,10 @@
     <string name="profile">Profile</string>
     <string name="passwdRegExError"> * min 8 characters \n * 1 lower case \n * 1 upper case \n * 1 digit \n * 1 special character</string>
     <string name="emailRegExError">Your email is invalid</string>
+    <string name="appNotSupporting">This app doesn\'t support changing password</string>
+    <string name="buttonUpdate">Update</string>
+    <string name="SSN">Social Security Number</string>
+    <string name="location">Location</string>
+    <string name="birthday">Birthday</string>
+    <string name="valueHasNotChanged">Value has not changed</string>
 </resources>

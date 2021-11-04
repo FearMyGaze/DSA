@@ -10,4 +10,7 @@
     <color name="text">#757575</color>
     <color name="textColorHint">#616161</color>
     <color name="Red">#FF0000</color>
+    <color name="orange">#FFA500</color>
+    <color name="yellow">#FFFF00</color>
+    <color name="green">#00FF00</color>
 </resources>
