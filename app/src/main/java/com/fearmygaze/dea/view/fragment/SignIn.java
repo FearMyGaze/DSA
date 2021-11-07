@@ -13,7 +13,8 @@ import androidx.fragment.app.Fragment;
 
 import com.fearmygaze.dea.R;
 import com.fearmygaze.dea.custom.MyToast.CustomToast;
-import com.fearmygaze.dea.model.TextHandler;
+import com.fearmygaze.dea.custom.RegEx;
+import com.fearmygaze.dea.custom.TextHandler;
 import com.fearmygaze.dea.view.activity.Main;
 import com.fearmygaze.dea.view.activity.Starting;
 import com.google.android.material.textfield.TextInputEditText;
@@ -35,11 +36,13 @@ public class SignIn extends Fragment {
         TextInputEditText loginPasswd = view.findViewById(R.id.loginPasswd);
         TextInputLayout loginPasswdError = view.findViewById(R.id.loginPasswdError);
 
-        TextView gotoRegister = view.findViewById(R.id.gotoRegister);
+        TextView loginErrorShower = view.findViewById(R.id.loginErrorShower);
 
         CheckBox rememberMe = view.findViewById(R.id.login_remember_me);
 
         Button confirmLogIn = view.findViewById(R.id.confirmLogIn);
+
+        TextView gotoRegister = view.findViewById(R.id.gotoRegister);
 
         gotoRegister.setOnClickListener(v -> ((Starting)requireActivity()).replaceFragment(((Starting)requireActivity()).registerFragment));
 
@@ -60,32 +63,37 @@ public class SignIn extends Fragment {
                 String email = Objects.requireNonNull(loginEmail.getText()).toString().trim();
                 String passwd = Objects.requireNonNull(loginPasswd.getText()).toString().trim();
 
-                if (rememberMe.isChecked()){
+                if (RegEx.IsEmailValid(email,loginEmailError,requireActivity()) && RegEx.IsPasswdValid(passwd,loginErrorShower,requireActivity())) {
+
+                    if (rememberMe.isChecked()) {
+                        /*
+                         * TODO: Add the remember me function here
+                         * */
+
+
+
+                        /*
+                         * TODO: Remove it
+                         * */
+                        Intent intent = new Intent(requireActivity(), Main.class);
+                        startActivity(intent);
+
+                        customToast.setOnSuccessMsg(email + " " + passwd + " " + rememberMe);
+                        customToast.onSuccess();
+                    }
+
                     /*
-                    * TODO: Add the remember me function here
-                    * */
+                     * TODO: Add the stuff to complete the login form
+                     * */
 
 
-
-                    /*
-                    * TODO: Remove it
-                    * */
-                    Intent intent = new Intent(requireActivity(), Main.class);
-                    startActivity(intent);
-
-                    customToast.setOnSuccessMsg(email+" "+passwd+" "+rememberMe);
+                    customToast.setOnSuccessMsg(email + " " + passwd);
                     customToast.onSuccess();
                 }
 
-                /*
-                 * TODO: Add the stuff to complete the login form
-                 * */
-
-
-
-                customToast.setOnSuccessMsg(email+" "+passwd);
-                customToast.onSuccess();
             }
+            customToast.setOnErrorMsg("Wrong credentials");
+            customToast.onError();
 
 
         });

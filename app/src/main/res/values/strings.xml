@@ -12,7 +12,7 @@
     <string name="lastname">Lastname</string>
     <string name="emptyTextInputEditText">Please fill the field</string>
     <string name="rememberMe">Keep me signed in</string>
-    <string name="agreeToTOS">By clicking this button you <b>agree</b> to the app T.O.S</string>
+    <string name="agreeToTOS">I <b>agree</b> that the app will use the data to only create the account and <b>nothing more</b></string>
     <string name="alreadyHaveAccount">If you already have an account click here!</string>
     <string name="passwordNotEqual">Passwords not matching</string>
     <string name="home">Home</string>
@@ -21,10 +21,9 @@
     <string name="profile">Profile</string>
     <string name="passwdRegExError"> * min 8 characters \n * 1 lower case \n * 1 upper case \n * 1 digit \n * 1 special character</string>
     <string name="emailRegExError">Your email is invalid</string>
-    <string name="appNotSupporting">This app doesn\'t support changing password</string>
+    <string name="appNotSupporting">This app doesn\'t support changing password. \nFor deleting this account click here!</string>
     <string name="buttonUpdate">Update</string>
     <string name="SSN">Social Security Number</string>
     <string name="location">Location</string>
-    <string name="birthday">Birthday</string>
     <string name="valueHasNotChanged">Value has not changed</string>
 </resources>

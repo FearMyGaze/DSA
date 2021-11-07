@@ -13,7 +13,7 @@
     <string name="lastname">Επίθετο</string>
     <string name="emptyTextInputEditText">Παρακαλώ γεμίστε το κελί</string>
     <string name="rememberMe">Να παραμείνω συνδεμένος</string>
-    <string name="agreeToTOS">Πατώντας αυτό το κουμπί <b>συμφωνείς</b> με το T.O.S </string>
+    <string name="agreeToTOS"><b>Αποδέχομαι</b> ότι η εφαρμογή μπορεί να χρησημοποιήση τα στοιχεία μου μόνο για την εργγαφή και <b>τίποτα άλλο</b></string>
     <string name="alreadyHaveAccount">Εάν έχεις ήδη λογαριασμό πάτα εδώ!</string>
     <string name="passwordNotEqual">Οι κωδικοί πρόσβασης δεν ταιρίαζουν</string>
     <string name="home">Κεντρική</string>
@@ -22,10 +22,9 @@
     <string name="profile">Προφίλ</string>
     <string name="passwdRegExError">* Λιγότεροο 8 χαρακτήρες \n * 1 μικρό χαρακτήρα \n * 1 κεφαλαίο χαρακτήρα \n * 1 αριθμό \n * 1 ειδικό χαρακτήρα</string>
     <string name="emailRegExError">Το email σου δεν είναι σωστό</string>
-    <string name="appNotSupporting">Η εφαρμογή δεν υποστιρίζει αλλαγή κωδικού</string>
+    <string name="appNotSupporting">Η εφαρμογή δεν υποστιρίζει αλλαγή κωδικού. \nΓια διαγραφή λογαριασμό σου πάτα εδώ!</string>
     <string name="buttonUpdate">Ενημέρωση</string>
     <string name="SSN">ΑΜΚΑ</string>
     <string name="location">Τοποθεσία</string>
-    <string name="birthday">Ημ.Γέννησης</string>
     <string name="valueHasNotChanged">Η τιμή δεν έχει αλλάξει</string>
 </resources>

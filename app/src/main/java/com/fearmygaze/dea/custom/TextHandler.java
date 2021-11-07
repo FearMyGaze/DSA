@@ -1,17 +1,14 @@
-package com.fearmygaze.dea.model;
+package com.fearmygaze.dea.custom;
 
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.widget.TextView;
 
 import com.fearmygaze.dea.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 public class TextHandler implements TextWatcher {
 

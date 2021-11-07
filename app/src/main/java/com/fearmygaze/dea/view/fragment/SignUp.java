@@ -1,6 +1,8 @@
 package com.fearmygaze.dea.view.fragment;
 
+import android.content.ContentResolver;
 import android.os.Bundle;
+import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,7 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.fearmygaze.dea.R;
 import com.fearmygaze.dea.custom.MyToast.CustomToast;
 import com.fearmygaze.dea.custom.RegEx;
-import com.fearmygaze.dea.model.TextHandler;
+import com.fearmygaze.dea.custom.TextHandler;
 import com.fearmygaze.dea.view.activity.Starting;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -52,7 +54,7 @@ public class SignUp extends Fragment {
 
         Button confirmRegistration = view.findViewById(R.id.confirmRegistration);
 
-
+        ContentResolver resolver = requireActivity().getContentResolver();
 
         /*
         * The moment the TextInputEditText is filled with a text after an error occurred the error
@@ -88,13 +90,14 @@ public class SignUp extends Fragment {
                         String lastName = Objects.requireNonNull(registerLastName.getText()).toString().trim();
                         String email = Objects.requireNonNull(registerEmail.getText()).toString().trim();
                         String passwd = Objects.requireNonNull(registerPasswd.getText()).toString().trim();
+                        String deviceID = Settings.Secure.getString(resolver,Settings.Secure.ANDROID_ID);
 
                         if (RegEx.IsEmailValid(email,registerEmailError,requireActivity()) && RegEx.IsPasswdValid(passwd,errorShower,requireActivity())){
 
                             /*
                              * TODO: Add all the stuff we need for the register form
                              * */
-                            System.out.println("Account created"+name+lastName+email+passwd);
+                            System.out.println("Account created"+name+lastName+email+passwd+deviceID);
 
                             customToast.setOnSuccessMsg("User has successfully created");
                             customToast.onSuccess();

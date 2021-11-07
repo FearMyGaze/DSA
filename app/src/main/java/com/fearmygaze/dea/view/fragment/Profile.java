@@ -5,17 +5,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import com.fearmygaze.dea.R;
 import com.fearmygaze.dea.custom.MyToast.CustomToast;
-import com.fearmygaze.dea.custom.UpdateProfile.CustomProfileUpdate;
+import com.fearmygaze.dea.custom.TextHandler;
+import com.fearmygaze.dea.model.User;
 import com.fearmygaze.dea.view.activity.Main;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
-import java.util.Date;
 import java.util.Objects;
 
 public class Profile extends Fragment {
@@ -27,16 +28,10 @@ public class Profile extends Fragment {
         CustomToast customToast = ((Main) requireActivity()).customToast;
 
         TextInputEditText profileName = view.findViewById(R.id.profileName);
-        TextInputLayout profileNameError = view.findViewById(R.id.profileNameError);
 
         TextInputEditText profileLastname = view.findViewById(R.id.profileLastname);
-        TextInputLayout profileLastnameError = view.findViewById(R.id.profileLastnameError);
-
-        TextInputEditText profileBirthday = view.findViewById(R.id.profileBirthday);
-        TextInputLayout profileBirthdayError = view.findViewById(R.id.profileBirthdayError);
 
         TextInputEditText profileEmail = view.findViewById(R.id.profileEmail);
-        TextInputLayout profileEmailError = view.findViewById(R.id.profileEmailError);
 
         TextInputEditText profileSSN = view.findViewById(R.id.profileSSN);
         TextInputLayout profileSSNError = view.findViewById(R.id.profileSSNError);
@@ -46,50 +41,54 @@ public class Profile extends Fragment {
 
         Button profileUpdate = view.findViewById(R.id.profileUpdate);
 
+        TextView profileDeleteAcc = view.findViewById(R.id.profileDeleteAcc);
 
-        /*
-        * TODO: The button will be enabled when the cell's are filled and added with new value
-        * */
 
+        User user = new User("asd","asd","asd@gmail.com");
+
+        profileName.setText(user.getName());
+        profileLastname.setText(user.getLastname());
+        profileEmail.setText(user.getEmail());
+        profileSSN.setText(user.getSSN());
+        profileLocation.setText(user.getLocation());
 
         /*
          * The moment the TextInputEditText is filled with a text after an error occurred the error
          *   vanishes from the text that was changed
          * */
-        profileName.addTextChangedListener(new CustomProfileUpdate(profileNameError));
-        profileLastname.addTextChangedListener(new CustomProfileUpdate(profileLastnameError));
-        profileBirthday.addTextChangedListener(new CustomProfileUpdate(profileBirthdayError));
-        profileEmail.addTextChangedListener(new CustomProfileUpdate(profileEmailError));
-        profileSSN.addTextChangedListener(new CustomProfileUpdate(profileSSNError));
-        profileLocation.addTextChangedListener(new CustomProfileUpdate(profileLocationError));
+        profileSSN.addTextChangedListener(new TextHandler(profileSSNError));
+        profileLocation.addTextChangedListener(new TextHandler(profileLocationError));
 
-        profileUpdate.setEnabled(true); //TODO: Remove
         profileUpdate.setOnClickListener(v -> {
 
-            CustomProfileUpdate.IsMultipleTextInputsEmpty(
-                    profileName , profileNameError,
-                    profileLastname , profileLastnameError,
-                    profileBirthday , profileBirthdayError,
-                    profileEmail , profileEmailError,
-                    profileSSN , profileSSNError,
-                    profileLocation , profileLocationError,
-                    requireActivity());
+            TextHandler.IsTextInputEmpty(profileSSN , profileSSNError , requireActivity());
+            TextHandler.IsTextInputEmpty(profileLocation , profileLocationError , requireActivity());
 
-            if(!profileNameError.isErrorEnabled() && !profileLastnameError.isErrorEnabled() &&
-                    !profileBirthdayError.isErrorEnabled() && !profileEmailError.isErrorEnabled() &&
-                    !profileSSNError.isErrorEnabled() && !profileLocationError.isErrorEnabled()){
-
-
-                String updatedName = Objects.requireNonNull(profileName.getText()).toString().trim();
-                String updatedLastname = Objects.requireNonNull(profileLastname.getText()).toString().trim();
-                Date updatedBirthday = (Date) profileBirthday.getText();
-                String updatedEmail = Objects.requireNonNull(profileEmail.getText()).toString().trim();
+            if(!profileSSNError.isErrorEnabled() && !profileLocationError.isErrorEnabled()){
                 String updatedSSN = Objects.requireNonNull(profileSSN.getText()).toString().trim();
                 String updatedLocation = Objects.requireNonNull(profileLocation.getText()).toString().trim();
 
-                customToast.setOnSuccessMsg(updatedName+" "+updatedLastname+" "+updatedBirthday+" "+updatedEmail+" "+updatedSSN+" "+updatedLocation);
+                /*
+                * TODO: Control the update on CustomProfileUpdate
+                * */
+
+                user.setLocation(updatedLocation);
+                user.setSSN(updatedSSN);
+                user.setDevice_id("1");
+                user.setUuid("1");
+
+                customToast.setOnSuccessMsg(user.toString());
                 customToast.onSuccess();
 
+            }
+        });
+
+        profileDeleteAcc.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                /*
+                * TODO: Delete account
+                * */
             }
         });
 

@@ -63,13 +63,24 @@
 
         </com.google.android.material.textfield.TextInputLayout>
 
+        <TextView
+            android:id="@+id/loginErrorShower"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textSize="15sp"
+            android:textColor="@color/Red"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/loginPasswdError"
+            app:layout_constraintBottom_toTopOf="@+id/login_remember_me"/>
+
         <CheckBox
             android:id="@+id/login_remember_me"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:text="@string/rememberMe"
-            app:layout_constraintTop_toBottomOf="@id/loginPasswdError"
+            app:layout_constraintTop_toBottomOf="@id/loginErrorShower"
             app:layout_constraintBottom_toTopOf="@id/confirmLogIn"/>
 
         <Button
