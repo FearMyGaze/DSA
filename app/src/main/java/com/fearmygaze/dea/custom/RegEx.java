@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 public class RegEx {
 
     public static boolean IsEmailValid(String email, TextInputLayout textInputLayout, Context context){
-        Pattern pattern = Pattern.compile("^[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+(?:\\.[a-zA-Z0-9_!#$%&'*+/=?`{|}~^-]+)*@[a-zA-Z0-9-]+(?:\\.[a-zA-Z0-9-]+)*$");
+        Pattern pattern = Pattern.compile("^(?=.{1,64}@)[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,3})$");
         Matcher matcher = pattern.matcher(email);
         boolean matches = matcher.matches();
         if (!matches) {

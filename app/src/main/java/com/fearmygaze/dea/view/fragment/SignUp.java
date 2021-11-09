@@ -6,9 +6,9 @@ import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
@@ -18,6 +18,7 @@ import com.fearmygaze.dea.custom.MyToast.CustomToast;
 import com.fearmygaze.dea.custom.RegEx;
 import com.fearmygaze.dea.custom.TextHandler;
 import com.fearmygaze.dea.view.activity.Starting;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -52,7 +53,7 @@ public class SignUp extends Fragment {
 
         CheckBox registerTOS = view.findViewById(R.id.registerTOS);
 
-        Button confirmRegistration = view.findViewById(R.id.confirmRegistration);
+        MaterialButton confirmRegistration = view.findViewById(R.id.confirmRegistration);
 
         ContentResolver resolver = requireActivity().getContentResolver();
 
@@ -99,6 +100,7 @@ public class SignUp extends Fragment {
                              * */
                             System.out.println("Account created"+name+lastName+email+passwd+deviceID);
 
+                            customToast.setDuration(Toast.LENGTH_SHORT);
                             customToast.setOnSuccessMsg("User has successfully created");
                             customToast.onSuccess();
 

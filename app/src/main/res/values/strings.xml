@@ -19,11 +19,12 @@
     <string name="notifications">Notifications</string>
     <string name="patientFiles">Files</string>
     <string name="profile">Profile</string>
-    <string name="passwdRegExError"> * min 8 characters \n * 1 lower case \n * 1 upper case \n * 1 digit \n * 1 special character</string>
+    <string name="passwdRegExError"> * min 8 characters \n* 1 lower case \n* 1 upper case \n* 1 digit \n* 1 special character</string>
     <string name="emailRegExError">Your email is invalid</string>
     <string name="appNotSupporting">This app doesn\'t support changing password. \nFor deleting this account click here!</string>
     <string name="buttonUpdate">Update</string>
     <string name="SSN">Social Security Number</string>
     <string name="location">Location</string>
     <string name="valueHasNotChanged">Value has not changed</string>
+    <string name="addFiles">Add files</string>
 </resources>

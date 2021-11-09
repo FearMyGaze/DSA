@@ -16,6 +16,8 @@ import com.fearmygaze.dea.view.fragment.PatientFiles;
 import com.fearmygaze.dea.view.fragment.Profile;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.Objects;
+
 public class Main extends AppCompatActivity {
 
     public Fragment home, patientFiles, notifications, profile;
@@ -57,12 +59,15 @@ public class Main extends AppCompatActivity {
                     return true;
                 case R.id.itemNotifications:
                     replaceFragment(notifications);
+                    Objects.requireNonNull(getSupportActionBar()).hide();
                     return true;
                 case R.id.itemPatientFiles:
                     replaceFragment(patientFiles);
+                    Objects.requireNonNull(getSupportActionBar()).hide();
                     return true;
                 case R.id.itemProfile:
                     replaceFragment(profile);
+                    Objects.requireNonNull(getSupportActionBar()).hide();
                     return true;
                 default:
                     return false;

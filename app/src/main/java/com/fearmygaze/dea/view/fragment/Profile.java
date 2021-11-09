@@ -4,8 +4,8 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -14,6 +14,7 @@ import com.fearmygaze.dea.custom.MyToast.CustomToast;
 import com.fearmygaze.dea.custom.TextHandler;
 import com.fearmygaze.dea.model.User;
 import com.fearmygaze.dea.view.activity.Main;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -39,7 +40,7 @@ public class Profile extends Fragment {
         TextInputEditText profileLocation = view.findViewById(R.id.profileLocation);
         TextInputLayout profileLocationError = view.findViewById(R.id.profileLocationError);
 
-        Button profileUpdate = view.findViewById(R.id.profileUpdate);
+        MaterialButton profileUpdate = view.findViewById(R.id.profileUpdate);
 
         TextView profileDeleteAcc = view.findViewById(R.id.profileDeleteAcc);
 
@@ -83,13 +84,14 @@ public class Profile extends Fragment {
             }
         });
 
-        profileDeleteAcc.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                /*
-                * TODO: Delete account
-                * */
-            }
+        profileDeleteAcc.setOnClickListener(v -> {
+            /*
+            * TODO: Delete account
+            * */
+
+            customToast.setDuration(Toast.LENGTH_SHORT);
+            customToast.setOnWarningMsg("Your account will be delete in the next 30 days");
+            customToast.onWarning();
         });
 
         return view;

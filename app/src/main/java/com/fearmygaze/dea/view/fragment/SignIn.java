@@ -5,9 +5,9 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -17,6 +17,7 @@ import com.fearmygaze.dea.custom.RegEx;
 import com.fearmygaze.dea.custom.TextHandler;
 import com.fearmygaze.dea.view.activity.Main;
 import com.fearmygaze.dea.view.activity.Starting;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -40,7 +41,7 @@ public class SignIn extends Fragment {
 
         CheckBox rememberMe = view.findViewById(R.id.login_remember_me);
 
-        Button confirmLogIn = view.findViewById(R.id.confirmLogIn);
+        MaterialButton confirmLogIn = view.findViewById(R.id.confirmLogIn);
 
         TextView gotoRegister = view.findViewById(R.id.gotoRegister);
 
@@ -78,6 +79,7 @@ public class SignIn extends Fragment {
                         Intent intent = new Intent(requireActivity(), Main.class);
                         startActivity(intent);
 
+                        customToast.setDuration(Toast.LENGTH_SHORT);
                         customToast.setOnSuccessMsg(email + " " + passwd + " " + rememberMe);
                         customToast.onSuccess();
                     }
@@ -86,12 +88,13 @@ public class SignIn extends Fragment {
                      * TODO: Add the stuff to complete the login form
                      * */
 
-
+                    customToast.setDuration(Toast.LENGTH_SHORT);
                     customToast.setOnSuccessMsg(email + " " + passwd);
                     customToast.onSuccess();
                 }
 
             }
+            customToast.setDuration(Toast.LENGTH_SHORT);
             customToast.setOnErrorMsg("Wrong credentials");
             customToast.onError();
 

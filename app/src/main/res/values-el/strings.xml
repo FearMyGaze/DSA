@@ -20,11 +20,12 @@
     <string name="notifications">Ειδοποιήσεις</string>
     <string name="patientFiles">Αρχεία</string>
     <string name="profile">Προφίλ</string>
-    <string name="passwdRegExError">* Λιγότεροο 8 χαρακτήρες \n * 1 μικρό χαρακτήρα \n * 1 κεφαλαίο χαρακτήρα \n * 1 αριθμό \n * 1 ειδικό χαρακτήρα</string>
+    <string name="passwdRegExError">* Λιγότεροο 8 χαρακτήρες \n* 1 μικρό χαρακτήρα \n* 1 κεφαλαίο χαρακτήρα \n* 1 αριθμό \n* 1 ειδικό χαρακτήρα</string>
     <string name="emailRegExError">Το email σου δεν είναι σωστό</string>
     <string name="appNotSupporting">Η εφαρμογή δεν υποστιρίζει αλλαγή κωδικού. \nΓια διαγραφή λογαριασμό σου πάτα εδώ!</string>
     <string name="buttonUpdate">Ενημέρωση</string>
     <string name="SSN">ΑΜΚΑ</string>
     <string name="location">Τοποθεσία</string>
     <string name="valueHasNotChanged">Η τιμή δεν έχει αλλάξει</string>
+    <string name="addFiles">Εισαγωγή αρχείων</string>
 </resources>
