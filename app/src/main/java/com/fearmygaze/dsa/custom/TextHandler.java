@@ -1,10 +1,10 @@
-package com.fearmygaze.dea.custom;
+package com.fearmygaze.dsa.custom;
 
 import android.content.Context;
 import android.text.Editable;
 import android.text.TextWatcher;
 
-import com.fearmygaze.dea.R;
+import com.fearmygaze.dsa.R;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
@@ -46,7 +46,6 @@ public class TextHandler implements TextWatcher {
                                                  TextInputEditText input2 , TextInputLayout error2 ,
                                                  TextInputEditText input3 , TextInputLayout error3 ,
                                                  TextInputEditText input4 , TextInputLayout error4 ,
-                                                 TextInputEditText input5 , TextInputLayout error5 ,
                                                  Context context){
         if (Objects.requireNonNull(input1.getText()).toString().isEmpty()){
             error1.setError(context.getString(R.string.emptyTextInputEditText));
@@ -63,10 +62,6 @@ public class TextHandler implements TextWatcher {
         if (Objects.requireNonNull(input4.getText()).toString().isEmpty()){
             error4.setError(context.getString(R.string.emptyTextInputEditText));
             error4.setErrorEnabled(true);
-        }
-        if (Objects.requireNonNull(input5.getText()).toString().isEmpty()){
-            error5.setError(context.getString(R.string.emptyTextInputEditText));
-            error5.setErrorEnabled(true);
         }
     }
 

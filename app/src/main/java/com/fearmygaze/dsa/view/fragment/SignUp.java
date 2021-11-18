@@ -1,6 +1,8 @@
-package com.fearmygaze.dea.view.fragment;
+package com.fearmygaze.dsa.view.fragment;
 
+import android.annotation.SuppressLint;
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.LayoutInflater;
@@ -8,21 +10,22 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 
-import com.fearmygaze.dea.R;
-import com.fearmygaze.dea.custom.MyToast.CustomToast;
-import com.fearmygaze.dea.custom.RegEx;
-import com.fearmygaze.dea.custom.TextHandler;
-import com.fearmygaze.dea.view.activity.Starting;
+import com.fearmygaze.dsa.R;
+import com.fearmygaze.dsa.custom.RegEx;
+import com.fearmygaze.dsa.custom.TextHandler;
+import com.fearmygaze.dsa.model.User;
+import com.fearmygaze.dsa.view.activity.Main;
+import com.fearmygaze.dsa.view.activity.Starting;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
+import java.util.UUID;
 
 public class SignUp extends Fragment {
     View view;
@@ -31,13 +34,9 @@ public class SignUp extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         view = inflater.inflate(R.layout.fragment_sign_up, container, false);
-        CustomToast customToast = ((Starting) requireActivity()).customToast;
 
         TextInputEditText registerName = view.findViewById(R.id.registerName);
         TextInputLayout registerNameError = view.findViewById(R.id.registerNameError);
-
-        TextInputEditText registerLastName = view.findViewById(R.id.registerLastName);
-        TextInputLayout registerLastNameError = view.findViewById(R.id.registerLastNameError);
 
         TextInputEditText registerEmail = view.findViewById(R.id.registerEmail);
         TextInputLayout registerEmailError = view.findViewById(R.id.registerEmailError);
@@ -57,12 +56,12 @@ public class SignUp extends Fragment {
 
         ContentResolver resolver = requireActivity().getContentResolver();
 
+
         /*
-        * The moment the TextInputEditText is filled with a text after an error occurred the error
-        *   vanishes from the text that was changed
-        * */
+         * The moment the TextInputEditText is filled with a text after an error occurred the error
+         *   vanishes from the text that was changed
+         * */
         registerName.addTextChangedListener(new TextHandler(registerNameError));
-        registerLastName.addTextChangedListener(new TextHandler(registerLastNameError));
         registerEmail.addTextChangedListener(new TextHandler(registerEmailError));
         registerPasswd.addTextChangedListener(new TextHandler(registerPasswdError));
         registerConfirmPasswd.addTextChangedListener(new TextHandler(registerConfirmPasswdError));
@@ -76,33 +75,36 @@ public class SignUp extends Fragment {
 
                     TextHandler.IsMultipleTextInputsEmpty(
                             registerName , registerNameError,
-                            registerLastName , registerLastNameError,
                             registerEmail , registerEmailError,
                             registerPasswd , registerPasswdError,
                             registerConfirmPasswd , registerConfirmPasswdError,
                             requireActivity());
 
-                    if(!registerNameError.isErrorEnabled() && !registerLastNameError.isErrorEnabled() &&
-                        !registerEmailError.isErrorEnabled() && !registerPasswdError.isErrorEnabled() &&
-                        !registerConfirmPasswdError.isErrorEnabled() &&
+                    if(!registerNameError.isErrorEnabled() && !registerEmailError.isErrorEnabled() &&
+                            !registerPasswdError.isErrorEnabled() && !registerConfirmPasswdError.isErrorEnabled() &&
                             !TextHandler.IsTextInputsEqual(registerPasswd,registerConfirmPasswd , registerConfirmPasswdError ,requireActivity())){
 
                         String name = Objects.requireNonNull(registerName.getText()).toString().trim();
-                        String lastName = Objects.requireNonNull(registerLastName.getText()).toString().trim();
                         String email = Objects.requireNonNull(registerEmail.getText()).toString().trim();
                         String passwd = Objects.requireNonNull(registerPasswd.getText()).toString().trim();
-                        String deviceID = Settings.Secure.getString(resolver,Settings.Secure.ANDROID_ID);
+                        @SuppressLint("HardwareIds") String deviceID = Settings.Secure.getString(resolver,Settings.Secure.ANDROID_ID);
+                        String uuid = UUID.randomUUID().toString().trim();
 
-                        if (RegEx.IsEmailValid(email,registerEmailError,requireActivity()) && RegEx.IsPasswdValid(passwd,errorShower,requireActivity())){
+                        if (RegEx.IsEmailValid(email,registerEmailError,requireActivity()) && RegEx.IsPasswdValid(passwd,registerPasswdError,requireActivity())){
 
                             /*
                              * TODO: Add all the stuff we need for the register form
                              * */
-                            System.out.println("Account created"+name+lastName+email+passwd+deviceID);
 
-                            customToast.setDuration(Toast.LENGTH_SHORT);
-                            customToast.setOnSuccessMsg("User has successfully created");
-                            customToast.onSuccess();
+                            System.out.println("Account created"+name+email+passwd+deviceID+uuid);
+                            User user = new User(name,email);
+
+                            Intent intent = new Intent(SignUp.this.requireActivity(), Main.class);
+                            intent.putExtra("User", user);
+                            startActivity(intent);
+                            /*
+                             * TODO: Add custom snackbar
+                             * */
 
                         }
                     }
@@ -114,9 +116,9 @@ public class SignUp extends Fragment {
 
 
         /*
-        * TODO: MAKE THE FORM CLEAR WHEN THE BACK BUTTON IS PRESSED
-        *       see what we did in FarmWeather old
-        * */
+         * TODO: MAKE THE FORM CLEAR WHEN THE BACK BUTTON IS PRESSED
+         *       see what we did in FarmWeather old
+         * */
         OnBackPressedCallback callback = new OnBackPressedCallback(true ) {
             @Override
             public void handleOnBackPressed() {

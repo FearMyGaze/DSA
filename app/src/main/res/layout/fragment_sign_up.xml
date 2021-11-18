@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.coordinatorlayout.widget.CoordinatorLayout
-    android:id="@+id/registerRootLayout"
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/registerRootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.fragment.SignUp">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -20,43 +21,24 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.05" />
+                app:layout_constraintGuide_percent="0.069" />
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_horizontal_register_lastname_begin"
+                android:id="@+id/guideline_horizontal_register_end"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.2" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_horizontal_register_email_begin"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.35" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_horizontal_register_passwd_begin"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.5" />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_horizontal_register_confirm_passwd_begin"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:orientation="horizontal"
-                app:layout_constraintGuide_percent="0.65" />
+                app:layout_constraintGuide_percent="0.69" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/registerNameError"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/name"
                 app:endIconMode="clear_text"
-                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_register_name_begin">
+                app:layout_constraintBottom_toTopOf="@+id/registerEmailError"
+                app:layout_constraintTop_toTopOf="parent">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/registerName"
@@ -69,30 +51,14 @@
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/registerLastNameError"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:hint="@string/lastname"
-                app:endIconMode="clear_text"
-                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_register_lastname_begin">
-
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/registerLastName"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:inputType="textPersonName"
-                    android:textColorHint="@color/textColorHint"
-                    tools:ignore="TextContrastCheck,TextContrastCheck" />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-            <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/registerEmailError"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
                 app:endIconMode="clear_text"
-                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_register_email_begin">
+                app:layout_constraintBottom_toTopOf="@+id/registerPasswdError"
+                app:layout_constraintTop_toBottomOf="@+id/registerNameError">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/registerEmail"
@@ -106,11 +72,13 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/registerPasswdError"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/passwd"
                 app:endIconMode="password_toggle"
-                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_register_passwd_begin">
+                app:layout_constraintBottom_toTopOf="@+id/registerConfirmPasswdError"
+                app:layout_constraintTop_toBottomOf="@+id/registerEmailError">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/registerPasswd"
@@ -124,12 +92,13 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/registerConfirmPasswdError"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/confirm_passwd"
                 app:endIconMode="password_toggle"
-                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_register_confirm_passwd_begin"
-                app:layout_constraintBottom_toTopOf="@id/registerTOS">
+                app:layout_constraintBottom_toTopOf="@+id/registerTOS"
+                app:layout_constraintTop_toBottomOf="@+id/registerPasswdError">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/registerConfirmPasswd"
@@ -145,33 +114,31 @@
                 android:id="@+id/registerTOS"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/agreeToTOS"
                 android:layout_marginTop="10dp"
-                app:layout_constraintTop_toBottomOf="@id/registerConfirmPasswdError"
-                app:layout_constraintBottom_toTopOf="@id/registerErrorShower"/>
+                android:text="@string/agreeToTOS"
+                app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_register_end" />
 
             <TextView
                 android:id="@+id/registerErrorShower"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:textSize="15sp"
                 android:textColor="@color/Red"
-                app:layout_constraintStart_toStartOf="parent"
+                android:textSize="15sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/registerTOS"
-                app:layout_constraintBottom_toTopOf="@+id/confirmRegistration"/>
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/registerTOS" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/confirmRegistration"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/sign_up"
                 android:layout_marginTop="10dp"
                 android:enabled="false"
+                android:text="@string/sign_up"
                 app:cornerRadius="20dp"
-                app:layout_constraintTop_toBottomOf="@id/registerErrorShower"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintTop_toBottomOf="@id/registerErrorShower" />
 
             <TextView
                 android:id="@+id/gotoLogIn"

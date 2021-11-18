@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">DEA</string>
+    <string name="app_name">DSA</string>
     <string name="login">Είσοδος</string>
     <string name="register">Εγραφή</string>
     <string name="email">Ηλεκτρονική διεύθυνση</string>

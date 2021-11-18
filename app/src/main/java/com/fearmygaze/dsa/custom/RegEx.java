@@ -1,9 +1,9 @@
-package com.fearmygaze.dea.custom;
+package com.fearmygaze.dsa.custom;
 
 import android.content.Context;
 import android.widget.TextView;
 
-import com.fearmygaze.dea.R;
+import com.fearmygaze.dsa.R;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.regex.Matcher;
@@ -22,13 +22,10 @@ public class RegEx {
         return matches;
     }
 
-    public static boolean IsPasswdValid(String passwd , TextView textView, Context context){
+    public static boolean IsPasswdValid(String passwd , TextInputLayout textInputLayout, Context context){
         Pattern pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=\\S+$).{8,}$");
         Matcher matcher = pattern.matcher(passwd);
         boolean matches = matcher.matches();
-        /*
-         * TODO: ADD THIS TO SPECIAL CHARACTER !@#$%^&*
-         * */
 
         /*
          * ^                 # start of the string
@@ -42,7 +39,8 @@ public class RegEx {
          * */
 
         if (!matches) {
-            textView.setText(context.getString(R.string.passwdRegExError));
+            textInputLayout.setError(context.getString(R.string.passwdRegExError));
+            textInputLayout.setErrorEnabled(true);
         }
         return matches;
     }
