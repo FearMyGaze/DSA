@@ -2,3 +2,7 @@
 .gradle
 app
 local.properties
+gradlew
+gradlew.bat
+gradle
+build.gradle
