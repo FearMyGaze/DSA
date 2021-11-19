@@ -16,7 +16,6 @@
     <string name="agreeToTOS"><b>Αποδέχομαι</b> ότι η εφαρμογή μπορεί να χρησημοποιήση τα στοιχεία μου μόνο για την εργγαφή και <b>τίποτα άλλο</b></string>
     <string name="alreadyHaveAccount">Εάν έχεις ήδη λογαριασμό πάτα εδώ!</string>
     <string name="passwordNotEqual">Οι κωδικοί πρόσβασης δεν ταιρίαζουν</string>
-    <string name="home">Κεντρική</string>
     <string name="notifications">Ειδοποιήσεις</string>
     <string name="patientFiles">Αρχεία</string>
     <string name="profile">Προφίλ</string>
@@ -28,4 +27,5 @@
     <string name="location">Τοποθεσία</string>
     <string name="valueHasNotChanged">Η τιμή δεν έχει αλλάξει</string>
     <string name="addFiles">Εισαγωγή αρχείων</string>
+    <string name="nameRegExError">Δεν επιτρέπονται τα κενά αν θέλεις να βάλεις κενό βάλε "_"</string>
 </resources>

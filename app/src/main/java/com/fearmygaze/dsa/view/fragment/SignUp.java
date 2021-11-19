@@ -2,7 +2,6 @@ package com.fearmygaze.dsa.view.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
-import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.LayoutInflater;
@@ -15,17 +14,18 @@ import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 
 import com.fearmygaze.dsa.R;
+import com.fearmygaze.dsa.controller.UserController;
 import com.fearmygaze.dsa.custom.RegEx;
+import com.fearmygaze.dsa.custom.SnackBar.UserNotification;
 import com.fearmygaze.dsa.custom.TextHandler;
-import com.fearmygaze.dsa.model.User;
-import com.fearmygaze.dsa.view.activity.Main;
+import com.fearmygaze.dsa.model.IVolleyErrorMessage;
 import com.fearmygaze.dsa.view.activity.Starting;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
-import java.util.UUID;
 
 public class SignUp extends Fragment {
     View view;
@@ -48,7 +48,6 @@ public class SignUp extends Fragment {
         TextInputLayout registerConfirmPasswdError = view.findViewById(R.id.registerConfirmPasswdError);
 
         TextView gotoLogIn = view.findViewById(R.id.gotoLogIn);
-        TextView errorShower = view.findViewById(R.id.registerErrorShower);
 
         CheckBox registerTOS = view.findViewById(R.id.registerTOS);
 
@@ -88,24 +87,29 @@ public class SignUp extends Fragment {
                         String email = Objects.requireNonNull(registerEmail.getText()).toString().trim();
                         String passwd = Objects.requireNonNull(registerPasswd.getText()).toString().trim();
                         @SuppressLint("HardwareIds") String deviceID = Settings.Secure.getString(resolver,Settings.Secure.ANDROID_ID);
-                        String uuid = UUID.randomUUID().toString().trim();
 
-                        if (RegEx.IsEmailValid(email,registerEmailError,requireActivity()) && RegEx.IsPasswdValid(passwd,registerPasswdError,requireActivity())){
+                        if (RegEx.IsEmailValid(email,registerEmailError,requireActivity()) && RegEx.IsPasswdValid(passwd,registerPasswdError,requireActivity()) &&
+                                RegEx.IsNameValid(name,registerNameError,requireActivity())){
 
                             /*
                              * TODO: Add all the stuff we need for the register form
                              * */
 
-                            System.out.println("Account created"+name+email+passwd+deviceID+uuid);
-                            User user = new User(name,email);
+                            UserController.UserRegister(requireActivity(), name, email, passwd, deviceID, new IVolleyErrorMessage() {
+                                @Override
+                                public void onWaring(String message) {
+                                    UserNotification userNotification = new UserNotification(requireActivity(),v, Snackbar.LENGTH_LONG,Snackbar.ANIMATION_MODE_FADE);
+                                    userNotification.setOnWarningMsg(message);
+                                    userNotification.onWarning();
+                                }
 
-                            Intent intent = new Intent(SignUp.this.requireActivity(), Main.class);
-                            intent.putExtra("User", user);
-                            startActivity(intent);
-                            /*
-                             * TODO: Add custom snackbar
-                             * */
-
+                                @Override
+                                public void onError(String message) {
+                                    UserNotification userNotification = new UserNotification(requireActivity(),v, Snackbar.LENGTH_LONG,Snackbar.ANIMATION_MODE_FADE);
+                                    userNotification.setOnErrorMsg(message);
+                                    userNotification.onError();
+                                }
+                            });
                         }
                     }
                 });

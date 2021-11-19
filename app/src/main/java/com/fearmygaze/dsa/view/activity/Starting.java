@@ -8,7 +8,6 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.fearmygaze.dsa.R;
-import com.fearmygaze.dsa.model.User;
 import com.fearmygaze.dsa.view.fragment.SignIn;
 import com.fearmygaze.dsa.view.fragment.SignUp;
 

@@ -1,7 +1,6 @@
 package com.fearmygaze.dsa.custom;
 
 import android.content.Context;
-import android.widget.TextView;
 
 import com.fearmygaze.dsa.R;
 import com.google.android.material.textfield.TextInputLayout;
@@ -40,6 +39,18 @@ public class RegEx {
 
         if (!matches) {
             textInputLayout.setError(context.getString(R.string.passwdRegExError));
+            textInputLayout.setErrorEnabled(true);
+        }
+        return matches;
+    }
+
+    public static boolean IsNameValid(String name , TextInputLayout textInputLayout ,Context context){
+        Pattern pattern = Pattern.compile("[a-zA-Z_]+");
+        Matcher matcher = pattern.matcher(name);
+        boolean matches = matcher.matches();
+
+        if (!matches) {
+            textInputLayout.setError(context.getString(R.string.nameRegExError));
             textInputLayout.setErrorEnabled(true);
         }
         return matches;

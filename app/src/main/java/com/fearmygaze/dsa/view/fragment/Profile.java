@@ -77,7 +77,7 @@ public class Profile extends Fragment {
             /*
              * TODO: Delete account
              * */
-            ((Main) requireActivity()).snackbarMainNotifications.removeAllViews();
+            ((Main) requireActivity()).snackbarMainNotifications.removeAllViews(); // TODO: CHECK IF WE NEED IT
             UserNotification snackbar = new UserNotification(requireActivity(),v, Snackbar.LENGTH_LONG , Snackbar.ANIMATION_MODE_FADE);
             snackbar.setOnWarningMsg("Welcome  " + me.getName());
             snackbar.onWarning();

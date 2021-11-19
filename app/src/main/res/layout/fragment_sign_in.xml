@@ -27,6 +27,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/email"
+        app:counterEnabled="true"
+        app:counterMaxLength="50"
         app:endIconMode="clear_text"
         app:layout_constraintBottom_toTopOf="@+id/loginPasswdError"
         app:layout_constraintTop_toBottomOf="@+id/guideline_horizontal_login_begin">
@@ -48,6 +50,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:hint="@string/passwd"
+        app:counterEnabled="true"
+        app:counterMaxLength="255"
         app:endIconMode="password_toggle"
         app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_login_end"
         app:layout_constraintTop_toBottomOf="@+id/loginEmailError">

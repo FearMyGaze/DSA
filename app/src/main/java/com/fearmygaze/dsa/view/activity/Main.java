@@ -12,8 +12,8 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.fearmygaze.dsa.R;
 import com.fearmygaze.dsa.model.User;
-import com.fearmygaze.dsa.view.fragment.Notifications;
 import com.fearmygaze.dsa.view.fragment.Files;
+import com.fearmygaze.dsa.view.fragment.Notifications;
 import com.fearmygaze.dsa.view.fragment.Profile;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
