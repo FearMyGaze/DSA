@@ -27,9 +27,12 @@
     <string name="valueHasNotChanged">Value has not changed</string>
     <string name="addFiles">Add files</string>
     <string name="nameRegExError">No spaces is allowed if you want to add a space use this "_"</string>
-
+    <string name="jsonErrorDuring">Error during</string>
+    <string name="errorOnRegister">Email already exists</string>
+    <string name="volleyError">Error during connection</string>
 
     <string-array name="url">
-        <item>http://192.168.1.10/DSA/registerUsers.php</item>
+        <item>http://192.168.1.10/DSA/UsersRegister.php</item>
+        <item>http://192.168.1.10/DSA/UserLogin.php</item>
     </string-array>
 </resources>

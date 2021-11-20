@@ -28,4 +28,7 @@
     <string name="valueHasNotChanged">Η τιμή δεν έχει αλλάξει</string>
     <string name="addFiles">Εισαγωγή αρχείων</string>
     <string name="nameRegExError">Δεν επιτρέπονται τα κενά αν θέλεις να βάλεις κενό βάλε "_"</string>
+    <string name="jsonErrorDuring">Σφάλμα κατά</string>
+    <string name="errorOnRegister">Το email υπάρχει ήδη</string>
+    <string name="volleyError">Σφάλμα κατά την σύνδεση</string>
 </resources>
