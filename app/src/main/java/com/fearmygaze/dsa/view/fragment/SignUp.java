@@ -2,6 +2,7 @@ package com.fearmygaze.dsa.view.fragment;
 
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.Settings;
 import android.view.LayoutInflater;
@@ -18,7 +19,9 @@ import com.fearmygaze.dsa.controller.UserController;
 import com.fearmygaze.dsa.custom.RegEx;
 import com.fearmygaze.dsa.custom.SnackBar.UserNotification;
 import com.fearmygaze.dsa.custom.TextHandler;
-import com.fearmygaze.dsa.model.IVolleyErrorMessage;
+import com.fearmygaze.dsa.model.IVolleyMessage;
+import com.fearmygaze.dsa.model.User;
+import com.fearmygaze.dsa.view.activity.Main;
 import com.fearmygaze.dsa.view.activity.Starting;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -91,11 +94,7 @@ public class SignUp extends Fragment {
                         if (RegEx.IsEmailValid(email,registerEmailError,requireActivity()) && RegEx.IsPasswdValid(passwd,registerPasswdError,requireActivity()) &&
                                 RegEx.IsNameValid(name,registerNameError,requireActivity())){
 
-                            /*
-                             * TODO: Add all the stuff we need for the register form
-                             * */
-
-                            UserController.UserRegister(requireActivity(), name, email, passwd, deviceID, new IVolleyErrorMessage() {
+                            UserController.UserRegister(requireActivity(), name, email, passwd, deviceID, new IVolleyMessage() {
                                 @Override
                                 public void onWaring(String message) {
                                     UserNotification userNotification = new UserNotification(requireActivity(),v, Snackbar.LENGTH_LONG,Snackbar.ANIMATION_MODE_FADE);
@@ -108,6 +107,16 @@ public class SignUp extends Fragment {
                                     UserNotification userNotification = new UserNotification(requireActivity(),v, Snackbar.LENGTH_LONG,Snackbar.ANIMATION_MODE_FADE);
                                     userNotification.setOnErrorMsg(message);
                                     userNotification.onError();
+                                }
+
+                                @Override
+                                public void onSuccess(String message) {
+                                    User user = new User(name,email);
+
+                                    Intent intent = new Intent(requireActivity(), Main.class);
+                                    intent.putExtra("User", user);
+                                    requireActivity().startActivity(intent);
+                                    requireActivity().finish();
                                 }
                             });
                         }

@@ -30,5 +30,10 @@
     <string name="nameRegExError">Δεν επιτρέπονται τα κενά αν θέλεις να βάλεις κενό βάλε "_"</string>
     <string name="jsonErrorDuring">Σφάλμα κατά</string>
     <string name="errorOnRegister">Το email υπάρχει ήδη</string>
+    <string name="errorOnLogin">Λάθος email ή κωδικός</string>
+    <string name="errorOnUpdate">Ο λογαριασμός email υπάρχει ήδη</string>
+    <string name="successOnUpdate">Ο λογαριασμός ενημερώθηκε</string>
+    <string name="errorOnDelete">Εμφανίστηκε πρόβλημα κατα την διαγραφή</string>
+    <string name="successonDelete">Ο λογαριασμός διαγράφτηκε</string>
     <string name="volleyError">Σφάλμα κατά την σύνδεση</string>
 </resources>

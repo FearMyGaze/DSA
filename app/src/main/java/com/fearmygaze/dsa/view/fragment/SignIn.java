@@ -17,7 +17,7 @@ import com.fearmygaze.dsa.controller.UserController;
 import com.fearmygaze.dsa.custom.RegEx;
 import com.fearmygaze.dsa.custom.SnackBar.UserNotification;
 import com.fearmygaze.dsa.custom.TextHandler;
-import com.fearmygaze.dsa.model.IVolleyErrorMessage;
+import com.fearmygaze.dsa.model.IVolleyMessage;
 import com.fearmygaze.dsa.model.User;
 import com.fearmygaze.dsa.view.activity.Main;
 import com.fearmygaze.dsa.view.activity.Starting;
@@ -65,7 +65,7 @@ public class SignIn extends Fragment {
                 String passwd = Objects.requireNonNull(loginPasswd.getText()).toString().trim();
 
                 if (RegEx.IsEmailValid(email, loginEmailError, SignIn.this.requireActivity()) && RegEx.IsPasswdValid(passwd, loginPasswdError, SignIn.this.requireActivity())) {
-                    UserController.UserLogin(requireActivity(), email, passwd, new IVolleyErrorMessage() {
+                    UserController.UserLogin(requireActivity(), email, passwd, new IVolleyMessage() {
                         @Override
                         public void onWaring(String message) {
                             UserNotification userNotification = new UserNotification(requireActivity(),v, Snackbar.LENGTH_LONG,Snackbar.ANIMATION_MODE_FADE);
@@ -78,6 +78,22 @@ public class SignIn extends Fragment {
                             UserNotification userNotification = new UserNotification(requireActivity(),v, Snackbar.LENGTH_LONG,Snackbar.ANIMATION_MODE_FADE);
                             userNotification.setOnErrorMsg(message);
                             userNotification.onError();
+                        }
+
+                        @Override
+                        public void onSuccess(String message) {
+                            SharedPreferences.Editor editor = requireActivity().getPreferences(MODE_PRIVATE).edit();
+                            editor.putString("userEmail", email);
+                            editor.putString("userPasswd",passwd);
+                            editor.putString("userName", message);
+                            editor.apply();
+
+                            User me = new User(message, email);
+
+                            Intent intent = new Intent(requireActivity(), Main.class);
+                            intent.putExtra("User", me);
+                            requireActivity().startActivity(intent);
+                            requireActivity().finish();
                         }
                     });
 

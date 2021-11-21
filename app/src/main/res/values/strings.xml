@@ -29,10 +29,17 @@
     <string name="nameRegExError">No spaces is allowed if you want to add a space use this "_"</string>
     <string name="jsonErrorDuring">Error during</string>
     <string name="errorOnRegister">Email already exists</string>
+    <string name="errorOnLogin">Incorrect email or password</string>
+    <string name="errorOnUpdate">Email account already exists</string>
+    <string name="successOnUpdate">The account has been updated</string>
+    <string name="errorOnDelete">There was an unexpected error</string>
+    <string name="successonDelete">The account has been deleted</string>
     <string name="volleyError">Error during connection</string>
 
     <string-array name="url">
         <item>http://192.168.1.10/DSA/UsersRegister.php</item>
         <item>http://192.168.1.10/DSA/UserLogin.php</item>
+        <item>http://192.168.1.10/DSA/UserUpdate.php</item>
+        <item>http://192.168.1.10/DSA/UserDelete.php</item>
     </string-array>
 </resources>
