@@ -5,5 +5,5 @@ dependencyResolutionManagement {
         mavenCentral()
     }
 }
-rootProject.name = "DEA"
+rootProject.name = "DSA"
 include ':app'

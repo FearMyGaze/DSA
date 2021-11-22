@@ -1,16 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">DEA</string>
+    <string name="app_name">DSA</string>
     <string name="login">Είσοδος</string>
     <string name="register">Εγραφή</string>
     <string name="email">Ηλεκτρονική διεύθυνση</string>
     <string name="passwd">Κωδικός Πρόσβασης</string>
-    <string name="forget_email">Εάν έχεις ξεχάσει τον κωδικό πάτα με !!</string>
-    <string name="sign_in">Είσοδος</string>
-    <string name="sign_up">Εγραφή</string>
+    <string name="confirm_passwd">Eπαλήθευση κωδικού πρόσβασης</string>
     <string name="sign_up_message">Δεν έχεις λογαριασμό; Φτιάξε έναν εδώ!!</string>
     <string name="name">Όνομα</string>
-    <string name="lastname">Επίθετο</string>
     <string name="emptyTextInputEditText">Παρακαλώ γεμίστε το κελί</string>
-    <string name="RememberMe">Να παραμείνω συνδεμένος</string>
+    <string name="agreeToTOS"><b>Αποδέχομαι</b> ότι η εφαρμογή μπορεί να χρησημοποιήση τα στοιχεία μου μόνο για την εργγαφή και <b>τίποτα άλλο</b></string>
+    <string name="alreadyHaveAccount">Εάν έχεις ήδη λογαριασμό πάτα εδώ!</string>
+    <string name="passwordNotEqual">Οι κωδικοί πρόσβασης δεν ταιρίαζουν</string>
+    <string name="notifications">Ειδοποιήσεις</string>
+    <string name="patientFiles">Αρχεία</string>
+    <string name="profile">Προφίλ</string>
+    <string name="passwdRegExError">* Λιγότεροο 8 χαρακτήρες \n* 1 μικρό χαρακτήρα \n* 1 κεφαλαίο χαρακτήρα \n* 1 αριθμό \n* 1 ειδικό χαρακτήρα</string>
+    <string name="emailRegExError">Το email σου δεν είναι σωστό</string>
+    <string name="appNotSupporting">Η εφαρμογή δεν υποστιρίζει αλλαγή κωδικού. \nΓια διαγραφή λογαριασμό σου πάτα εδώ!</string>
+    <string name="buttonUpdate">Ενημέρωση</string>
+    <string name="valueHasNotChanged">Η τιμή δεν έχει αλλάξει</string>
+    <string name="addFiles">Εισαγωγή αρχείων</string>
+    <string name="nameRegExError">Δεν επιτρέπονται τα κενά αν θέλεις να βάλεις κενό βάλε "_"</string>
+    <string name="jsonErrorDuring">Σφάλμα κατά</string>
+    <string name="errorOnRegister">Το email υπάρχει ήδη</string>
+    <string name="errorOnLogin">Λάθος email ή κωδικός</string>
+    <string name="errorOnUpdate">Ο λογαριασμός email υπάρχει ήδη</string>
+    <string name="successOnUpdate">Ο λογαριασμός ενημερώθηκε</string>
+    <string name="errorOnDelete">Εμφανίστηκε πρόβλημα κατα την διαγραφή</string>
+    <string name="successOnDelete">Ο λογαριασμός διαγράφτηκε</string>
+    <string name="volleyError">Σφάλμα κατά την σύνδεση</string>
+    <string name="bottomSheetDialogUploadPicture">Ανέβασε φωτογραφία</string>
+    <string name="bottomSheetDialogUploadPDF">Ανέβασε PDF</string>
+    <string name="bottomSheetDialogCreateTxtFile">Δημιούργησε ενα txt αρχείο</string>
 </resources>

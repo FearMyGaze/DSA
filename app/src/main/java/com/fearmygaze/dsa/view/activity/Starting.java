@@ -1,37 +1,37 @@
-package com.fearmygaze.dea.view.activity;
+package com.fearmygaze.dsa.view.activity;
+
+import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.os.Bundle;
+import com.fearmygaze.dsa.R;
+import com.fearmygaze.dsa.view.fragment.SignIn;
+import com.fearmygaze.dsa.view.fragment.SignUp;
 
-import com.fearmygaze.dea.R;
-import com.fearmygaze.dea.view.fragment.Sign_in;
-import com.fearmygaze.dea.view.fragment.Sign_up;
+public class Starting extends AppCompatActivity {
 
-public class StartingActivity extends AppCompatActivity {
-
-    public Fragment sign_in_fragment , sign_up_fragment;
+    public Fragment logInFragment, registerFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_starting);
 
-        sign_in_fragment = new Sign_in();
-        sign_up_fragment = new Sign_up();
 
-        replaceFragment(sign_in_fragment);
+        logInFragment = new SignIn();
+        registerFragment = new SignUp();
+
+        replaceFragment(logInFragment);
     }
 
 
-
-    public void replaceFragment(Fragment fragment){
+    public void replaceFragment(Fragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.frame_fragment,fragment);
+        fragmentTransaction.replace(R.id.frameFragment, fragment);
         fragmentTransaction.commit();
     }
 }
