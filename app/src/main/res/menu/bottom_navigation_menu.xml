@@ -1,27 +1,23 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
         android:id="@+id/itemNotifications"
-        android:title="@string/notifications"
         android:icon="@drawable/ic_outline_notifications_24"
-        app:showAsAction="always">
-    </item>
+        android:title="@string/notifications"
+        app:showAsAction="always"></item>
 
     <item
         android:id="@+id/itemFiles"
-        android:title="@string/patientFiles"
         android:icon="@drawable/ic_outline_folder_24"
-        app:showAsAction="always">
-    </item>
+        android:title="@string/patientFiles"
+        app:showAsAction="always"></item>
 
     <item
         android:id="@+id/itemProfile"
-        android:title="@string/profile"
         android:icon="@drawable/ic_outline_person_24"
-        app:showAsAction="always">
-    </item>
+        android:title="@string/profile"
+        app:showAsAction="always"></item>
 
 </menu>

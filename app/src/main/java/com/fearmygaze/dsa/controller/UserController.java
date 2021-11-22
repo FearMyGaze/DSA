@@ -1,10 +1,6 @@
 package com.fearmygaze.dsa.controller;
 
-import static android.content.Context.MODE_PRIVATE;
-
-import android.app.Activity;
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
 
@@ -22,8 +18,8 @@ import java.util.Map;
 
 public class UserController {
 
-    public static void UserRegister(Context context, String name , String email , String passwd, String device_id , IVolleyMessage volleyMessage){
-        String[] url= context.getResources().getStringArray(R.array.url);
+    public static void UserRegister(Context context, String name, String email, String passwd, String device_id, IVolleyMessage volleyMessage) {
+        String[] url = context.getResources().getStringArray(R.array.url);
         String jsonError = context.getResources().getString(R.string.jsonErrorDuring);
         String errorOnRegister = context.getResources().getString(R.string.errorOnRegister);
         String volleyError = context.getResources().getString(R.string.volleyError);
@@ -37,12 +33,11 @@ public class UserController {
                         } else {
                             volleyMessage.onWaring(errorOnRegister);
                         }
-
                     } catch (JSONException e) {
-                        volleyMessage.onError(jsonError+ " " +e.getMessage());
+                        volleyMessage.onError(jsonError + " " + e.getMessage());
                     }
                 },
-                error -> volleyMessage.onError(volleyError+ error.getMessage())) {
+                error -> volleyMessage.onError(volleyError + error.getMessage())) {
             @NonNull
             @Override
             protected Map<String, String> getParams() {
@@ -57,8 +52,8 @@ public class UserController {
         RequestSingleton.getInstance(context).addToRequestQueue(request);
     }
 
-    public static void UserLogin(Context context, String email , String passwd , IVolleyMessage volleyMessage) {
-        String[] url= context.getResources().getStringArray(R.array.url);
+    public static void UserLogin(Context context, String email, String passwd, IVolleyMessage volleyMessage) {
+        String[] url = context.getResources().getStringArray(R.array.url);
         String jsonError = context.getResources().getString(R.string.jsonErrorDuring);
         String errorOnLogin = context.getResources().getString(R.string.errorOnLogin);
         String volleyError = context.getResources().getString(R.string.volleyError);
@@ -77,10 +72,10 @@ public class UserController {
                             volleyMessage.onWaring(errorOnLogin);
                         }
                     } catch (JSONException e) {
-                        volleyMessage.onError(jsonError+ " " +e.getMessage());
+                        volleyMessage.onError(jsonError + " " + e.getMessage());
                     }
                 },
-                error -> volleyMessage.onError(volleyError+ error.getMessage())) {
+                error -> volleyMessage.onError(volleyError + error.getMessage())) {
             @NonNull
             @Override
             protected Map<String, String> getParams() {
@@ -91,11 +86,10 @@ public class UserController {
             }
         };
         RequestSingleton.getInstance(context).addToRequestQueue(request);
-
     }
 
-    public  static void UserUpdate(Context context, String username , String oldName, String email , IVolleyMessage volleyMessage){
-        String[] url= context.getResources().getStringArray(R.array.url);
+    public static void UserUpdate(Context context, String username, String oldName, String email, IVolleyMessage volleyMessage) {
+        String[] url = context.getResources().getStringArray(R.array.url);
         String jsonError = context.getResources().getString(R.string.jsonErrorDuring);
         String errorOnUpdate = context.getResources().getString(R.string.errorOnUpdate);
         String volleyError = context.getResources().getString(R.string.volleyError);
@@ -109,12 +103,11 @@ public class UserController {
                         } else {
                             volleyMessage.onWaring(errorOnUpdate);
                         }
-
                     } catch (JSONException e) {
-                        volleyMessage.onError(jsonError+ " " +e.getMessage());
+                        volleyMessage.onError(jsonError + " " + e.getMessage());
                     }
                 },
-                error -> volleyMessage.onError(volleyError+ error.getMessage())) {
+                error -> volleyMessage.onError(volleyError + error.getMessage())) {
             @NonNull
             @Override
             protected Map<String, String> getParams() {
@@ -128,12 +121,12 @@ public class UserController {
         RequestSingleton.getInstance(context).addToRequestQueue(request);
     }
 
-    public static void UserDelete(Context context, String email, IVolleyMessage volleyMessage){
-        String[] url= context.getResources().getStringArray(R.array.url);
+    public static void UserDelete(Context context, String email, IVolleyMessage volleyMessage) {
+        String[] url = context.getResources().getStringArray(R.array.url);
         String jsonError = context.getResources().getString(R.string.jsonErrorDuring);
         String errorOnDelete = context.getResources().getString(R.string.errorOnDelete);
         String volleyError = context.getResources().getString(R.string.volleyError);
-        String successOnDelete = context.getResources().getString(R.string.successonDelete);
+        String successOnDelete = context.getResources().getString(R.string.successOnDelete);
 
         StringRequest request = new StringRequest(Request.Method.POST, url[3],
                 response -> {
@@ -145,10 +138,10 @@ public class UserController {
                             volleyMessage.onWaring(errorOnDelete);
                         }
                     } catch (JSONException e) {
-                        volleyMessage.onError(jsonError+ " " +e.getMessage());
+                        volleyMessage.onError(jsonError + " " + e.getMessage());
                     }
                 },
-                error -> volleyMessage.onError(volleyError+ error.getMessage())) {
+                error -> volleyMessage.onError(volleyError + error.getMessage())) {
             @NonNull
             @Override
             protected Map<String, String> getParams() {

@@ -45,7 +45,7 @@ public class SignIn extends Fragment {
 
         TextView gotoRegister = view.findViewById(R.id.gotoRegister);
 
-        gotoRegister.setOnClickListener(v -> ((Starting)requireActivity()).replaceFragment(((Starting)requireActivity()).registerFragment));
+        gotoRegister.setOnClickListener(v -> ((Starting) requireActivity()).replaceFragment(((Starting) requireActivity()).registerFragment));
 
         /*
          * The moment the TextInputEditText is filled with a text after an error occurred th error
@@ -68,14 +68,14 @@ public class SignIn extends Fragment {
                     UserController.UserLogin(requireActivity(), email, passwd, new IVolleyMessage() {
                         @Override
                         public void onWaring(String message) {
-                            UserNotification userNotification = new UserNotification(requireActivity(),v, Snackbar.LENGTH_LONG,Snackbar.ANIMATION_MODE_FADE);
+                            UserNotification userNotification = new UserNotification(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
                             userNotification.setOnWarningMsg(message);
                             userNotification.onWarning();
                         }
 
                         @Override
                         public void onError(String message) {
-                            UserNotification userNotification = new UserNotification(requireActivity(),v, Snackbar.LENGTH_LONG,Snackbar.ANIMATION_MODE_FADE);
+                            UserNotification userNotification = new UserNotification(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
                             userNotification.setOnErrorMsg(message);
                             userNotification.onError();
                         }
@@ -84,7 +84,7 @@ public class SignIn extends Fragment {
                         public void onSuccess(String message) {
                             SharedPreferences.Editor editor = requireActivity().getPreferences(MODE_PRIVATE).edit();
                             editor.putString("userEmail", email);
-                            editor.putString("userPasswd",passwd);
+                            editor.putString("userPasswd", passwd);
                             editor.putString("userName", message);
                             editor.apply();
 
@@ -96,8 +96,6 @@ public class SignIn extends Fragment {
                             requireActivity().finish();
                         }
                     });
-
-
                 }
             }
         });

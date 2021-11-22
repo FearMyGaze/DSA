@@ -10,7 +10,7 @@ import java.util.regex.Pattern;
 
 public class RegEx {
 
-    public static boolean IsEmailValid(String email, TextInputLayout textInputLayout, Context context){
+    public static boolean IsEmailValid(String email, TextInputLayout textInputLayout, Context context) {
         Pattern pattern = Pattern.compile("^(?=.{1,64}@)[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,3})$");
         Matcher matcher = pattern.matcher(email);
         boolean matches = matcher.matches();
@@ -21,7 +21,7 @@ public class RegEx {
         return matches;
     }
 
-    public static boolean IsPasswdValid(String passwd , TextInputLayout textInputLayout, Context context){
+    public static boolean IsPasswdValid(String passwd, TextInputLayout textInputLayout, Context context) {
         Pattern pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=\\S+$).{8,}$");
         Matcher matcher = pattern.matcher(passwd);
         boolean matches = matcher.matches();
@@ -44,7 +44,7 @@ public class RegEx {
         return matches;
     }
 
-    public static boolean IsNameValid(String name , TextInputLayout textInputLayout ,Context context){
+    public static boolean IsNameValid(String name, TextInputLayout textInputLayout, Context context) {
         Pattern pattern = Pattern.compile("[a-zA-Z_]+");
         Matcher matcher = pattern.matcher(name);
         boolean matches = matcher.matches();

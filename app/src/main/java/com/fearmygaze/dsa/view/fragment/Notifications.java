@@ -15,16 +15,13 @@ public class Notifications extends Fragment {
 
     private User me;
 
-    public Notifications(User user){
+    public Notifications(User user) {
         this.me = user;
     }
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view= inflater.inflate(R.layout.fragment_notifications, container, false);
-
-
-
-
+        view = inflater.inflate(R.layout.fragment_notifications, container, false);
 
 
         return view;

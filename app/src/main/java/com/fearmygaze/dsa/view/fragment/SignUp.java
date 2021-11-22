@@ -68,50 +68,50 @@ public class SignUp extends Fragment {
         registerPasswd.addTextChangedListener(new TextHandler(registerPasswdError));
         registerConfirmPasswd.addTextChangedListener(new TextHandler(registerConfirmPasswdError));
 
-        gotoLogIn.setOnClickListener(v -> ((Starting)requireActivity()).replaceFragment(((Starting)requireActivity()).logInFragment));
+        gotoLogIn.setOnClickListener(v -> ((Starting) requireActivity()).replaceFragment(((Starting) requireActivity()).logInFragment));
 
         registerTOS.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked){
+            if (isChecked) {
                 confirmRegistration.setEnabled(true);
                 confirmRegistration.setOnClickListener(v -> {
 
                     TextHandler.IsMultipleTextInputsEmpty(
-                            registerName , registerNameError,
-                            registerEmail , registerEmailError,
-                            registerPasswd , registerPasswdError,
-                            registerConfirmPasswd , registerConfirmPasswdError,
+                            registerName, registerNameError,
+                            registerEmail, registerEmailError,
+                            registerPasswd, registerPasswdError,
+                            registerConfirmPasswd, registerConfirmPasswdError,
                             requireActivity());
 
-                    if(!registerNameError.isErrorEnabled() && !registerEmailError.isErrorEnabled() &&
+                    if (!registerNameError.isErrorEnabled() && !registerEmailError.isErrorEnabled() &&
                             !registerPasswdError.isErrorEnabled() && !registerConfirmPasswdError.isErrorEnabled() &&
-                            !TextHandler.IsTextInputsEqual(registerPasswd,registerConfirmPasswd , registerConfirmPasswdError ,requireActivity())){
+                            !TextHandler.IsTextInputsEqual(registerPasswd, registerConfirmPasswd, registerConfirmPasswdError, requireActivity())) {
 
                         String name = Objects.requireNonNull(registerName.getText()).toString().trim();
                         String email = Objects.requireNonNull(registerEmail.getText()).toString().trim();
                         String passwd = Objects.requireNonNull(registerPasswd.getText()).toString().trim();
-                        @SuppressLint("HardwareIds") String deviceID = Settings.Secure.getString(resolver,Settings.Secure.ANDROID_ID);
+                        @SuppressLint("HardwareIds") String deviceID = Settings.Secure.getString(resolver, Settings.Secure.ANDROID_ID);
 
-                        if (RegEx.IsEmailValid(email,registerEmailError,requireActivity()) && RegEx.IsPasswdValid(passwd,registerPasswdError,requireActivity()) &&
-                                RegEx.IsNameValid(name,registerNameError,requireActivity())){
+                        if (RegEx.IsEmailValid(email, registerEmailError, requireActivity()) && RegEx.IsPasswdValid(passwd, registerPasswdError, requireActivity()) &&
+                                RegEx.IsNameValid(name, registerNameError, requireActivity())) {
 
                             UserController.UserRegister(requireActivity(), name, email, passwd, deviceID, new IVolleyMessage() {
                                 @Override
                                 public void onWaring(String message) {
-                                    UserNotification userNotification = new UserNotification(requireActivity(),v, Snackbar.LENGTH_LONG,Snackbar.ANIMATION_MODE_FADE);
+                                    UserNotification userNotification = new UserNotification(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
                                     userNotification.setOnWarningMsg(message);
                                     userNotification.onWarning();
                                 }
 
                                 @Override
                                 public void onError(String message) {
-                                    UserNotification userNotification = new UserNotification(requireActivity(),v, Snackbar.LENGTH_LONG,Snackbar.ANIMATION_MODE_FADE);
+                                    UserNotification userNotification = new UserNotification(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
                                     userNotification.setOnErrorMsg(message);
                                     userNotification.onError();
                                 }
 
                                 @Override
                                 public void onSuccess(String message) {
-                                    User user = new User(name,email);
+                                    User user = new User(name, email);
 
                                     Intent intent = new Intent(requireActivity(), Main.class);
                                     intent.putExtra("User", user);
@@ -123,8 +123,7 @@ public class SignUp extends Fragment {
                     }
                 });
 
-            }
-            else confirmRegistration.setEnabled(false);
+            } else confirmRegistration.setEnabled(false);
         });
 
 
@@ -132,11 +131,11 @@ public class SignUp extends Fragment {
          * TODO: MAKE THE FORM CLEAR WHEN THE BACK BUTTON IS PRESSED
          *       see what we did in FarmWeather old
          * */
-        OnBackPressedCallback callback = new OnBackPressedCallback(true ) {
+        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
             @Override
             public void handleOnBackPressed() {
                 remove();
-                ((Starting)requireActivity()).replaceFragment(((Starting)requireActivity()).logInFragment);
+                ((Starting) requireActivity()).replaceFragment(((Starting) requireActivity()).logInFragment);
             }
         };
         requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);

@@ -6,13 +6,9 @@
     <string name="email">Ηλεκτρονική διεύθυνση</string>
     <string name="passwd">Κωδικός Πρόσβασης</string>
     <string name="confirm_passwd">Eπαλήθευση κωδικού πρόσβασης</string>
-    <string name="sign_in">Είσοδος</string>
-    <string name="sign_up">Εγραφή</string>
     <string name="sign_up_message">Δεν έχεις λογαριασμό; Φτιάξε έναν εδώ!!</string>
     <string name="name">Όνομα</string>
-    <string name="lastname">Επίθετο</string>
     <string name="emptyTextInputEditText">Παρακαλώ γεμίστε το κελί</string>
-    <string name="rememberMe">Να παραμείνω συνδεμένος</string>
     <string name="agreeToTOS"><b>Αποδέχομαι</b> ότι η εφαρμογή μπορεί να χρησημοποιήση τα στοιχεία μου μόνο για την εργγαφή και <b>τίποτα άλλο</b></string>
     <string name="alreadyHaveAccount">Εάν έχεις ήδη λογαριασμό πάτα εδώ!</string>
     <string name="passwordNotEqual">Οι κωδικοί πρόσβασης δεν ταιρίαζουν</string>
@@ -23,8 +19,6 @@
     <string name="emailRegExError">Το email σου δεν είναι σωστό</string>
     <string name="appNotSupporting">Η εφαρμογή δεν υποστιρίζει αλλαγή κωδικού. \nΓια διαγραφή λογαριασμό σου πάτα εδώ!</string>
     <string name="buttonUpdate">Ενημέρωση</string>
-    <string name="SSN">ΑΜΚΑ</string>
-    <string name="location">Τοποθεσία</string>
     <string name="valueHasNotChanged">Η τιμή δεν έχει αλλάξει</string>
     <string name="addFiles">Εισαγωγή αρχείων</string>
     <string name="nameRegExError">Δεν επιτρέπονται τα κενά αν θέλεις να βάλεις κενό βάλε "_"</string>
@@ -34,6 +28,9 @@
     <string name="errorOnUpdate">Ο λογαριασμός email υπάρχει ήδη</string>
     <string name="successOnUpdate">Ο λογαριασμός ενημερώθηκε</string>
     <string name="errorOnDelete">Εμφανίστηκε πρόβλημα κατα την διαγραφή</string>
-    <string name="successonDelete">Ο λογαριασμός διαγράφτηκε</string>
+    <string name="successOnDelete">Ο λογαριασμός διαγράφτηκε</string>
     <string name="volleyError">Σφάλμα κατά την σύνδεση</string>
+    <string name="bottomSheetDialogUploadPicture">Ανέβασε φωτογραφία</string>
+    <string name="bottomSheetDialogUploadPDF">Ανέβασε PDF</string>
+    <string name="bottomSheetDialogCreateTxtFile">Δημιούργησε ενα txt αρχείο</string>
 </resources>
