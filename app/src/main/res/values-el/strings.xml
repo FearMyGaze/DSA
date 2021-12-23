@@ -30,7 +30,6 @@
     <string name="errorOnDelete">Εμφανίστηκε πρόβλημα κατα την διαγραφή</string>
     <string name="successOnDelete">Ο λογαριασμός διαγράφτηκε</string>
     <string name="volleyError">Σφάλμα κατά την σύνδεση</string>
-    <string name="bottomSheetDialogUploadPicture">Ανέβασε φωτογραφία</string>
-    <string name="bottomSheetDialogUploadPDF">Ανέβασε PDF</string>
-    <string name="bottomSheetDialogCreateTxtFile">Δημιούργησε ενα txt αρχείο</string>
+    <string name="uploadFile">Ανέβασε την εικόνα</string>
+    <string name="personalFiles">Προυπάρχοντα αρχεία</string>
 </resources>

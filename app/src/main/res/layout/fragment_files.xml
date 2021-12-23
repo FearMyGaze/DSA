@@ -1,44 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/patientRootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".view.fragment.Files">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_horizontal_button_add_end"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            app:layout_constraintGuide_percent="0.15" />
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/filesAdd"
+        <TextView
+            android:id="@+id/filesUploaded"
             android:layout_width="match_parent"
-            android:layout_height="100dp"
-            android:layout_margin="5dp"
-            android:text="@string/addFiles"
-            android:textSize="20sp"
-            app:cornerRadius="20dp"
-            app:icon="@drawable/ic_outline_file_upload_24"
-            app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_button_add_end"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_height="30dp"
+            android:text="@string/personalFiles"
+            android:textAlignment="center"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:contentDescription="@string/personalFiles"
+            android:layout_gravity="center_horizontal" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/filesRecycler"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_button_add_end" />
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="31dp"/>
 
-    </androidx.constraintlayout.widget.ConstraintLayout>
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/filesAdd"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end|bottom"
+            android:layout_margin="30dp"
+            android:src="@drawable/ic_outline_add_24"
+            android:contentDescription="@string/addFiles" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

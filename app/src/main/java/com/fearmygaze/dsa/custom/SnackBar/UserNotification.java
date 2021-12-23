@@ -20,6 +20,10 @@ public class UserNotification implements IUserNotification {
     private String onWarningMsg;
     private String onErrorMsg;
 
+
+    /*
+    * TODO: Remove the custom snackbar and use the native
+    * */
     public UserNotification(Activity activity, View view, int length, int animation) {
         snackbar = Snackbar.make(view, "", length);
         @SuppressLint("InflateParams") View customSnackView = activity.getLayoutInflater().inflate(R.layout.custom_snackbar, null);

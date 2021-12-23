@@ -29,9 +29,8 @@
     <string name="errorOnDelete">There was an unexpected error</string>
     <string name="successOnDelete">The account has been deleted</string>
     <string name="volleyError">Error during connection</string>
-    <string name="bottomSheetDialogUploadPicture">Upload Picture</string>
-    <string name="bottomSheetDialogUploadPDF">Upload PDF</string>
-    <string name="bottomSheetDialogCreateTxtFile">Create a txt file</string>
+    <string name="uploadFile">Upload your picture</string>
+    <string name="personalFiles">My uploaded files</string>
 
     <string-array name="url">
         <item>http://192.168.1.10/DSA/UsersRegister.php</item>

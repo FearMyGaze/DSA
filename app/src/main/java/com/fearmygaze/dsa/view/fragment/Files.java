@@ -1,5 +1,6 @@
 package com.fearmygaze.dsa.view.fragment;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fearmygaze.dsa.R;
 import com.fearmygaze.dsa.model.User;
-import com.google.android.material.bottomsheet.BottomSheetDialog;
-import com.google.android.material.button.MaterialButton;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.hbisoft.pickit.PickiT;
+import com.hbisoft.pickit.PickiTCallbacks;
+
+import java.util.ArrayList;
 
 public class Files extends Fragment {
     View view;
@@ -21,29 +25,51 @@ public class Files extends Fragment {
         this.me = user;
     }
 
+    PickiT pickiT;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_files, container, false);
 
-        MaterialButton filesAdd = view.findViewById(R.id.filesAdd);
+
         RecyclerView filesRecycler = view.findViewById(R.id.filesRecycler);
+        FloatingActionButton floatingActionButton =view.findViewById(R.id.filesAdd);
 
-        filesAdd.setOnClickListener(v -> {
-            BottomSheetDialog bottomSheetDialog = new BottomSheetDialog(requireActivity(), R.style.BottomSheetDialogTheme);
-            View bottomSheetView = LayoutInflater.from(getContext()).inflate(R.layout.bottom_sheet_dialog, view.findViewById(R.id.bottomSheetContainer));
 
-            bottomSheetView.findViewById(R.id.bottomSheetUploadPicture).setOnClickListener(v1 -> {
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                pickiT = new PickiT(view.getContext(), new PickiTCallbacks() {
+                    @Override
+                    public void PickiTonUriReturned() {
 
-            });
+                    }
 
-            bottomSheetView.findViewById(R.id.bottomSheetUploadPDF).setOnClickListener(v2 -> {
+                    @Override
+                    public void PickiTonStartListener() {
 
-            });
+                    }
 
-            bottomSheetDialog.setContentView(bottomSheetView);
-            bottomSheetDialog.show();
+                    @Override
+                    public void PickiTonProgressUpdate(int progress) {
+
+                    }
+
+                    @Override
+                    public void PickiTonCompleteListener(String path, boolean wasDriveFile, boolean wasUnknownProvider, boolean wasSuccessful, String Reason) {
+
+                    }
+
+                    @Override
+                    public void PickiTonMultipleCompleteListener(ArrayList<String> paths, boolean wasSuccessful, String Reason) {
+
+                    }
+                }, requireActivity());
+            }
         });
+
+
+
         return view;
     }
-
 }
