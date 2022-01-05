@@ -1,7 +1,9 @@
 package com.fearmygaze.dsa.view.activity;
 
 import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
@@ -25,7 +27,13 @@ public class Main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        User me = getIntent().getParcelableExtra("User");
+        SharedPreferences getSharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+
+        String userName = getSharedPrefs.getString("userName","empty");
+        String userEmail = getSharedPrefs.getString("userEmail","empty");
+        int userId = getSharedPrefs.getInt("userID",0);
+
+        User me = new User(userName,userEmail,userId);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 

@@ -84,7 +84,7 @@ public class RegEx {
         Pattern pattern = Pattern.compile("^[0-9A-Za-z\\s-]+$");
         Matcher matcher = pattern.matcher(name);
         boolean matches = matcher.matches();
-
+        /*TODO: Add max length characters*/
         if (!matches) {
             textInputLayout.setError(context.getString(R.string.textRegExError));
             textInputLayout.setErrorEnabled(true);

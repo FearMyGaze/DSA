@@ -3,7 +3,9 @@ package com.fearmygaze.dsa.view.fragment;
 import android.annotation.SuppressLint;
 import android.content.ContentResolver;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -110,10 +112,7 @@ public class SignUp extends Fragment {
 
                                 @Override
                                 public void onSuccess(String message) {
-                                    User user = new User(name, email);
-
                                     Intent intent = new Intent(requireActivity(), Main.class);
-                                    intent.putExtra("User", user);
                                     requireActivity().startActivity(intent);
                                     requireActivity().finish();
                                 }

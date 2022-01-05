@@ -1,6 +1,9 @@
 package com.fearmygaze.dsa.controller;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -31,12 +34,20 @@ public class UserController {
         String jsonError = context.getResources().getString(R.string.jsonErrorDuring);
         String errorOnRegister = context.getResources().getString(R.string.errorOnRegister);
         String volleyError = context.getResources().getString(R.string.volleyError);
+        SharedPreferences getSharedPrefs = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
 
         StringRequest request = new StringRequest(Request.Method.POST, url[0],
                 response -> {
                     try {
                         JSONObject jsonResponse = new JSONObject(response);
                         if (jsonResponse.getString("success").equals("1")) {
+                            int successUserID = jsonResponse.getInt("userID");
+                            SharedPreferences.Editor editor = getSharedPrefs.edit();
+                            editor.putString("userName",name);
+                            editor.putString("userEmail",email);
+                            editor.putString("userPasswd",passwd);
+                            editor.putInt("userID",successUserID);
+                            editor.apply();
                             volleyMessage.onSuccess(" ");
                         } else {
                             volleyMessage.onWaring(errorOnRegister);
@@ -71,6 +82,7 @@ public class UserController {
         String jsonError = context.getResources().getString(R.string.jsonErrorDuring);
         String errorOnLogin = context.getResources().getString(R.string.errorOnLogin);
         String volleyError = context.getResources().getString(R.string.volleyError);
+        SharedPreferences getSharedPrefs = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
 
         StringRequest request = new StringRequest(Request.Method.POST, url[1],
                 response -> {
@@ -79,7 +91,16 @@ public class UserController {
                         if (jsonResponse.getString("success").equals("1")) {
 
                             String successUsername = jsonResponse.getString("username");
+                            int successUserID = jsonResponse.getInt("userID");
 
+                            SharedPreferences.Editor editor = getSharedPrefs.edit();
+                            editor.putString("userName",successUsername);
+                            editor.putString("userEmail",email);
+                            editor.putString("userPasswd",passwd);
+                            editor.putInt("userID",successUserID);
+                            editor.apply();
+
+                            Toast.makeText(context, response.toString(), Toast.LENGTH_LONG).show();
                             volleyMessage.onSuccess(successUsername);
 
                         } else {

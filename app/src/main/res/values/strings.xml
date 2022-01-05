@@ -43,5 +43,6 @@
         <item>http://192.168.1.10/DSA/UserLogin.php</item>
         <item>http://192.168.1.10/DSA/UserUpdate.php</item>
         <item>http://192.168.1.10/DSA/UserDelete.php</item>
+        <item>http://192.168.1.10/DSA/FileUpload.php</item>
     </string-array>
 </resources>

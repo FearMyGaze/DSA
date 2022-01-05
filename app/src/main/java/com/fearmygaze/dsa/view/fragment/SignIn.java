@@ -59,12 +59,11 @@ public class SignIn extends Fragment {
         String prefUserEmail = getSharedPrefs.getString("userEmail","empty");
         String prefUserPasswd = getSharedPrefs.getString("userPasswd","empty");
         String prefUsername = getSharedPrefs.getString("userName","empty");
-
-        if(!prefUserEmail.equals("empty") && !prefUserPasswd.equals("empty")){
-            User me = new User(prefUsername, prefUserEmail);
+        int prefUserID = getSharedPrefs.getInt("userID",-1);
+        
+        if(!prefUserEmail.equals("empty") && !prefUserPasswd.equals("empty") && prefUsername.equals("empty")&& prefUserID > -1){ //Remember me func
 
             Intent intent = new Intent(requireActivity(), Main.class);
-            intent.putExtra("User", me);
             requireActivity().startActivity(intent);
             requireActivity().finish();
         }
@@ -96,16 +95,7 @@ public class SignIn extends Fragment {
 
                         @Override
                         public void onSuccess(String message) {
-                            SharedPreferences.Editor editor = getSharedPrefs.edit();
-                            editor.putString("userEmail", email);
-                            editor.putString("userPasswd", passwd);
-                            editor.putString("userName", message);
-                            editor.apply();
-
-                            User me = new User(message, email);
-
                             Intent intent = new Intent(requireActivity(), Main.class);
-                            intent.putExtra("User", me);
                             requireActivity().startActivity(intent);
                             requireActivity().finish();
                         }

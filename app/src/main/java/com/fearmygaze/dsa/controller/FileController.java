@@ -1,7 +1,10 @@
 package com.fearmygaze.dsa.controller;
 
+import android.app.DownloadManager;
 import android.content.Context;
 
+import com.android.volley.Request;
+import com.android.volley.toolbox.StringRequest;
 import com.fearmygaze.dsa.R;
 import com.fearmygaze.dsa.model.IVolleyMessage;
 
@@ -21,6 +24,7 @@ public class FileController {
         String errorOnUpload = context.getResources().getString(R.string.errorOnRegister);
         String volleyError = context.getResources().getString(R.string.volleyError);
 
+        //StringRequest request = new StringRequest(Request.Method.POST, url[])
 
 
 

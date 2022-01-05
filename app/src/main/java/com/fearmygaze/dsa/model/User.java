@@ -4,6 +4,7 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class User implements Parcelable {
+
     public static final Creator<User> CREATOR = new Creator<User>() {
         @Override
         public User createFromParcel(Parcel in) {
@@ -15,29 +16,23 @@ public class User implements Parcelable {
             return new User[size];
         }
     };
+
     private String name;
     private String email;
+    private int id;
 
-    public User(String name, String email) {
+    public User(String name, String email, int id) {
         this.name = name;
         this.email = email;
+        this.id = id;
     }
 
     protected User(Parcel in) {
         name = in.readString();
         email = in.readString();
+        id = in.readInt();
     }
 
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(name);
-        dest.writeString(email);
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
 
     public String getName() {
         return name;
@@ -55,8 +50,23 @@ public class User implements Parcelable {
         this.email = email;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     @Override
-    public String toString() {
-        return "Username: " + name +" Email: " + email;
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(name);
+        dest.writeString(email);
+        dest.writeInt(id);
     }
 }
