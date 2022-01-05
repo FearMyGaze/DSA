@@ -44,6 +44,7 @@ public class Profile extends Fragment {
         TextInputLayout profileEmailError = view.findViewById(R.id.profileEmailError);
 
         MaterialButton profileUpdate = view.findViewById(R.id.profileUpdate);
+        MaterialButton profileLogOut = view.findViewById(R.id.profileLogOut);
 
         TextView profileDeleteAcc = view.findViewById(R.id.profileDeleteAcc);
 
@@ -55,6 +56,13 @@ public class Profile extends Fragment {
         profileName.addTextChangedListener(new TextHandler(profileNameError));
         profileEmail.addTextChangedListener(new TextHandler(profileEmailError));
 
+        profileLogOut.setOnClickListener(v -> {
+            SharedPreferences.Editor editor = getSharedPrefs.edit().clear();
+            editor.apply();
+            Toast.makeText(requireActivity(), requireContext().getResources().getString(R.string.profileLogOutToast), Toast.LENGTH_LONG).show();
+            requireActivity().finish();
+        });
+
         profileUpdate.setOnClickListener(v -> {
             /*
              * This reads from the TextInputEditText's when the button is pressed
@@ -64,14 +72,13 @@ public class Profile extends Fragment {
 
             if (RegEx.IsNameValid(updateName, profileNameError, requireActivity()) && RegEx.IsEmailValid(updateEmail, profileEmailError, requireActivity())) {
                 if (!updateEmail.equals(me.getEmail()) || !updateName.equals(me.getName())) {
-                    UserController.UserUpdate(requireActivity(), updateName, me.getName(), updateEmail, new IVolleyMessage() {
+                    UserController.UserUpdate(requireActivity(), updateName, me.getName(), updateEmail, me.getEmail(), new IVolleyMessage() {
                         @Override
                         public void onWaring(String message) {
                             UserNotification userNotification = new UserNotification(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
                             userNotification.setOnWarningMsg(message);
                             userNotification.onWarning();
                         }
-
                         @Override
                         public void onError(String message) {
                             UserNotification userNotification = new UserNotification(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
@@ -83,11 +90,6 @@ public class Profile extends Fragment {
                         public void onSuccess(String message) {
                             me.setEmail(updateEmail);
                             me.setName(updateName);
-
-                            /*
-                            * TODO: MAYBE we need to add and oldEmail Because now we are referencing the oldName
-                            *       but what happens if we have the same oldName in the DB more than once
-                            * */
 
                             profileEmail.setText(me.getEmail());
                             profileName.setText(me.getName());
@@ -103,7 +105,9 @@ public class Profile extends Fragment {
                         }
                     });
                 }
-
+                UserNotification userNotification = new UserNotification(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                userNotification.setOnWarningMsg(requireContext().getResources().getString(R.string.profileNoChanges));
+                userNotification.onWarning();
             }
         });
         profileDeleteAcc.setOnClickListener(v -> {

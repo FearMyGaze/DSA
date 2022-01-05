@@ -100,7 +100,6 @@ public class UserController {
                             editor.putInt("userID",successUserID);
                             editor.apply();
 
-                            Toast.makeText(context, response.toString(), Toast.LENGTH_LONG).show();
                             volleyMessage.onSuccess(successUsername);
 
                         } else {
@@ -125,22 +124,28 @@ public class UserController {
 
     /**
      * @param context We need it to get the String from resource file strings.xml
-     * @param username We need the new userName that is gonna replace the oldName
-     * @param oldName We need the oldName because we want the old reference that already exists in the db
+     * @param username We need the new userName that is gonna replace the oldUsername
+     * @param oldUsername We need the oldUsername because we want the old reference that already exists in the db
      * @param email We need the email updated or not so the db knows what user we are going to change the credentials
+     * @param oldEmail We need the oldEmail because we want the old reference that already exists in the db
      * @param volleyMessage a quick interface to handle the Success/Warning/Error
      */
-    public static void UserUpdate(Context context, String username, String oldName, String email, IVolleyMessage volleyMessage) {
+    public static void UserUpdate(Context context, String username, String oldUsername, String email, String oldEmail, IVolleyMessage volleyMessage) {
         String[] url = context.getResources().getStringArray(R.array.url);
         String jsonError = context.getResources().getString(R.string.jsonErrorDuring);
         String errorOnUpdate = context.getResources().getString(R.string.errorOnUpdate);
         String volleyError = context.getResources().getString(R.string.volleyError);
+        SharedPreferences getSharedPrefs = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
 
         StringRequest request = new StringRequest(Request.Method.POST, url[2],
                 response -> {
                     try {
                         JSONObject jsonResponse = new JSONObject(response);
                         if (jsonResponse.getString("success").equals("1")) {
+                            SharedPreferences.Editor editor = getSharedPrefs.edit();
+                            editor.putString("userName",username);
+                            editor.putString("userEmail",email);
+                            editor.apply();
                             volleyMessage.onSuccess("");
                         } else {
                             volleyMessage.onWaring(errorOnUpdate);
@@ -155,8 +160,9 @@ public class UserController {
             protected Map<String, String> getParams() {
                 Map<String, String> parameters = new HashMap<>();
                 parameters.put("email", email);
+                parameters.put("oldEmail",oldEmail);
                 parameters.put("username", username);
-                parameters.put("oldName", oldName);
+                parameters.put("oldUsername", oldUsername);
                 return parameters;
             }
         };

@@ -11,7 +11,6 @@ import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Base64;
-import android.widget.Button;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -26,6 +25,7 @@ import com.fearmygaze.dsa.custom.UserNotification;
 import com.fearmygaze.dsa.model.IVolleyMessage;
 import com.fearmygaze.dsa.util.RegEx;
 import com.fearmygaze.dsa.util.TextHandler;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
@@ -37,7 +37,7 @@ import java.util.Objects;
 public class FileUpload extends AppCompatActivity {
 
     AppCompatImageView imageView;
-    Button fileUploadConfirm;
+    MaterialButton fileUploadConfirm;
 
     String stringConvertedImage;
 
@@ -52,7 +52,7 @@ public class FileUpload extends AppCompatActivity {
         TextInputEditText fileUploadDesc = findViewById(R.id.fileUploadDesc);
         TextInputLayout fileUploadDescError = findViewById(R.id.fileUploadDescError);
 
-        Button fileUploadSelectImage = findViewById(R.id.fileUploadSelectImage);
+        MaterialButton fileUploadSelectImage = findViewById(R.id.fileUploadSelectImage);
         fileUploadConfirm = findViewById(R.id.fileUploadConfirm);
 
         imageView = findViewById(R.id.fileUploadImageView);

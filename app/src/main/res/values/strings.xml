@@ -37,6 +37,10 @@
     <string name="fileUploadChooseImage">Choose Image</string>
     <string name="fileUploadSend">Send</string>
     <string name="textRegExError">The only stuff that allowed is 1–9 Aa–Zz</string>
+    <string name="profileLogOut">Log out</string>
+    <string name="profileLogOutToast">You have been disconnected from the app</string> <!--TODO: Find a better name-->
+    <string name="profileNoChanges">No changes found!</string>
+
 
     <string-array name="url">
         <item>http://192.168.1.10/DSA/UsersRegister.php</item>

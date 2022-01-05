@@ -15,7 +15,6 @@ import com.fearmygaze.dsa.R;
 import com.fearmygaze.dsa.controller.UserController;
 import com.fearmygaze.dsa.custom.UserNotification;
 import com.fearmygaze.dsa.model.IVolleyMessage;
-import com.fearmygaze.dsa.model.User;
 import com.fearmygaze.dsa.util.RegEx;
 import com.fearmygaze.dsa.util.TextHandler;
 import com.fearmygaze.dsa.view.activity.Main;
@@ -61,7 +60,7 @@ public class SignIn extends Fragment {
         String prefUsername = getSharedPrefs.getString("userName","empty");
         int prefUserID = getSharedPrefs.getInt("userID",-1);
         
-        if(!prefUserEmail.equals("empty") && !prefUserPasswd.equals("empty") && prefUsername.equals("empty")&& prefUserID > -1){ //Remember me func
+        if(!prefUserEmail.equals("empty") && !prefUserPasswd.equals("empty") && !prefUsername.equals("empty") && prefUserID > -1){ //Remember me func
 
             Intent intent = new Intent(requireActivity(), Main.class);
             requireActivity().startActivity(intent);

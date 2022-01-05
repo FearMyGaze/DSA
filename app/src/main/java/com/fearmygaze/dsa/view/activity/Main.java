@@ -31,7 +31,7 @@ public class Main extends AppCompatActivity {
 
         String userName = getSharedPrefs.getString("userName","empty");
         String userEmail = getSharedPrefs.getString("userEmail","empty");
-        int userId = getSharedPrefs.getInt("userID",0);
+        int userId = getSharedPrefs.getInt("userID",-1);
 
         User me = new User(userName,userEmail,userId);
 
