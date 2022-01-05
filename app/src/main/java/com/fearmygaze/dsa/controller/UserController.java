@@ -18,6 +18,14 @@ import java.util.Map;
 
 public class UserController {
 
+    /**
+     * @param context We need it to get the String from resource file strings.xml
+     * @param name We need it to set the name of the user
+     * @param email We need it to set the email of the user
+     * @param passwd We need it to set the passwd of the user
+     * @param device_id We need it to set the device id of the phone when the user created for safety
+     * @param volleyMessage a quick interface to handle the Success/Warning/Error
+     */
     public static void UserRegister(Context context, String name, String email, String passwd, String device_id, IVolleyMessage volleyMessage) {
         String[] url = context.getResources().getStringArray(R.array.url);
         String jsonError = context.getResources().getString(R.string.jsonErrorDuring);
@@ -52,6 +60,12 @@ public class UserController {
         RequestSingleton.getInstance(context).addToRequestQueue(request);
     }
 
+    /**
+     * @param context We need it to get the String from resource file strings.xml
+     * @param email We need the email of the user to login
+     * @param passwd We need the passwd of the user to login
+     * @param volleyMessage a quick interface to handle the Success/Warning/Error
+     */
     public static void UserLogin(Context context, String email, String passwd, IVolleyMessage volleyMessage) {
         String[] url = context.getResources().getStringArray(R.array.url);
         String jsonError = context.getResources().getString(R.string.jsonErrorDuring);
@@ -88,6 +102,13 @@ public class UserController {
         RequestSingleton.getInstance(context).addToRequestQueue(request);
     }
 
+    /**
+     * @param context We need it to get the String from resource file strings.xml
+     * @param username We need the new userName that is gonna replace the oldName
+     * @param oldName We need the oldName because we want the old reference that already exists in the db
+     * @param email We need the email updated or not so the db knows what user we are going to change the credentials
+     * @param volleyMessage a quick interface to handle the Success/Warning/Error
+     */
     public static void UserUpdate(Context context, String username, String oldName, String email, IVolleyMessage volleyMessage) {
         String[] url = context.getResources().getStringArray(R.array.url);
         String jsonError = context.getResources().getString(R.string.jsonErrorDuring);
@@ -121,6 +142,11 @@ public class UserController {
         RequestSingleton.getInstance(context).addToRequestQueue(request);
     }
 
+    /**
+     * @param context We need it to get the String from resource file strings.xml
+     * @param email We need the email to specify what user we want to delete
+     * @param volleyMessage a quick interface to handle the Success/Warning/Error
+     */
     public static void UserDelete(Context context, String email, IVolleyMessage volleyMessage) {
         String[] url = context.getResources().getStringArray(R.array.url);
         String jsonError = context.getResources().getString(R.string.jsonErrorDuring);

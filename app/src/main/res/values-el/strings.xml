@@ -32,4 +32,10 @@
     <string name="volleyError">Σφάλμα κατά την σύνδεση</string>
     <string name="uploadFile">Ανέβασε την εικόνα</string>
     <string name="personalFiles">Προυπάρχοντα αρχεία</string>
+    <string name="fileUploadTitle">Τίτλος</string>
+    <string name="fileUploadDescription">Περιγραφή</string>
+    <string name="fileUploadTextView">Εικόνα προς αποστολή</string>
+    <string name="fileUploadChooseImage">Επιλογή εικόνας</string>
+    <string name="fileUploadSend">Αποστολή</string>
+    <string name="textRegExError">Τα μόνα που επιτρέπονται είναι 1–9 Αα–Ωω</string>
 </resources>

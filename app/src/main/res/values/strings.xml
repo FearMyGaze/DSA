@@ -31,6 +31,12 @@
     <string name="volleyError">Error during connection</string>
     <string name="uploadFile">Upload your picture</string>
     <string name="personalFiles">My uploaded files</string>
+    <string name="fileUploadTitle">Title</string>
+    <string name="fileUploadDescription">Description</string>
+    <string name="fileUploadTextView">Image to be uploaded</string>
+    <string name="fileUploadChooseImage">Choose Image</string>
+    <string name="fileUploadSend">Send</string>
+    <string name="textRegExError">The only stuff that allowed is 1–9 Aa–Zz</string>
 
     <string-array name="url">
         <item>http://192.168.1.10/DSA/UsersRegister.php</item>

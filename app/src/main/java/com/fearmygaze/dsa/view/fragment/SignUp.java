@@ -11,16 +11,15 @@ import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.TextView;
 
-import androidx.activity.OnBackPressedCallback;
 import androidx.fragment.app.Fragment;
 
 import com.fearmygaze.dsa.R;
 import com.fearmygaze.dsa.controller.UserController;
-import com.fearmygaze.dsa.custom.RegEx;
-import com.fearmygaze.dsa.custom.SnackBar.UserNotification;
-import com.fearmygaze.dsa.custom.TextHandler;
+import com.fearmygaze.dsa.custom.UserNotification;
 import com.fearmygaze.dsa.model.IVolleyMessage;
 import com.fearmygaze.dsa.model.User;
+import com.fearmygaze.dsa.util.RegEx;
+import com.fearmygaze.dsa.util.TextHandler;
 import com.fearmygaze.dsa.view.activity.Main;
 import com.fearmygaze.dsa.view.activity.Starting;
 import com.google.android.material.button.MaterialButton;
@@ -68,7 +67,7 @@ public class SignUp extends Fragment {
         registerPasswd.addTextChangedListener(new TextHandler(registerPasswdError));
         registerConfirmPasswd.addTextChangedListener(new TextHandler(registerConfirmPasswdError));
 
-        gotoLogIn.setOnClickListener(v -> ((Starting) requireActivity()).replaceFragment(((Starting) requireActivity()).logInFragment));
+        gotoLogIn.setOnClickListener(v -> ((Starting) requireActivity()).replaceFragment(((Starting) requireActivity()).singInFragment));
 
         registerTOS.setOnCheckedChangeListener((buttonView, isChecked) -> {
             if (isChecked) {
@@ -125,20 +124,6 @@ public class SignUp extends Fragment {
 
             } else confirmRegistration.setEnabled(false);
         });
-
-
-        /*
-         * TODO: MAKE THE FORM CLEAR WHEN THE BACK BUTTON IS PRESSED
-         *       see what we did in FarmWeather old
-         * */
-        OnBackPressedCallback callback = new OnBackPressedCallback(true) {
-            @Override
-            public void handleOnBackPressed() {
-                remove();
-                ((Starting) requireActivity()).replaceFragment(((Starting) requireActivity()).logInFragment);
-            }
-        };
-        requireActivity().getOnBackPressedDispatcher().addCallback(getViewLifecycleOwner(), callback);
         return view;
     }
 }

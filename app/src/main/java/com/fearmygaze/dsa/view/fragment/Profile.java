@@ -1,9 +1,8 @@
 package com.fearmygaze.dsa.view.fragment;
 
-import static android.content.Context.MODE_PRIVATE;
-
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,11 +13,11 @@ import androidx.fragment.app.Fragment;
 
 import com.fearmygaze.dsa.R;
 import com.fearmygaze.dsa.controller.UserController;
-import com.fearmygaze.dsa.custom.RegEx;
-import com.fearmygaze.dsa.custom.SnackBar.UserNotification;
-import com.fearmygaze.dsa.custom.TextHandler;
+import com.fearmygaze.dsa.custom.UserNotification;
 import com.fearmygaze.dsa.model.IVolleyMessage;
 import com.fearmygaze.dsa.model.User;
+import com.fearmygaze.dsa.util.RegEx;
+import com.fearmygaze.dsa.util.TextHandler;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
@@ -47,6 +46,8 @@ public class Profile extends Fragment {
         MaterialButton profileUpdate = view.findViewById(R.id.profileUpdate);
 
         TextView profileDeleteAcc = view.findViewById(R.id.profileDeleteAcc);
+
+        SharedPreferences getSharedPrefs = PreferenceManager.getDefaultSharedPreferences(requireActivity().getApplicationContext());
 
         profileName.setText(me.getName());
         profileEmail.setText(me.getEmail());
@@ -83,10 +84,15 @@ public class Profile extends Fragment {
                             me.setEmail(updateEmail);
                             me.setName(updateName);
 
+                            /*
+                            * TODO: MAYBE we need to add and oldEmail Because now we are referencing the oldName
+                            *       but what happens if we have the same oldName in the DB more than once
+                            * */
+
                             profileEmail.setText(me.getEmail());
                             profileName.setText(me.getName());
 
-                            SharedPreferences.Editor editor = requireActivity().getPreferences(MODE_PRIVATE).edit();
+                            SharedPreferences.Editor editor = getSharedPrefs.edit();
                             editor.putString("userEmail", me.getEmail());
                             editor.putString("userName", me.getName());
                             editor.apply();
@@ -119,7 +125,7 @@ public class Profile extends Fragment {
 
                 @Override
                 public void onSuccess(String message) {
-                    SharedPreferences.Editor editor = requireActivity().getPreferences(MODE_PRIVATE).edit().clear();
+                    SharedPreferences.Editor editor = getSharedPrefs.edit().clear();
                     editor.apply();
                     Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show();
                     requireActivity().finish();

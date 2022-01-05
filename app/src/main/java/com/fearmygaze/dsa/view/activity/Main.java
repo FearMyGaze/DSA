@@ -2,10 +2,8 @@ package com.fearmygaze.dsa.view.activity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -21,8 +19,6 @@ public class Main extends AppCompatActivity {
 
     public Fragment files, notifications, profile;
 
-    public CoordinatorLayout snackbarMainNotifications;
-
     @SuppressLint("NonConstantResourceId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,8 +27,6 @@ public class Main extends AppCompatActivity {
 
         User me = getIntent().getParcelableExtra("User");
 
-        snackbarMainNotifications = findViewById(R.id.snackbarMainNotifications);
-        FrameLayout frameLayout = findViewById(R.id.mainFrame);
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         profile = new Profile(me);

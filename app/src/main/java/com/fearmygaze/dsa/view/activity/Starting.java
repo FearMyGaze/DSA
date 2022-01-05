@@ -13,7 +13,7 @@ import com.fearmygaze.dsa.view.fragment.SignUp;
 
 public class Starting extends AppCompatActivity {
 
-    public Fragment logInFragment, registerFragment;
+    public Fragment singInFragment, signUpFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,10 +21,10 @@ public class Starting extends AppCompatActivity {
         setContentView(R.layout.activity_starting);
 
 
-        logInFragment = new SignIn();
-        registerFragment = new SignUp();
+        singInFragment = new SignIn();
+        signUpFragment = new SignUp();
 
-        replaceFragment(logInFragment);
+        replaceFragment(singInFragment);
     }
 
 

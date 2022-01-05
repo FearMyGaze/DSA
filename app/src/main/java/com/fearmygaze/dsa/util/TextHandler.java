@@ -1,4 +1,4 @@
-package com.fearmygaze.dsa.custom;
+package com.fearmygaze.dsa.util;
 
 import android.content.Context;
 import android.text.Editable;

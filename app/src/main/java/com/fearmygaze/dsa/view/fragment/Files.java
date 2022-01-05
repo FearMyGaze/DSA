@@ -1,6 +1,6 @@
 package com.fearmygaze.dsa.view.fragment;
 
-import android.app.AlertDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,64 +11,34 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fearmygaze.dsa.R;
 import com.fearmygaze.dsa.model.User;
+import com.fearmygaze.dsa.view.activity.FileUpload;
+import com.fearmygaze.dsa.view.activity.Main;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.hbisoft.pickit.PickiT;
-import com.hbisoft.pickit.PickiTCallbacks;
-
-import java.util.ArrayList;
 
 public class Files extends Fragment {
+
     View view;
     private final User me;
 
     public Files(User user) {
         this.me = user;
-    }
-
-    PickiT pickiT;
+    } //TODO: Maybe remove it because it is not in need
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_files, container, false);
 
-
-        RecyclerView filesRecycler = view.findViewById(R.id.filesRecycler);
+        RecyclerView filesRecycler = view.findViewById(R.id.filesRecycler); //TODO: This will be filled by the server
         FloatingActionButton floatingActionButton =view.findViewById(R.id.filesAdd);
 
 
-        floatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                pickiT = new PickiT(view.getContext(), new PickiTCallbacks() {
-                    @Override
-                    public void PickiTonUriReturned() {
+        floatingActionButton.setOnClickListener(v -> {
 
-                    }
-
-                    @Override
-                    public void PickiTonStartListener() {
-
-                    }
-
-                    @Override
-                    public void PickiTonProgressUpdate(int progress) {
-
-                    }
-
-                    @Override
-                    public void PickiTonCompleteListener(String path, boolean wasDriveFile, boolean wasUnknownProvider, boolean wasSuccessful, String Reason) {
-
-                    }
-
-                    @Override
-                    public void PickiTonMultipleCompleteListener(ArrayList<String> paths, boolean wasSuccessful, String Reason) {
-
-                    }
-                }, requireActivity());
-            }
+            Intent intent = new Intent(requireActivity(), FileUpload.class);
+            //intent.putExtra("User", me); TODO: Remove if unneeded
+            requireActivity().startActivity(intent);
+            requireActivity().finish();
         });
-
-
 
         return view;
     }
