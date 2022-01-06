@@ -76,7 +76,8 @@ public class SignIn extends Fragment {
                 String email = Objects.requireNonNull(loginEmail.getText()).toString().trim();
                 String passwd = Objects.requireNonNull(loginPasswd.getText()).toString().trim();
 
-                if (RegEx.IsEmailValid(email,50, loginEmailError, SignIn.this.requireActivity()) && RegEx.IsPasswdValid(passwd,255, loginPasswdError, SignIn.this.requireActivity())) {
+                if (RegEx.IsEmailValid(email,50, loginEmailError, SignIn.this.requireActivity())
+                        && RegEx.IsPasswdValid(passwd,255, loginPasswdError, SignIn.this.requireActivity())) {
                     UserController.UserLogin(requireActivity(), email, passwd, new IVolleyMessage() {
                         @Override
                         public void onWaring(String message) {

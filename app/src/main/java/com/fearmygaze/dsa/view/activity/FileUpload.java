@@ -79,17 +79,18 @@ public class FileUpload extends AppCompatActivity {
             TextHandler.IsTextInputEmpty(fileUploadTitle,fileUploadTitleError,getApplicationContext());
             TextHandler.IsTextInputEmpty(fileUploadDesc,fileUploadDescError,getApplicationContext());
 
-            String userEmail = getSharedPrefs.getString("userEmail","empty");
+            int userID = getSharedPrefs.getInt("userID",-1);
 
             if(!fileUploadTitleError.isErrorEnabled() && !fileUploadDescError.isErrorEnabled()){
                 if(RegEx.isTextValid(Objects.requireNonNull(fileUploadTitle.getText()).toString(),40 ,fileUploadTitleError ,getApplicationContext())
                         && RegEx.isTextValid(Objects.requireNonNull(fileUploadDesc.getText()).toString(),255 ,fileUploadDescError,getApplicationContext())
-                        && !userEmail.equals("empty")){
+                        && userID > -1){
 
                     String uploadTitle = Objects.requireNonNull(fileUploadTitle.getText()).toString();
                     String uploadDesc = Objects.requireNonNull(fileUploadDesc.getText()).toString();
-                    String uploadFile = stringConvertedImage; //TODO: Add breakpoint to see the value of the image
-                    FileController.fileUpload(getApplicationContext(), userEmail, uploadTitle, uploadDesc, uploadFile, new IVolleyMessage() {
+                    String uploadFile = stringConvertedImage;
+
+                    FileController.fileUpload(getApplicationContext(), userID, uploadTitle, uploadDesc, uploadFile, new IVolleyMessage() {
                         @Override
                         public void onWaring(String message) {
                             UserNotification userNotification = new UserNotification(FileUpload.this, v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);

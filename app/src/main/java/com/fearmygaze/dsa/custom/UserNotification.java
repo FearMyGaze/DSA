@@ -32,6 +32,7 @@ public class UserNotification implements IUserNotification {
         snackbarLayout.addView(customSnackView, 0);
     }
 
+    /*TODO: This will be in use only if we need a way with snackbar to add a button*/
     public UserNotification(Activity activity, View view, int length , int animation, Boolean b){
         snackbar = Snackbar.make(view, "", length);
         @SuppressLint("InflateParams") View customSnackView = activity.getLayoutInflater().inflate(R.layout.custom_snackbar, null);

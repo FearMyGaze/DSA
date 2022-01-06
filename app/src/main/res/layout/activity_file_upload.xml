@@ -106,6 +106,7 @@
             android:text="@string/fileUploadChooseImage"
             app:cornerRadius="20dp"
             app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/fileUploadConfirm"
             app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_imageView_end" />
 
         <com.google.android.material.button.MaterialButton

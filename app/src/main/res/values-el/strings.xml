@@ -42,4 +42,6 @@
     <string name="profileLogOutToast">Αποσυνδεθήκατε απο την εφαρμογή</string> <!--TODO: Find a better name-->
     <string name="profileNoChanges">Δεν βρέθηκαν διαφορές!</string>
     <string name="regExTooManyCharacters">Πάρα πολύ χαρακτήρες</string>
+    <string name="errorOnFileUpload">Κάτι έγινε την ώρα που ανέβαινε το αρχείο</string>
+    <string name="fileUploadedSuccessfully">Το αρχείο ανέβηκε με επιτυχεία!</string>
 </resources>

@@ -1,6 +1,7 @@
 package com.fearmygaze.dsa.view.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -16,6 +17,7 @@ import com.fearmygaze.dsa.view.fragment.Files;
 import com.fearmygaze.dsa.view.fragment.Notifications;
 import com.fearmygaze.dsa.view.fragment.Profile;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class Main extends AppCompatActivity {
 
@@ -29,17 +31,26 @@ public class Main extends AppCompatActivity {
 
         SharedPreferences getSharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
+        FloatingActionButton mainFilesAdd = findViewById(R.id.mainFilesAdd);
+
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
         String userName = getSharedPrefs.getString("userName","empty");
         String userEmail = getSharedPrefs.getString("userEmail","empty");
         int userId = getSharedPrefs.getInt("userID",-1);
 
         User me = new User(userName,userEmail,userId);
 
-        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
         profile = new Profile(me);
         files = new Files(me);
         notifications = new Notifications(me);
+
+        mainFilesAdd.setOnClickListener(v -> {
+            Intent intent = new Intent(Main.this, FileUpload.class);
+            startActivity(intent);
+            finish();
+        });
+
 
         replaceFragment(files);
 

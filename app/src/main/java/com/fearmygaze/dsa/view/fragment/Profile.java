@@ -113,32 +113,29 @@ public class Profile extends Fragment {
                 userNotification.onWarning();
             }
         });
-        profileDeleteAcc.setOnClickListener(v -> {
+        profileDeleteAcc.setOnClickListener(v -> UserController.UserDelete(requireActivity(), me.getEmail(), new IVolleyMessage() {
+            @Override
+            public void onWaring(String message) {
+                UserNotification userNotification = new UserNotification(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                userNotification.setOnWarningMsg(message);
+                userNotification.onWarning();
+            }
 
-            UserController.UserDelete(requireActivity(), me.getEmail(), new IVolleyMessage() {
-                @Override
-                public void onWaring(String message) {
-                    UserNotification userNotification = new UserNotification(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
-                    userNotification.setOnWarningMsg(message);
-                    userNotification.onWarning();
-                }
+            @Override
+            public void onError(String message) {
+                UserNotification userNotification = new UserNotification(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                userNotification.setOnErrorMsg(message);
+                userNotification.onError();
+            }
 
-                @Override
-                public void onError(String message) {
-                    UserNotification userNotification = new UserNotification(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
-                    userNotification.setOnErrorMsg(message);
-                    userNotification.onError();
-                }
-
-                @Override
-                public void onSuccess(String message) {
-                    SharedPreferences.Editor editor = getSharedPrefs.edit().clear();
-                    editor.apply();
-                    Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show();
-                    requireActivity().finish();
-                }
-            });
-        });
+            @Override
+            public void onSuccess(String message) {
+                SharedPreferences.Editor editor = getSharedPrefs.edit().clear();
+                editor.apply();
+                Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show();
+                requireActivity().finish();
+            }
+        }));
         return view;
     }
 }
