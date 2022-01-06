@@ -1,6 +1,5 @@
 package com.fearmygaze.dsa.view.fragment;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,8 +10,6 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fearmygaze.dsa.R;
 import com.fearmygaze.dsa.model.User;
-import com.fearmygaze.dsa.view.activity.FileUpload;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class Files extends Fragment {
 

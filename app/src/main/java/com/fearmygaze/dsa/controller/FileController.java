@@ -1,7 +1,6 @@
 package com.fearmygaze.dsa.controller;
 
 import android.content.Context;
-import android.content.SharedPreferences;
 
 import androidx.annotation.NonNull;
 
@@ -34,7 +33,7 @@ public class FileController {
         String volleyError = context.getResources().getString(R.string.volleyError);
         String userid = Integer.toString(userID); //This is to convert the int to string
 
-        StringRequest request = new StringRequest(Request.Method.POST, url[0],
+        StringRequest request = new StringRequest(Request.Method.POST, url[4],
                 response -> {
                     try {
                         JSONObject jsonResponse = new JSONObject(response);
