@@ -70,7 +70,7 @@ public class Profile extends Fragment {
             String updateName = Objects.requireNonNull(profileName.getText()).toString().trim();
             String updateEmail = Objects.requireNonNull(profileEmail.getText()).toString().trim();
 
-            if (RegEx.IsNameValid(updateName, profileNameError, requireActivity()) && RegEx.IsEmailValid(updateEmail, profileEmailError, requireActivity())) {
+            if (RegEx.IsNameValid(updateName,30, profileNameError, requireActivity()) && RegEx.IsEmailValid(updateEmail,50, profileEmailError, requireActivity())) {
                 if (!updateEmail.equals(me.getEmail()) || !updateName.equals(me.getName())) {
                     UserController.UserUpdate(requireActivity(), updateName, me.getName(), updateEmail, me.getEmail(), new IVolleyMessage() {
                         @Override
@@ -105,6 +105,9 @@ public class Profile extends Fragment {
                         }
                     });
                 }
+                /*
+                * TODO: if the user makes a change the "No changes found" and "The account has been updated" are showing
+                * */
                 UserNotification userNotification = new UserNotification(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
                 userNotification.setOnWarningMsg(requireContext().getResources().getString(R.string.profileNoChanges));
                 userNotification.onWarning();

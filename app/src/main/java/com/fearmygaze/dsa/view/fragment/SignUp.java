@@ -92,8 +92,8 @@ public class SignUp extends Fragment {
                         String passwd = Objects.requireNonNull(registerPasswd.getText()).toString().trim();
                         @SuppressLint("HardwareIds") String deviceID = Settings.Secure.getString(resolver, Settings.Secure.ANDROID_ID);
 
-                        if (RegEx.IsEmailValid(email, registerEmailError, requireActivity()) && RegEx.IsPasswdValid(passwd, registerPasswdError, requireActivity()) &&
-                                RegEx.IsNameValid(name, registerNameError, requireActivity())) {
+                        if (RegEx.IsEmailValid(email,50, registerEmailError, requireActivity()) && RegEx.IsPasswdValid(passwd,255, registerPasswdError, requireActivity()) &&
+                                RegEx.IsNameValid(name,30, registerNameError, requireActivity())) {
 
                             UserController.UserRegister(requireActivity(), name, email, passwd, deviceID, new IVolleyMessage() {
                                 @Override

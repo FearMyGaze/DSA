@@ -12,28 +12,36 @@ public class RegEx {
 
     /**
      * @param email We need it to get the email and check if it is following the regEx we set.
+     * @param maxLength We need it set the max character length of our string.
      * @param textInputLayout We need it to set the error if exists in the corresponding "cell".
      * @param context We need it to get the String from resource file strings.xml.
      * @return a bool statement based on if the the email is correct based on regEx.
      */
-    public static boolean IsEmailValid(String email, TextInputLayout textInputLayout, Context context) {
+    public static boolean IsEmailValid(String email, int maxLength, TextInputLayout textInputLayout, Context context) {
         Pattern pattern = Pattern.compile("^(?=.{1,64}@)[A-Za-z0-9]+(\\.[A-Za-z0-9]+)*@[^-][A-Za-z0-9-]+(\\.[A-Za-z0-9-]+)*(\\.[A-Za-z]{2,3})$");
         Matcher matcher = pattern.matcher(email);
         boolean matches = matcher.matches();
-        if (!matches) {
-            textInputLayout.setError(context.getString(R.string.emailRegExError));
+
+        if (email.length() > maxLength){
+            textInputLayout.setError(context.getString(R.string.regExTooManyCharacters));
             textInputLayout.setErrorEnabled(true);
+        }else {
+            if (!matches) {
+                textInputLayout.setError(context.getString(R.string.emailRegExError));
+                textInputLayout.setErrorEnabled(true);
+            }
         }
         return matches;
     }
 
     /**
      * @param passwd We need it to get the passwd and check if it is following the regEx we set.
+     * @param maxLength We need it set the max character length of our string.
      * @param textInputLayout We need it to set the error if exists in the corresponding "cell".
      * @param context We need it to get the String from resource file strings.xml.
      * @return a bool statement based on if the the passwd is correct based on regEx.
      */
-    public static boolean IsPasswdValid(String passwd, TextInputLayout textInputLayout, Context context) {
+    public static boolean IsPasswdValid(String passwd, int maxLength, TextInputLayout textInputLayout, Context context) {
         Pattern pattern = Pattern.compile("^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*])(?=\\S+$).{8,}$");
         Matcher matcher = pattern.matcher(passwd);
         boolean matches = matcher.matches();
@@ -49,45 +57,61 @@ public class RegEx {
          * $                 # end of the string
          * */
 
-        if (!matches) {
-            textInputLayout.setError(context.getString(R.string.passwdRegExError));
+        if (passwd.length() > maxLength){
+            textInputLayout.setError(context.getString(R.string.regExTooManyCharacters));
             textInputLayout.setErrorEnabled(true);
+        }else{
+            if (!matches) {
+                textInputLayout.setError(context.getString(R.string.passwdRegExError));
+                textInputLayout.setErrorEnabled(true);
+            }
         }
         return matches;
     }
 
     /**
-     * @param name We need it to get the name and check if it is following the regEx we set
+     * @param name We need it to get the name and check if it is following the regEx we set.
      * @param textInputLayout We need it to set the error if exists in the corresponding "cell".
-     * @param context We need it to get the String from resource file strings.xml
+     * @param context We need it to get the String from resource file strings.xml.
      * @return a bool statement based on if the the name is correct based on regEx.
      */
-    public static boolean IsNameValid(String name, TextInputLayout textInputLayout, Context context) {
+    public static boolean IsNameValid(String name, int maxLength, TextInputLayout textInputLayout, Context context) {
         Pattern pattern = Pattern.compile("[a-zA-Z_]+");
         Matcher matcher = pattern.matcher(name);
         boolean matches = matcher.matches();
 
-        if (!matches) {
-            textInputLayout.setError(context.getString(R.string.nameRegExError));
+        if (name.length() > maxLength){
+            textInputLayout.setError(context.getString(R.string.regExTooManyCharacters));
             textInputLayout.setErrorEnabled(true);
+        }else {
+            if (!matches) {
+                textInputLayout.setError(context.getString(R.string.nameRegExError));
+                textInputLayout.setErrorEnabled(true);
+            }
         }
         return matches;
     }
 
     /**
-     * @param name We need it to get the text and check if it is following the regEx we set
+     * @param name We need it to get the text and check if it is following the regEx we set.
+     * @param maxLength We need it set the max character length of our string.
      * @param textInputLayout We need it to set the error if exists in the corresponding "cell".
-     * @param context We need it to get the String from resource file strings.xml
+     * @param context We need it to get the String from resource file strings.xml.
      * @return a bool statement based on if the the name is correct based on regEx.
      */
-    public static boolean isTextValid(String name, TextInputLayout textInputLayout,Context context){
+    public static boolean isTextValid(String name, int maxLength, TextInputLayout textInputLayout,Context context){
         Pattern pattern = Pattern.compile("^[0-9A-Za-z\\s-]+$");
         Matcher matcher = pattern.matcher(name);
         boolean matches = matcher.matches();
-        /*TODO: Add max length characters*/
-        if (!matches) {
-            textInputLayout.setError(context.getString(R.string.textRegExError));
+
+        if (name.length() > maxLength){
+            textInputLayout.setError(context.getString(R.string.regExTooManyCharacters));
             textInputLayout.setErrorEnabled(true);
+        }else{
+            if (!matches) {
+                textInputLayout.setError(context.getString(R.string.textRegExError));
+                textInputLayout.setErrorEnabled(true);
+            }
         }
         return matches;
     }

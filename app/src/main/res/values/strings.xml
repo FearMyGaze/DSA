@@ -40,6 +40,7 @@
     <string name="profileLogOut">Log out</string>
     <string name="profileLogOutToast">You have been disconnected from the app</string> <!--TODO: Find a better name-->
     <string name="profileNoChanges">No changes found!</string>
+    <string name="regExTooManyCharacters">Too many characters</string>
 
 
     <string-array name="url">

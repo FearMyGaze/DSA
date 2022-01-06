@@ -41,4 +41,5 @@
     <string name="profileLogOut">Αποσύνδεση</string>
     <string name="profileLogOutToast">Αποσυνδεθήκατε απο την εφαρμογή</string> <!--TODO: Find a better name-->
     <string name="profileNoChanges">Δεν βρέθηκαν διαφορές!</string>
+    <string name="regExTooManyCharacters">Πάρα πολύ χαρακτήρες</string>
 </resources>

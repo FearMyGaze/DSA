@@ -82,8 +82,8 @@ public class FileUpload extends AppCompatActivity {
             String userEmail = getSharedPrefs.getString("userEmail","empty");
 
             if(!fileUploadTitleError.isErrorEnabled() && !fileUploadDescError.isErrorEnabled()){
-                if(RegEx.isTextValid(Objects.requireNonNull(fileUploadTitle.getText()).toString(), fileUploadTitleError ,getApplicationContext())
-                        && RegEx.isTextValid(Objects.requireNonNull(fileUploadDesc.getText()).toString(),fileUploadDescError,getApplicationContext())
+                if(RegEx.isTextValid(Objects.requireNonNull(fileUploadTitle.getText()).toString(),40 ,fileUploadTitleError ,getApplicationContext())
+                        && RegEx.isTextValid(Objects.requireNonNull(fileUploadDesc.getText()).toString(),255 ,fileUploadDescError,getApplicationContext())
                         && !userEmail.equals("empty")){
 
                     String uploadTitle = Objects.requireNonNull(fileUploadTitle.getText()).toString();
