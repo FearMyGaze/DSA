@@ -1,21 +1,18 @@
 <?php
-
+    
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
     require "Connect.php";
     $conn = mysqli_connect($servername, $username, $passwd, "DSA");
 
-    $username = $_POST["username"];
-    $passwd = $_POST["passwd"];
-    $passwd = password_hash($passwd, PASSWORD_DEFAULT);
-    $email = $_POST["email"];
-    $device_id = $_POST["device_id"];
+    $userID = $_POST["userID"];
+    $fileTitle = $_POST["fileTitle"];
+    $fileDesc = $_POST["fileDesc"];
+    $fileData = $_POST["fileData"];
 
-    $sql = "INSERT INTO users (username, email, passwd,device_id) VALUES ('$username', '$email', '$passwd','$device_id')";
+    $sql = "INSERT INTO files (userID, fileTitle, fileDesc, fileData) VALUES ('$userID', '$fileTitle', '$fileDesc', '$fileData')";
 
     if (mysqli_query($conn, $sql)) {
 
-        $result['userID'] = mysqli_insert_id($conn);
         $result["success"] = "1";
         echo json_encode($result);
 
@@ -27,4 +24,4 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         mysqli_close($conn);
     }
-}
+}    

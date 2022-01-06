@@ -1,7 +1,8 @@
 <?php
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    require "connect.php";
+    require "Connect.php";
+    $conn = mysqli_connect($servername, $username, $passwd, "DSA");
 
     $email = $_POST["email"];
     $passwd = $_POST["passwd"];
@@ -16,9 +17,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if(password_verify($passwd, $row['passwd'])) {
 
-            $result['email'] = $row['email'];
-            $result['passwd'] = $row['passwd'];
             $result['username'] = $row['username'];
+            $result['userID'] = $row['id'];
             
             $result['success'] = "1";
 

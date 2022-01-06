@@ -1,14 +1,16 @@
 <?php
 
     require "Connect.php";
+    $conn = mysqli_connect($servername, $username, $passwd, "DSA");
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
-        $username = $_POST["username"];
         $email = $_POST["email"];
-        $oldName = $_POST["oldName"];
+        $oldEmail = $_POST["oldEmail"];
+        $username = $_POST["username"];
+        $oldUsername = $_POST["oldUsername"];
 
-        $sql = "UPDATE users set username = '$username' , email = '$email' WHERE username ='$oldName'";
+        $sql = "UPDATE users set username = '$username' , email = '$email' WHERE username ='$oldUsername' AND email = '$oldEmail'";
 
         if (mysqli_query($conn, $sql)) {
                

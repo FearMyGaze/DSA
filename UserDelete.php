@@ -1,5 +1,6 @@
 <?php
     require "Connect.php";
+    $conn = mysqli_connect($servername, $username, $passwd, "DSA");
 
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $email = $_POST["email"];

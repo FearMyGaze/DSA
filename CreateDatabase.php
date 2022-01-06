@@ -2,7 +2,7 @@
 require "Connect.php";
 
 // Checking for the connection
-if (!$beginOfCreation) {
+if (!$conn) {
     die("Connection failed: " . mysqli_connect_error() . "<br>");
 } else {
     echo "Connection establised" . "<br>";
@@ -30,15 +30,23 @@ if (!$beginOfCreation) {
             reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
             )";
 
+    $sqlCreateFiles = "CREATE TABLE Files (
+            id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            userID INT(6) UNSIGNED NOT NULL REFERENCES Users(id),
+            fileTitle VARCHAR(40) NOT NULL, 
+            fileDesc VARCHAR(255) NOT NULL,
+            fileData LONGTEXT NOT NULL,
+            fileUploadDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+            )";
 
 
-    if (mysqli_query($beginOfCreation, $sqlCreateDatabase)) {
+    if (mysqli_query($conn, $sqlCreateDatabase)) {
         echo "Database created successfully " . "<br>";
     } else {
-        echo "Error on creating database: " . mysqli_error($beginOfCreation) . "<br>";
+        echo "Error on creating database: " . mysqli_error($conn) . "<br>";
     }
 
-    $conn = mysqli_connect($servername, $username, $passwd, "DSA");
+    $conn = mysqli_connect($servername, $username, $passwd, "DSA"); //This goes here because the previus connection is made before the creation of the database
     if (mysqli_query($conn, $sqlCreateUsers)) {
         echo "Table Users created successfully " . "<br>";
     } else {
@@ -47,6 +55,12 @@ if (!$beginOfCreation) {
 
     if (mysqli_query($conn, $sqlCreateDoctors)) {
         echo "Table Doctors created successfully " . "<br>";
+    } else {
+        echo "Error creating table: " . mysqli_error($conn) . "<br>";
+    }
+
+    if (mysqli_query($conn, $sqlCreateFiles)) {
+        echo "Table Files created successfully " . "<br>";
     } else {
         echo "Error creating table: " . mysqli_error($conn) . "<br>";
     }

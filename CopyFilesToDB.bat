@@ -7,7 +7,7 @@ REM This is the source directory.
 set source=%UserProfile%\Documents\GitHub\DSA\
 
 REM This is the destination directory.
-set /P destination=Destination Directory:
+set /P destination=Htdocs Directory:
 
 echo Copying files from %source% to %destination%
 xcopy %source%*.php %destination%\ /E /Y /I /Q

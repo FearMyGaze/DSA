@@ -3,7 +3,7 @@
 REM This script copies php files from the source directory to the destination directory.
 
 REM This is the source directory.
-set /P source=Source Directory:
+set /P source=Htdocs Directory:
 
 REM This is the destination directory.
 set destination=%UserProfile%\Documents\GitHub\DSA\

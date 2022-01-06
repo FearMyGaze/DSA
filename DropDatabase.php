@@ -8,7 +8,7 @@ require "Connect.php";
 
 
 // Checking for the connection
-if (!$beginOfCreation) {
+if (!$conn) {
     die("Connection failed: " . mysqli_connect_error() . "<br>");
 } else {
     echo "Connection establised" . "<br>";
