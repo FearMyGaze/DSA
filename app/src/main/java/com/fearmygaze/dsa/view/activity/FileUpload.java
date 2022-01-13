@@ -5,12 +5,14 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -82,8 +84,8 @@ public class FileUpload extends AppCompatActivity {
             int userID = getSharedPrefs.getInt("userID",-1);
 
             if(!fileUploadTitleError.isErrorEnabled() && !fileUploadDescError.isErrorEnabled()){
-                if(RegEx.isTextValid(Objects.requireNonNull(fileUploadTitle.getText()).toString(),40 ,fileUploadTitleError ,getApplicationContext())
-                        && RegEx.isTextValid(Objects.requireNonNull(fileUploadDesc.getText()).toString(),255 ,fileUploadDescError,getApplicationContext())
+                if(TextHandler.isSmallerThanSetLength(Objects.requireNonNull(fileUploadTitle.getText()).toString(),40 ,fileUploadTitleError ,getApplicationContext())
+                        && TextHandler.isSmallerThanSetLength(Objects.requireNonNull(fileUploadDesc.getText()).toString(),255 ,fileUploadDescError,getApplicationContext())
                         && userID > -1){
 
                     String uploadTitle = Objects.requireNonNull(fileUploadTitle.getText()).toString();
@@ -110,6 +112,11 @@ public class FileUpload extends AppCompatActivity {
                             UserNotification userNotification = new UserNotification(FileUpload.this, v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
                             userNotification.setOnSuccessMsg(message);
                             userNotification.onSuccess();
+
+                            fileUploadTitle.setText("");
+                            fileUploadDesc.setText("");
+                            imageView.setImageBitmap(null);
+
                         }
                     });
                     
@@ -132,13 +139,11 @@ public class FileUpload extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+        String message = getResources().getString(R.string.noPermision);
         if (requestCode == 100 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
             selectImage();
         }else{
-            /*
-            * TODO: Change it to snackbar or a alertDialog and make the message translatable from strings.xml
-            * */
-            System.out.println("No permissions");
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
 
         }
     }
@@ -146,7 +151,7 @@ public class FileUpload extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if ( requestCode == 100 && resultCode == RESULT_OK && data != null){
+        if (requestCode == 100 && resultCode == RESULT_OK && data != null){
             Uri uri = data.getData();
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
@@ -161,7 +166,7 @@ public class FileUpload extends AppCompatActivity {
                 fileUploadConfirm.setEnabled(true);
 
             } catch (IOException e) {
-                System.out.println(e.getMessage());
+                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
             }
         }
     }

@@ -92,27 +92,4 @@ public class RegEx {
         return matches;
     }
 
-    /**
-     * @param name We need it to get the text and check if it is following the regEx we set.
-     * @param maxLength We need it set the max character length of our string.
-     * @param textInputLayout We need it to set the error if exists in the corresponding "cell".
-     * @param context We need it to get the String from resource file strings.xml.
-     * @return a bool statement based on if the the name is correct based on regEx.
-     */
-    public static boolean isTextValid(String name, int maxLength, TextInputLayout textInputLayout,Context context){
-        Pattern pattern = Pattern.compile("^[0-9A-Za-z\\s-]+$");
-        Matcher matcher = pattern.matcher(name);
-        boolean matches = matcher.matches();
-
-        if (name.length() > maxLength){
-            textInputLayout.setError(context.getString(R.string.regExTooManyCharacters));
-            textInputLayout.setErrorEnabled(true);
-        }else{
-            if (!matches) {
-                textInputLayout.setError(context.getString(R.string.textRegExError));
-                textInputLayout.setErrorEnabled(true);
-            }
-        }
-        return matches;
-    }
 }

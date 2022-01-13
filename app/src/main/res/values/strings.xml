@@ -38,11 +38,12 @@
     <string name="fileUploadSend">Send</string>
     <string name="textRegExError">The only stuff that allowed is 1–9 Aa–Zz</string>
     <string name="profileLogOut">Log out</string>
-    <string name="profileLogOutToast">You have been disconnected from the app</string> <!--TODO: Find a better name-->
+    <string name="profileLogOutToast">You have been disconnected</string>
     <string name="profileNoChanges">No changes found!</string>
     <string name="regExTooManyCharacters">Too many characters</string>
     <string name="errorOnFileUpload">Something happened during uploading the file</string>
     <string name="fileUploadedSuccessfully">File uploaded successfully!</string>
+    <string name="noPermision">Permision required</string>
 
 
     <string-array name="url">
@@ -51,5 +52,6 @@
         <item>http://192.168.1.10/DSA/UserUpdate.php</item>
         <item>http://192.168.1.10/DSA/UserDelete.php</item>
         <item>http://192.168.1.10/DSA/FileUpload.php</item>
+        <item>http://192.168.1.10/DSA/InsertProperName.php</item>
     </string-array>
 </resources>

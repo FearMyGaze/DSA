@@ -39,9 +39,10 @@
     <string name="fileUploadSend">Αποστολή</string>
     <string name="textRegExError">Τα μόνα που επιτρέπονται είναι 1–9 Αα–Ωω</string>
     <string name="profileLogOut">Αποσύνδεση</string>
-    <string name="profileLogOutToast">Αποσυνδεθήκατε απο την εφαρμογή</string> <!--TODO: Find a better name-->
+    <string name="profileLogOutToast">Έχετε αποσυνδεθεί</string>
     <string name="profileNoChanges">Δεν βρέθηκαν διαφορές!</string>
     <string name="regExTooManyCharacters">Πάρα πολύ χαρακτήρες</string>
     <string name="errorOnFileUpload">Κάτι έγινε την ώρα που ανέβαινε το αρχείο</string>
     <string name="fileUploadedSuccessfully">Το αρχείο ανέβηκε με επιτυχεία!</string>
+    <string name="noPermision">Η άδεια είναι αναγκαία</string>
 </resources>
