@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fearmygaze.dsa.R;
 import com.fearmygaze.dsa.model.User;
+import com.google.android.material.button.MaterialButton;
 
 public class Files extends Fragment {
 
@@ -23,6 +24,8 @@ public class Files extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_files, container, false);
+
+        MaterialButton filesRefresh = view.findViewById(R.id.filesRefresh);
 
         RecyclerView filesRecycler = view.findViewById(R.id.filesRecycler); //TODO: This will be filled by the server
 

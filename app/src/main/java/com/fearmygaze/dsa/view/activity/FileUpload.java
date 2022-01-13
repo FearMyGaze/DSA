@@ -5,7 +5,6 @@ import android.Manifest;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
@@ -25,7 +24,6 @@ import com.fearmygaze.dsa.R;
 import com.fearmygaze.dsa.controller.FileController;
 import com.fearmygaze.dsa.custom.UserNotification;
 import com.fearmygaze.dsa.model.IVolleyMessage;
-import com.fearmygaze.dsa.util.RegEx;
 import com.fearmygaze.dsa.util.TextHandler;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -48,16 +46,16 @@ public class FileUpload extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(com.fearmygaze.dsa.R.layout.activity_file_upload);
 
-        TextInputEditText fileUploadTitle = findViewById(R.id.fileUploadTitle);
-        TextInputLayout fileUploadTitleError = findViewById(R.id.fileUploadTitleError);
+        TextInputEditText fileUploadTitle = findViewById(R.id.UploadTitle);
+        TextInputLayout fileUploadTitleError = findViewById(R.id.uploadTitleError);
 
-        TextInputEditText fileUploadDesc = findViewById(R.id.fileUploadDesc);
-        TextInputLayout fileUploadDescError = findViewById(R.id.fileUploadDescError);
+        TextInputEditText fileUploadDesc = findViewById(R.id.uploadDesc);
+        TextInputLayout fileUploadDescError = findViewById(R.id.uploadDescError);
 
-        MaterialButton fileUploadSelectImage = findViewById(R.id.fileUploadSelectImage);
-        fileUploadConfirm = findViewById(R.id.fileUploadConfirm);
+        MaterialButton fileUploadSelectImage = findViewById(R.id.uploadSelectImage);
+        fileUploadConfirm = findViewById(R.id.uploadConfirm);
 
-        imageView = findViewById(R.id.fileUploadImageView);
+        imageView = findViewById(R.id.uploadImageView);
 
         SharedPreferences getSharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 

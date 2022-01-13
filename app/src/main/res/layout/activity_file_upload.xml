@@ -33,7 +33,7 @@
             app:layout_constraintGuide_percent="0.8" />
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/fileUploadTitleError"
+            android:id="@+id/uploadTitleError"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -41,11 +41,11 @@
             app:endIconMode="clear_text"
             app:counterEnabled="true"
             app:counterMaxLength="40"
-            app:layout_constraintBottom_toTopOf="@+id/fileUploadDescError"
+            app:layout_constraintBottom_toTopOf="@+id/uploadDescError"
             app:layout_constraintTop_toBottomOf="@+id/guideline_horizontal_title_begin">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/fileUploadTitle"
+                android:id="@+id/UploadTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
@@ -55,7 +55,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/fileUploadDescError"
+            android:id="@+id/uploadDescError"
             style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -64,10 +64,10 @@
             app:counterEnabled="true"
             app:counterMaxLength="255"
             app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_description_end"
-            app:layout_constraintTop_toBottomOf="@+id/fileUploadTitleError">
+            app:layout_constraintTop_toBottomOf="@+id/uploadTitleError">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/fileUploadDesc"
+                android:id="@+id/uploadDesc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
@@ -77,7 +77,7 @@
         </com.google.android.material.textfield.TextInputLayout>
 
         <TextView
-            android:id="@+id/fileUploadTextView"
+            android:id="@+id/uploadTextView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
@@ -89,36 +89,36 @@
             android:textSize="18sp"/>
 
         <androidx.appcompat.widget.AppCompatImageView
-            android:id="@+id/fileUploadImageView"
+            android:id="@+id/uploadImageView"
             android:layout_width="wrap_content"
             android:layout_height="200dp"
             android:scaleType="fitCenter"
             android:layout_marginTop="5dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fileUploadTextView"
+            app:layout_constraintTop_toBottomOf="@+id/uploadTextView"
             app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_imageView_end"/>
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/fileUploadSelectImage"
+            android:id="@+id/uploadSelectImage"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/fileUploadChooseImage"
             app:cornerRadius="20dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/fileUploadConfirm"
+            app:layout_constraintEnd_toStartOf="@id/uploadConfirm"
             app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_imageView_end" />
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/fileUploadConfirm"
+            android:id="@+id/uploadConfirm"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
             android:text="@string/fileUploadSend"
             android:enabled="false"
             app:cornerRadius="20dp"
-            app:layout_constraintStart_toEndOf="@id/fileUploadSelectImage"
+            app:layout_constraintStart_toEndOf="@id/uploadSelectImage"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_imageView_end" />
 
