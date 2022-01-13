@@ -104,13 +104,11 @@ public class Profile extends Fragment {
                             userNotification.onSuccess();
                         }
                     });
+                }else{
+                    UserNotification userNotification = new UserNotification(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                    userNotification.setOnWarningMsg(requireContext().getResources().getString(R.string.profileNoChanges));
+                    userNotification.onWarning();
                 }
-                /*
-                * TODO: if the user makes a change the "No changes found" and "The account has been updated" are showing
-                * */
-                UserNotification userNotification = new UserNotification(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
-                userNotification.setOnWarningMsg(requireContext().getResources().getString(R.string.profileNoChanges));
-                userNotification.onWarning();
             }
         });
         profileDeleteAcc.setOnClickListener(v -> UserController.UserDelete(requireActivity(), me.getEmail(), new IVolleyMessage() {
