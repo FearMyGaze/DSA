@@ -139,12 +139,11 @@ public class FileUpload extends AppCompatActivity {
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        String message = getResources().getString(R.string.noPermision);
+        String message = getResources().getString(R.string.noPermission);
         if (requestCode == 100 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
             selectImage();
         }else{
             Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
-
         }
     }
 

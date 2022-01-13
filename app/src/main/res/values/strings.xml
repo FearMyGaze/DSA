@@ -43,7 +43,8 @@
     <string name="regExTooManyCharacters">Too many characters</string>
     <string name="errorOnFileUpload">Something happened during uploading the file</string>
     <string name="fileUploadedSuccessfully">File uploaded successfully!</string>
-    <string name="noPermision">Permision required</string>
+    <string name="noPermission">Permission required</string>
+    <string name="filesRefreshList">Refresh</string>
 
 
     <string-array name="url">
