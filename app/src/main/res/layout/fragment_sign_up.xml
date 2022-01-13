@@ -142,7 +142,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/alreadyHaveAccount"
-                android:textColor="@drawable/item_text_view_on_touch"
+                android:textColor="@drawable/custom_text_view_item_on_press"
                 android:textSize="15sp"
                 android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
