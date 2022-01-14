@@ -1,6 +1,8 @@
 package com.fearmygaze.dsa.controller;
 
 import android.content.Context;
+import android.content.SharedPreferences;
+import android.preference.PreferenceManager;
 
 import androidx.annotation.NonNull;
 
@@ -14,21 +16,38 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class UserController {
 
+    /**
+     * @param context We need it to get the String from resource file strings.xml
+     * @param name We need it to set the name of the user
+     * @param email We need it to set the email of the user
+     * @param passwd We need it to set the passwd of the user
+     * @param device_id We need it to set the device id of the phone when the user created for safety
+     * @param volleyMessage a quick interface to handle the Success/Warning/Error
+     */
     public static void UserRegister(Context context, String name, String email, String passwd, String device_id, IVolleyMessage volleyMessage) {
         String[] url = context.getResources().getStringArray(R.array.url);
         String jsonError = context.getResources().getString(R.string.jsonErrorDuring);
         String errorOnRegister = context.getResources().getString(R.string.errorOnRegister);
         String volleyError = context.getResources().getString(R.string.volleyError);
+        SharedPreferences getSharedPrefs = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
 
         StringRequest request = new StringRequest(Request.Method.POST, url[0],
                 response -> {
                     try {
                         JSONObject jsonResponse = new JSONObject(response);
                         if (jsonResponse.getString("success").equals("1")) {
+                            int successUserID = jsonResponse.getInt("userID");
+                            SharedPreferences.Editor editor = getSharedPrefs.edit();
+                            editor.putString("userName",name);
+                            editor.putString("userEmail",email.toLowerCase(Locale.ROOT));
+                            editor.putString("userPasswd",passwd);
+                            editor.putInt("userID",successUserID);
+                            editor.apply();
                             volleyMessage.onSuccess(" ");
                         } else {
                             volleyMessage.onWaring(errorOnRegister);
@@ -43,7 +62,7 @@ public class UserController {
             protected Map<String, String> getParams() {
                 Map<String, String> parameters = new HashMap<>();
                 parameters.put("username", name);
-                parameters.put("email", email);
+                parameters.put("email", email.toLowerCase(Locale.ROOT));
                 parameters.put("passwd", passwd);
                 parameters.put("device_id", device_id);
                 return parameters;
@@ -52,11 +71,18 @@ public class UserController {
         RequestSingleton.getInstance(context).addToRequestQueue(request);
     }
 
+    /**
+     * @param context We need it to get the String from resource file strings.xml
+     * @param email We need the email of the user to login
+     * @param passwd We need the passwd of the user to login
+     * @param volleyMessage a quick interface to handle the Success/Warning/Error
+     */
     public static void UserLogin(Context context, String email, String passwd, IVolleyMessage volleyMessage) {
         String[] url = context.getResources().getStringArray(R.array.url);
         String jsonError = context.getResources().getString(R.string.jsonErrorDuring);
         String errorOnLogin = context.getResources().getString(R.string.errorOnLogin);
         String volleyError = context.getResources().getString(R.string.volleyError);
+        SharedPreferences getSharedPrefs = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
 
         StringRequest request = new StringRequest(Request.Method.POST, url[1],
                 response -> {
@@ -65,6 +91,14 @@ public class UserController {
                         if (jsonResponse.getString("success").equals("1")) {
 
                             String successUsername = jsonResponse.getString("username");
+                            int successUserID = jsonResponse.getInt("userID");
+
+                            SharedPreferences.Editor editor = getSharedPrefs.edit();
+                            editor.putString("userName",successUsername);
+                            editor.putString("userEmail",email.toLowerCase(Locale.ROOT));
+                            editor.putString("userPasswd",passwd);
+                            editor.putInt("userID",successUserID);
+                            editor.apply();
 
                             volleyMessage.onSuccess(successUsername);
 
@@ -80,7 +114,7 @@ public class UserController {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> parameters = new HashMap<>();
-                parameters.put("email", email);
+                parameters.put("email", email.toLowerCase(Locale.ROOT));
                 parameters.put("passwd", passwd);
                 return parameters;
             }
@@ -88,17 +122,30 @@ public class UserController {
         RequestSingleton.getInstance(context).addToRequestQueue(request);
     }
 
-    public static void UserUpdate(Context context, String username, String oldName, String email, IVolleyMessage volleyMessage) {
+    /**
+     * @param context We need it to get the String from resource file strings.xml
+     * @param username We need the new userName that is gonna replace the oldUsername
+     * @param oldUsername We need the oldUsername because we want the old reference that already exists in the db
+     * @param email We need the email updated or not so the db knows what user we are going to change the credentials
+     * @param oldEmail We need the oldEmail because we want the old reference that already exists in the db
+     * @param volleyMessage a quick interface to handle the Success/Warning/Error
+     */
+    public static void UserUpdate(Context context, String username, String oldUsername, String email, String oldEmail, IVolleyMessage volleyMessage) {
         String[] url = context.getResources().getStringArray(R.array.url);
         String jsonError = context.getResources().getString(R.string.jsonErrorDuring);
         String errorOnUpdate = context.getResources().getString(R.string.errorOnUpdate);
         String volleyError = context.getResources().getString(R.string.volleyError);
+        SharedPreferences getSharedPrefs = PreferenceManager.getDefaultSharedPreferences(context.getApplicationContext());
 
         StringRequest request = new StringRequest(Request.Method.POST, url[2],
                 response -> {
                     try {
                         JSONObject jsonResponse = new JSONObject(response);
                         if (jsonResponse.getString("success").equals("1")) {
+                            SharedPreferences.Editor editor = getSharedPrefs.edit();
+                            editor.putString("userName",username);
+                            editor.putString("userEmail",email.toLowerCase(Locale.ROOT));
+                            editor.apply();
                             volleyMessage.onSuccess("");
                         } else {
                             volleyMessage.onWaring(errorOnUpdate);
@@ -112,15 +159,58 @@ public class UserController {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> parameters = new HashMap<>();
-                parameters.put("email", email);
+                parameters.put("email", email.toLowerCase(Locale.ROOT));
+                parameters.put("oldEmail",oldEmail);
                 parameters.put("username", username);
-                parameters.put("oldName", oldName);
+                parameters.put("oldUsername", oldUsername);
                 return parameters;
             }
         };
         RequestSingleton.getInstance(context).addToRequestQueue(request);
     }
 
+    /**
+     * @param context We need it to get the String from resource file strings.xml
+     * @param email We need the email to specify what user we want to see if exists
+     * @param iVolleyMessage a quick interface to handle the Success/Warning/Error
+     */
+    public static void UserExist(Context context, String email, IVolleyMessage iVolleyMessage){
+        String[] url = context.getResources().getStringArray(R.array.url);
+        String jsonError = context.getResources().getString(R.string.jsonErrorDuring);
+        String errorOnDelete = context.getResources().getString(R.string.errorOnDelete);
+        String volleyError = context.getResources().getString(R.string.volleyError);
+        String successOnDelete = context.getResources().getString(R.string.successOnDelete);
+
+        StringRequest request = new StringRequest(Request.Method.POST, url[5],
+                response -> {
+                    try {
+                        JSONObject jsonResponse = new JSONObject(response);
+                        if (jsonResponse.getString("success").equals("1")) {
+                            iVolleyMessage.onSuccess(successOnDelete);
+                        } else {
+                            iVolleyMessage.onWaring(errorOnDelete);
+                        }
+                    } catch (JSONException e) {
+                        iVolleyMessage.onError(jsonError + " " + e.getMessage());
+                    }
+                },
+                error -> iVolleyMessage.onError(volleyError + error.getMessage())) {
+            @NonNull
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> parameters = new HashMap<>();
+                parameters.put("email", email.toLowerCase(Locale.ROOT));
+                return parameters;
+            }
+        };
+        RequestSingleton.getInstance(context).addToRequestQueue(request);
+    }
+
+    /**
+     * @param context We need it to get the String from resource file strings.xml
+     * @param email We need the email to specify what user we want to delete
+     * @param volleyMessage a quick interface to handle the Success/Warning/Error
+     */
     public static void UserDelete(Context context, String email, IVolleyMessage volleyMessage) {
         String[] url = context.getResources().getStringArray(R.array.url);
         String jsonError = context.getResources().getString(R.string.jsonErrorDuring);
@@ -146,7 +236,7 @@ public class UserController {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> parameters = new HashMap<>();
-                parameters.put("email", email);
+                parameters.put("email", email.toLowerCase(Locale.ROOT));
                 return parameters;
             }
         };

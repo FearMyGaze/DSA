@@ -1,11 +1,12 @@
 package com.fearmygaze.dsa.view.activity;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.widget.FrameLayout;
+import android.preference.PreferenceManager;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -16,12 +17,11 @@ import com.fearmygaze.dsa.view.fragment.Files;
 import com.fearmygaze.dsa.view.fragment.Notifications;
 import com.fearmygaze.dsa.view.fragment.Profile;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class Main extends AppCompatActivity {
 
     public Fragment files, notifications, profile;
-
-    public CoordinatorLayout snackbarMainNotifications;
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -29,15 +29,28 @@ public class Main extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        User me = getIntent().getParcelableExtra("User");
+        SharedPreferences getSharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
 
-        snackbarMainNotifications = findViewById(R.id.snackbarMainNotifications);
-        FrameLayout frameLayout = findViewById(R.id.mainFrame);
+        FloatingActionButton mainFilesAdd = findViewById(R.id.mainFilesAdd);
+
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
+
+        String userName = getSharedPrefs.getString("userName","empty");
+        String userEmail = getSharedPrefs.getString("userEmail","empty");
+        int userId = getSharedPrefs.getInt("userID",-1);
+
+        User me = new User(userName,userEmail,userId);
 
         profile = new Profile(me);
         files = new Files(me);
         notifications = new Notifications(me);
+
+        mainFilesAdd.setOnClickListener(v -> {
+            Intent intent = new Intent(Main.this, FileUpload.class);
+            startActivity(intent);
+            finish();
+        });
+
 
         replaceFragment(files);
 

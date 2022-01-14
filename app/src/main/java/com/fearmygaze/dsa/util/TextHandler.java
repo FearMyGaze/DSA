@@ -1,4 +1,4 @@
-package com.fearmygaze.dsa.custom;
+package com.fearmygaze.dsa.util;
 
 import android.content.Context;
 import android.text.Editable;
@@ -58,6 +58,21 @@ public class TextHandler implements TextWatcher {
             return true;
         }
         return false;
+    }
+
+    /**
+     * @param name We need it to get the text and check if it is following the maxLength we set.
+     * @param maxLength We need it set the max character length of our string
+     * @param textInputLayout We need it to set the error if exists in the corresponding "cell".
+     * @param context We need it to get the String from resource file strings.xml.
+     * @return a bool statement based on if the the name is correct based on regEx.
+     */
+    public static boolean isSmallerThanSetLength(String name, int maxLength , TextInputLayout textInputLayout, Context context){
+        if (name.length() > maxLength){
+            textInputLayout.setError(context.getString(R.string.regExTooManyCharacters));
+            textInputLayout.setErrorEnabled(true);
+        }
+        return true;
     }
 
     @Override

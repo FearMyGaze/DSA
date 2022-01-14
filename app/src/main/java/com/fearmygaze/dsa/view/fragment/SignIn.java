@@ -1,24 +1,23 @@
 package com.fearmygaze.dsa.view.fragment;
 
-import static android.content.Context.MODE_PRIVATE;
-
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
 import com.fearmygaze.dsa.R;
 import com.fearmygaze.dsa.controller.UserController;
-import com.fearmygaze.dsa.custom.RegEx;
-import com.fearmygaze.dsa.custom.SnackBar.UserNotification;
-import com.fearmygaze.dsa.custom.TextHandler;
+import com.fearmygaze.dsa.custom.UserNotification;
 import com.fearmygaze.dsa.model.IVolleyMessage;
-import com.fearmygaze.dsa.model.User;
+import com.fearmygaze.dsa.util.RegEx;
+import com.fearmygaze.dsa.util.TextHandler;
 import com.fearmygaze.dsa.view.activity.Main;
 import com.fearmygaze.dsa.view.activity.Starting;
 import com.google.android.material.button.MaterialButton;
@@ -45,7 +44,9 @@ public class SignIn extends Fragment {
 
         TextView gotoRegister = view.findViewById(R.id.gotoRegister);
 
-        gotoRegister.setOnClickListener(v -> ((Starting) requireActivity()).replaceFragment(((Starting) requireActivity()).registerFragment));
+        SharedPreferences getSharedPrefs = PreferenceManager.getDefaultSharedPreferences(requireActivity().getApplicationContext());
+
+        gotoRegister.setOnClickListener(v -> ((Starting) requireActivity()).replaceFragment(((Starting) requireActivity()).signUpFragment));
 
         /*
          * The moment the TextInputEditText is filled with a text after an error occurred th error
@@ -54,6 +55,35 @@ public class SignIn extends Fragment {
 
         loginEmail.addTextChangedListener(new TextHandler(loginEmailError));
         loginPasswd.addTextChangedListener(new TextHandler(loginPasswdError));
+
+        String prefUserEmail = getSharedPrefs.getString("userEmail","empty");
+        String prefUserPasswd = getSharedPrefs.getString("userPasswd","empty");
+        String prefUsername = getSharedPrefs.getString("userName","empty");
+        int prefUserID = getSharedPrefs.getInt("userID",-1);
+        
+        if(!prefUserEmail.equals("empty") && !prefUserPasswd.equals("empty") && !prefUsername.equals("empty") && prefUserID > -1){ //Remember me func
+            UserController.UserExist(requireActivity(), prefUserEmail, new IVolleyMessage() {
+                @Override
+                public void onWaring(String message) {
+                    SharedPreferences.Editor editor = getSharedPrefs.edit().clear();
+                    editor.apply();
+                    Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show();
+                }
+
+                @Override
+                public void onError(String message) {
+                    SharedPreferences.Editor editor = getSharedPrefs.edit().clear();
+                    editor.apply();
+                }
+
+                @Override
+                public void onSuccess(String message) {
+                    Intent intent = new Intent(requireActivity(), Main.class);
+                    requireActivity().startActivity(intent);
+                    requireActivity().finish();
+                }
+            });
+        }
 
         confirmLogIn.setOnClickListener(v -> {
 
@@ -64,7 +94,8 @@ public class SignIn extends Fragment {
                 String email = Objects.requireNonNull(loginEmail.getText()).toString().trim();
                 String passwd = Objects.requireNonNull(loginPasswd.getText()).toString().trim();
 
-                if (RegEx.IsEmailValid(email, loginEmailError, SignIn.this.requireActivity()) && RegEx.IsPasswdValid(passwd, loginPasswdError, SignIn.this.requireActivity())) {
+                if (RegEx.IsEmailValid(email,50, loginEmailError, SignIn.this.requireActivity())
+                        && RegEx.IsPasswdValid(passwd,255, loginPasswdError, SignIn.this.requireActivity())) {
                     UserController.UserLogin(requireActivity(), email, passwd, new IVolleyMessage() {
                         @Override
                         public void onWaring(String message) {
@@ -82,16 +113,7 @@ public class SignIn extends Fragment {
 
                         @Override
                         public void onSuccess(String message) {
-                            SharedPreferences.Editor editor = requireActivity().getPreferences(MODE_PRIVATE).edit();
-                            editor.putString("userEmail", email);
-                            editor.putString("userPasswd", passwd);
-                            editor.putString("userName", message);
-                            editor.apply();
-
-                            User me = new User(message, email);
-
                             Intent intent = new Intent(requireActivity(), Main.class);
-                            intent.putExtra("User", me);
                             requireActivity().startActivity(intent);
                             requireActivity().finish();
                         }

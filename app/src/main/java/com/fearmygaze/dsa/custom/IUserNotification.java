@@ -1,4 +1,4 @@
-package com.fearmygaze.dsa.custom.SnackBar;
+package com.fearmygaze.dsa.custom;
 
 public interface IUserNotification {
     void onSuccess();

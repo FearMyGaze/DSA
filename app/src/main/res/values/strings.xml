@@ -29,14 +29,33 @@
     <string name="errorOnDelete">There was an unexpected error</string>
     <string name="successOnDelete">The account has been deleted</string>
     <string name="volleyError">Error during connection</string>
-    <string name="bottomSheetDialogUploadPicture">Upload Picture</string>
-    <string name="bottomSheetDialogUploadPDF">Upload PDF</string>
-    <string name="bottomSheetDialogCreateTxtFile">Create a txt file</string>
+    <string name="uploadFile">Upload your picture</string>
+    <string name="personalFiles">My uploaded files</string>
+    <string name="fileUploadTitle">Title</string>
+    <string name="fileUploadDescription">Description</string>
+    <string name="fileUploadTextView">Image to be uploaded</string>
+    <string name="fileUploadChooseImage">Choose Image</string>
+    <string name="fileUploadSend">Send</string>
+    <string name="textRegExError">The only stuff that allowed is 1–9 Aa–Zz</string>
+    <string name="profileLogOut">Log out</string>
+    <string name="profileLogOutToast">You have been disconnected</string>
+    <string name="profileNoChanges">No changes found!</string>
+    <string name="regExTooManyCharacters">Too many characters</string>
+    <string name="errorOnFileUpload">Something happened during uploading the file</string>
+    <string name="fileUploadedSuccessfully">File uploaded successfully!</string>
+    <string name="noPermission">Permission required</string>
+    <string name="filesRefreshList">Refresh</string>
+    <string name="sampleDate" translatable="false">2022-01-06 19:27:32</string>
+    <string name="profileBugList">If you found a bug please click here</string>
+    <string name="adapterNotificationAccess">Grant access to: </string>
+    <string name="adapterNotificationButton">Yes</string>
 
     <string-array name="url">
         <item>http://192.168.1.10/DSA/UsersRegister.php</item>
         <item>http://192.168.1.10/DSA/UserLogin.php</item>
         <item>http://192.168.1.10/DSA/UserUpdate.php</item>
         <item>http://192.168.1.10/DSA/UserDelete.php</item>
+        <item>http://192.168.1.10/DSA/FileUpload.php</item>
+        <item>http://192.168.1.10/DSA/UserExist.php</item>
     </string-array>
 </resources>

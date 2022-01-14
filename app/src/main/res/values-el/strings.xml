@@ -30,7 +30,23 @@
     <string name="errorOnDelete">Εμφανίστηκε πρόβλημα κατα την διαγραφή</string>
     <string name="successOnDelete">Ο λογαριασμός διαγράφτηκε</string>
     <string name="volleyError">Σφάλμα κατά την σύνδεση</string>
-    <string name="bottomSheetDialogUploadPicture">Ανέβασε φωτογραφία</string>
-    <string name="bottomSheetDialogUploadPDF">Ανέβασε PDF</string>
-    <string name="bottomSheetDialogCreateTxtFile">Δημιούργησε ενα txt αρχείο</string>
+    <string name="uploadFile">Ανέβασε την εικόνα</string>
+    <string name="personalFiles">Προυπάρχοντα αρχεία</string>
+    <string name="fileUploadTitle">Τίτλος</string>
+    <string name="fileUploadDescription">Περιγραφή</string>
+    <string name="fileUploadTextView">Εικόνα προς αποστολή</string>
+    <string name="fileUploadChooseImage">Επιλογή εικόνας</string>
+    <string name="fileUploadSend">Αποστολή</string>
+    <string name="textRegExError">Τα μόνα που επιτρέπονται είναι 1–9 Αα–Ωω</string>
+    <string name="profileLogOut">Αποσύνδεση</string>
+    <string name="profileLogOutToast">Έχετε αποσυνδεθεί</string>
+    <string name="profileNoChanges">Δεν βρέθηκαν διαφορές!</string>
+    <string name="regExTooManyCharacters">Πάρα πολύ χαρακτήρες</string>
+    <string name="errorOnFileUpload">Κάτι έγινε την ώρα που ανέβαινε το αρχείο</string>
+    <string name="fileUploadedSuccessfully">Το αρχείο ανέβηκε με επιτυχεία!</string>
+    <string name="noPermission">Η άδεια είναι αναγκαία</string>
+    <string name="filesRefreshList">Ανανέωση</string>
+    <string name="profileBugList">Εάν έχτε βρεί κάποιο πρόβλημα με την εφαρμογή πατήστε εδώ</string>
+    <string name="adapterNotificationAccess">Παραχώρηση πρόσβασης σε: </string>
+    <string name="adapterNotificationButton">Ναι</string>
 </resources>

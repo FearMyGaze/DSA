@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:id="@+id/adapterNotificationRootLayout"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    android:layout_margin="5dp"
+    android:background="@drawable/custom_adapter_item_on_press">
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_horizontal_adapter_notification_row_1_begin"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.15" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_horizontal_adapter_notification_row_2_begin"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.55" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_horizontal_adapter_notification_row_2_end"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.85" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical_adapter_notification_column_begin"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.05" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline_vertical_adapter_notification_column_end"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.75" />
+
+    <TextView
+        android:id="@+id/adapterNotificationGrantAccess"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:text="@string/adapterNotificationAccess"
+        android:maxLines="1"
+        android:maxLength="40"
+        android:textStyle="bold|italic"
+        app:layout_constraintStart_toStartOf="@id/guideline_vertical_adapter_notification_column_begin"
+        app:layout_constraintEnd_toStartOf="@id/guideline_vertical_adapter_notification_column_end"
+        app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_adapter_notification_row_1_begin"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_adapter_notification_row_2_begin"/>
+
+    <TextView
+        android:id="@+id/adapterNotificationName"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:text="@string/alreadyHaveAccount"
+        android:maxLength="40"
+        android:maxLines="1"
+        android:breakStrategy="high_quality"
+        app:layout_constraintStart_toStartOf="@id/guideline_vertical_adapter_notification_column_begin"
+        app:layout_constraintEnd_toStartOf="@id/guideline_vertical_adapter_notification_column_end"
+        app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_adapter_notification_row_2_begin"
+        app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_adapter_notification_row_2_end"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/adapterNotificationButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/adapterNotificationButton"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:backgroundTint="@color/green"
+        app:cornerRadius="20dp"
+        app:layout_constraintStart_toEndOf="@id/guideline_vertical_adapter_notification_column_end"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_adapter_notification_row_1_begin"
+        app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_adapter_notification_row_2_end"/>
+
+    <!--TODO: change the color of the button-->
+</androidx.constraintlayout.widget.ConstraintLayout>

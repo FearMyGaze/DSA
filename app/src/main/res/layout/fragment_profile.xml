@@ -14,6 +14,8 @@
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        app:counterEnabled="true"
+        app:counterMaxLength="30"
         android:hint="@string/name"
         app:endIconMode="clear_text"
         app:layout_constraintTop_toTopOf="parent">
@@ -34,6 +36,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="25dp"
+        app:counterEnabled="true"
+        app:counterMaxLength="50"
         android:hint="@string/email"
         app:endIconMode="clear_text"
         app:layout_constraintTop_toBottomOf="@id/profileNameError">
@@ -49,6 +53,17 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.button.MaterialButton
+        android:id="@+id/profileLogOut"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="@string/profileLogOut"
+        app:cornerRadius="20dp"
+        app:layout_constraintEnd_toStartOf="@+id/profileUpdate"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profileEmailError" />
+
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/profileUpdate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -56,7 +71,7 @@
         android:text="@string/buttonUpdate"
         app:cornerRadius="20dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@id/profileLogOut"
         app:layout_constraintTop_toBottomOf="@id/profileEmailError" />
 
     <TextView
@@ -64,11 +79,25 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/appNotSupporting"
-        android:textColor="@drawable/item_text_view_on_touch"
+        android:textColor="@drawable/custom_text_view_item_on_press"
         android:textSize="15sp"
         android:textStyle="italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profileUpdate" />
+
+    <TextView
+        android:id="@+id/profileBugList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/profileBugList"
+        android:textColor="@drawable/custom_text_view_item_on_press"
+        android:textSize="15sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profileDeleteAcc" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
