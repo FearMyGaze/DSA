@@ -46,4 +46,5 @@
     <string name="fileUploadedSuccessfully">Το αρχείο ανέβηκε με επιτυχεία!</string>
     <string name="noPermission">Η άδεια είναι αναγκαία</string>
     <string name="filesRefreshList">Ανανέωση</string>
+    <string name="profileBugList">Εάν έχτε βρεί κάποιο πρόβλημα με την εφαρμογή πατήστε εδώ</string>
 </resources>

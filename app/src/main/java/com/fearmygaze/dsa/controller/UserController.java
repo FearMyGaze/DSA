@@ -16,6 +16,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 public class UserController {
@@ -43,7 +44,7 @@ public class UserController {
                             int successUserID = jsonResponse.getInt("userID");
                             SharedPreferences.Editor editor = getSharedPrefs.edit();
                             editor.putString("userName",name);
-                            editor.putString("userEmail",email);
+                            editor.putString("userEmail",email.toLowerCase(Locale.ROOT));
                             editor.putString("userPasswd",passwd);
                             editor.putInt("userID",successUserID);
                             editor.apply();
@@ -61,7 +62,7 @@ public class UserController {
             protected Map<String, String> getParams() {
                 Map<String, String> parameters = new HashMap<>();
                 parameters.put("username", name);
-                parameters.put("email", email);
+                parameters.put("email", email.toLowerCase(Locale.ROOT));
                 parameters.put("passwd", passwd);
                 parameters.put("device_id", device_id);
                 return parameters;
@@ -94,7 +95,7 @@ public class UserController {
 
                             SharedPreferences.Editor editor = getSharedPrefs.edit();
                             editor.putString("userName",successUsername);
-                            editor.putString("userEmail",email);
+                            editor.putString("userEmail",email.toLowerCase(Locale.ROOT));
                             editor.putString("userPasswd",passwd);
                             editor.putInt("userID",successUserID);
                             editor.apply();
@@ -113,7 +114,7 @@ public class UserController {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> parameters = new HashMap<>();
-                parameters.put("email", email);
+                parameters.put("email", email.toLowerCase(Locale.ROOT));
                 parameters.put("passwd", passwd);
                 return parameters;
             }
@@ -143,7 +144,7 @@ public class UserController {
                         if (jsonResponse.getString("success").equals("1")) {
                             SharedPreferences.Editor editor = getSharedPrefs.edit();
                             editor.putString("userName",username);
-                            editor.putString("userEmail",email);
+                            editor.putString("userEmail",email.toLowerCase(Locale.ROOT));
                             editor.apply();
                             volleyMessage.onSuccess("");
                         } else {
@@ -158,7 +159,7 @@ public class UserController {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> parameters = new HashMap<>();
-                parameters.put("email", email);
+                parameters.put("email", email.toLowerCase(Locale.ROOT));
                 parameters.put("oldEmail",oldEmail);
                 parameters.put("username", username);
                 parameters.put("oldUsername", oldUsername);
@@ -198,7 +199,7 @@ public class UserController {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> parameters = new HashMap<>();
-                parameters.put("email", email);
+                parameters.put("email", email.toLowerCase(Locale.ROOT));
                 return parameters;
             }
         };
@@ -235,7 +236,7 @@ public class UserController {
             @Override
             protected Map<String, String> getParams() {
                 Map<String, String> parameters = new HashMap<>();
-                parameters.put("email", email);
+                parameters.put("email", email.toLowerCase(Locale.ROOT));
                 return parameters;
             }
         };
