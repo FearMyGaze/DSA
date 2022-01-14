@@ -1,30 +1,27 @@
 <?php
-
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-     
+
         require "Connect.php";
         $conn = mysqli_connect($servername, $username, $passwd, "DSA");
 
         $email = $_POST["email"];
-        $oldEmail = $_POST["oldEmail"];
-        $username = $_POST["username"];
-        $oldUsername = $_POST["oldUsername"];
+    
+        $sql = "SELECT * FROM users WHERE email = '$email'";
 
-        $sql = "UPDATE users set username = '$username' , email = '$email' WHERE username ='$oldUsername' AND email = '$oldEmail'";
+        if (mysqli_num_rows(mysqli_query($conn, $sql)) === 1 ) {
 
-        if (mysqli_query($conn, $sql)) {
-               
             $result['success'] = "1";
             mysqli_close($conn);
-            
+
             echo json_encode($result);
 
         } else {
+
             $result['success'] = "0";
             mysqli_close($conn);
 
             echo json_encode($result);
+
         }
 
-
-    }
+    }   

@@ -15,8 +15,8 @@ if (!$conn) {
 
     $db = "DROP DATABASE dsa";
 
-    if (mysqli_query($beginOfCreation, $db))
+    if (mysqli_query($conn, $db))
         echo "Database dropped successfully";
     else
-        echo "Error dropping database: " . mysqli_error($beginOfCreation);
+        echo "Error dropping database: " . mysqli_error($conn);
 }

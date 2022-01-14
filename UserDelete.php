@@ -1,18 +1,28 @@
 <?php
-    require "Connect.php";
-    $conn = mysqli_connect($servername, $username, $passwd, "DSA");
-
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        require "Connect.php";
+        $conn = mysqli_connect($servername, $username, $passwd, "DSA");
+        
         $email = $_POST["email"];
 
-        $sql = "DELETE FROM users WHERE email = '$email'";
-
+        $sql1 = "DELETE FROM Files WHERE userID = (SELECT id FROM Users WHERE email = '$email')";
+        $sql = "DELETE FROM Users WHERE email = '$email'";
+        
         if (mysqli_query($conn, $sql)) {
                
-            $result['success'] = "1";
-            mysqli_close($conn);
-            
-            echo json_encode($result);
+            if (mysqli_query($conn, $sql)) {
+               
+                $result['success'] = "1";
+                mysqli_close($conn);
+                
+                echo json_encode($result);
+    
+            } else {
+                $result['success'] = "0";
+                mysqli_close($conn);
+    
+                echo json_encode($result);
+            }
 
         } else {
             $result['success'] = "0";
@@ -20,5 +30,6 @@
 
             echo json_encode($result);
         }
+    
     }
        

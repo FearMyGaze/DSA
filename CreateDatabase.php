@@ -17,6 +17,7 @@ if (!$conn) {
             email VARCHAR(50) UNIQUE NOT NULL,
             passwd VARCHAR(255) NOT NULL,
             device_id VARCHAR(50) NOT NULL,
+            enabled BOOLEAN NOT NULL DEFAULT 0,
             reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
             )";
 
@@ -27,6 +28,7 @@ if (!$conn) {
             passwd VARCHAR(255) NOT NULL,
             device_id VARCHAR(50) NOT NULL,
             phone VARCHAR(50) NOT NULL, 
+            enabled BOOLEAN NOT NULL DEFAULT 0,
             reg_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
             )";
 
@@ -34,11 +36,17 @@ if (!$conn) {
             id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             userID INT(6) UNSIGNED NOT NULL REFERENCES Users(id),
             fileTitle VARCHAR(40) NOT NULL, 
-            fileDesc VARCHAR(255) NOT NULL,
+            fileDesc VARCHAR(100) NOT NULL,
             fileData LONGTEXT NOT NULL,
             fileUploadDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
             )";
 
+    $sqlCreateBugListings = "CREATE TABLE BugListings (
+            id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            userID INT(6) UNSIGNED NOT NULL REFERENCES Users(id), 
+            bugDesc VARCHAR(100) NOT NULL,
+            bugUploadDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+            )";        
 
     if (mysqli_query($conn, $sqlCreateDatabase)) {
         echo "Database created successfully " . "<br>";
@@ -61,6 +69,12 @@ if (!$conn) {
 
     if (mysqli_query($conn, $sqlCreateFiles)) {
         echo "Table Files created successfully " . "<br>";
+    } else {
+        echo "Error creating table: " . mysqli_error($conn) . "<br>";
+    }
+
+    if (mysqli_query($conn, $sqlCreateBugListings)) {
+        echo "Table BugListings created successfully " . "<br>";
     } else {
         echo "Error creating table: " . mysqli_error($conn) . "<br>";
     }
