@@ -42,7 +42,7 @@ public class Main extends AppCompatActivity {
         User me = new User(userName,userEmail,userId);
 
         profile = new Profile(me);
-        files = new Files(me);
+        files = new Files();
         notifications = new Notifications(me);
 
         mainFilesAdd.setOnClickListener(v -> {

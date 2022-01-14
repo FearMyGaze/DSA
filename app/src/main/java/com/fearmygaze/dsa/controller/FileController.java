@@ -1,5 +1,6 @@
 package com.fearmygaze.dsa.controller;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 
 import androidx.annotation.NonNull;
@@ -7,13 +8,20 @@ import androidx.annotation.NonNull;
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
 import com.fearmygaze.dsa.R;
+import com.fearmygaze.dsa.model.File;
+import com.fearmygaze.dsa.model.IFile;
 import com.fearmygaze.dsa.model.IVolleyMessage;
 import com.fearmygaze.dsa.model.RequestSingleton;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class FileController {
@@ -55,7 +63,6 @@ public class FileController {
                 parameters.put("fileTitle", title);
                 parameters.put("fileDesc", desc);
                 parameters.put("fileData", file);
-                System.out.println(userid + title + desc);
                 return parameters;
             }
         };
@@ -67,6 +74,59 @@ public class FileController {
         String jsonError = context.getResources().getString(R.string.jsonErrorDuring);
         String errorOnUpload = context.getResources().getString(R.string.errorOnRegister);
         String volleyError = context.getResources().getString(R.string.volleyError);
+
+    }
+
+    /**
+     * @param context
+     * @param userID
+     * @param iFile
+     */
+    public static void fileFetch(Context context, int userID, IFile iFile){
+        String[] url = context.getResources().getStringArray(R.array.url);
+        String jsonError = context.getResources().getString(R.string.jsonErrorDuring);
+        String errorOnUpload = context.getResources().getString(R.string.errorOnRegister);
+        String volleyError = context.getResources().getString(R.string.volleyError);
+        String userid = Integer.toString(userID); //This is to convert the int to string
+
+        StringRequest request = new StringRequest(Request.Method.POST, url[6],
+                response -> {
+                    try {
+                        JSONObject jsonResponse = new JSONObject(response);
+                        if (jsonResponse.getString("success").equals("1")) {
+                            List<File> fileList = new ArrayList<>();
+
+                            for (int i = 0; i < jsonResponse.getJSONArray("Files").length(); i++) {
+                                int id = jsonResponse.getJSONArray("Files").getJSONObject(i).getInt("id");
+                                String title = jsonResponse.getJSONArray("Files").getJSONObject(i).getString("fileTitle");
+                                String desc = jsonResponse.getJSONArray("Files").getJSONObject(i).getString("fileDesc");
+                                String data = jsonResponse.getJSONArray("Files").getJSONObject(i).getString("fileData");
+
+                                String pattern = "yyyy-MM-dd HH:mm:ss";
+                                @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
+                                Date uploadDate = simpleDateFormat.parse(jsonResponse.getJSONArray("Files").getJSONObject(i).getString("fileUploadDate"));
+
+                                fileList.add(new File(id,title,desc,data,uploadDate));
+                            }
+                            iFile.getFileList(fileList);
+                        } else {
+                            iFile.onError(errorOnUpload);
+                        }
+                    } catch (JSONException | ParseException e) {
+                        iFile.onError(jsonError + " " + e.getMessage());
+                    }
+                },
+                error -> iFile.onError(volleyError + error.getMessage())) {
+            @NonNull
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> parameters = new HashMap<>();
+                parameters.put("userID", userid);
+                return parameters;
+            }
+        };
+        RequestSingleton.getInstance(context).addToRequestQueue(request);
+
 
     }
 

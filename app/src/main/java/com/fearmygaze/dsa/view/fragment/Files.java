@@ -1,26 +1,33 @@
 package com.fearmygaze.dsa.view.fragment;
 
+import android.annotation.SuppressLint;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fearmygaze.dsa.R;
-import com.fearmygaze.dsa.model.User;
-import com.fearmygaze.dsa.view.adapter.File;
+import com.fearmygaze.dsa.controller.FileController;
+import com.fearmygaze.dsa.custom.UserNotification;
+import com.fearmygaze.dsa.model.File;
+import com.fearmygaze.dsa.model.IFile;
+import com.fearmygaze.dsa.view.adapter.AdapterFile;
 import com.google.android.material.button.MaterialButton;
+import com.google.android.material.snackbar.Snackbar;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class Files extends Fragment {
 
     View view;
-    private final User me;
-
-    public Files(User user) {
-        this.me = user;
-    } //TODO: Maybe remove it because it is not in need
+    AdapterFile adapter;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -28,9 +35,50 @@ public class Files extends Fragment {
 
         MaterialButton filesRefresh = view.findViewById(R.id.filesRefresh);
 
-        RecyclerView filesRecycler = view.findViewById(R.id.filesRecycler); //TODO: This will be filled by the server
+        RecyclerView filesRecycler = view.findViewById(R.id.filesRecycler);
 
+        SharedPreferences getSharedPrefs = PreferenceManager.getDefaultSharedPreferences(requireActivity().getApplicationContext());
+
+        List<File> fileList = new ArrayList<>();
+
+        adapter = new AdapterFile(fileList);;
+
+
+        int prefUserID = getSharedPrefs.getInt("userID",-1);
+
+        if (prefUserID >= 0){
+            fetchFiles(prefUserID);
+        }
+
+        filesRefresh.setOnClickListener(v -> {
+            if (prefUserID >= 0){
+                fetchFiles(prefUserID);
+            }
+        });
+
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
+        filesRecycler.setLayoutManager(layoutManager);
+        filesRecycler.setAdapter(adapter);
 
         return view;
+    }
+
+    void fetchFiles(int prefUserID){
+        FileController.fileFetch(requireContext(), prefUserID, new IFile() {
+            @SuppressLint("NotifyDataSetChanged")
+            @Override
+            public void getFileList(List<File> fileList) {
+                adapter.setFileList(fileList);
+                adapter.notifyDataSetChanged();
+            }
+
+
+            @Override
+            public void onError(String message) {
+                UserNotification userNotification = new UserNotification(requireActivity(), view, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                userNotification.setOnErrorMsg(message);
+                userNotification.onError();
+            }
+        });
     }
 }

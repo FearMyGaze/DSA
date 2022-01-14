@@ -57,5 +57,6 @@
         <item>http://192.168.1.10/DSA/UserDelete.php</item>
         <item>http://192.168.1.10/DSA/FileUpload.php</item>
         <item>http://192.168.1.10/DSA/UserExist.php</item>
+        <item>http://192.168.1.10/DSA/FileFetch.php</item>
     </string-array>
 </resources>

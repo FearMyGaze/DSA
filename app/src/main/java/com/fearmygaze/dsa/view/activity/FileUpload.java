@@ -90,6 +90,8 @@ public class FileUpload extends AppCompatActivity {
                     String uploadDesc = Objects.requireNonNull(fileUploadDesc.getText()).toString();
                     String uploadFile = stringConvertedImage;
 
+                    fileUploadConfirm.setEnabled(false);
+
                     FileController.fileUpload(getApplicationContext(), userID, uploadTitle, uploadDesc, uploadFile, new IVolleyMessage() {
                         @Override
                         public void onWaring(String message) {
@@ -114,6 +116,8 @@ public class FileUpload extends AppCompatActivity {
                             fileUploadTitle.setText("");
                             fileUploadDesc.setText("");
                             imageView.setImageBitmap(null);
+
+                            fileUploadConfirm.setEnabled(true);
 
                         }
                     });

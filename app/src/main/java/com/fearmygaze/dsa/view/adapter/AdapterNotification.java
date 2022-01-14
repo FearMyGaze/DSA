@@ -12,16 +12,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.fearmygaze.dsa.R;
 import com.google.android.material.button.MaterialButton;
 
-public class Notification extends RecyclerView.Adapter<Notification.MyViewHolder> {
+public class AdapterNotification extends RecyclerView.Adapter<AdapterNotification.MyViewHolder> {
     @NonNull
     @Override
-    public Notification.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public AdapterNotification.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View notificationView = LayoutInflater.from(parent.getContext()).inflate(R.layout.adapter_notfication,parent,false);
         return new MyViewHolder(notificationView);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull Notification.MyViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull AdapterNotification.MyViewHolder holder, int position) {
         //TODO: FIll the space
         String doctorName = "This is a name";
 

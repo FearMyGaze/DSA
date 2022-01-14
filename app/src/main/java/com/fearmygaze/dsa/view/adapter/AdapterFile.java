@@ -6,14 +6,21 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fearmygaze.dsa.R;
+import com.fearmygaze.dsa.model.File;
 
-public class File extends RecyclerView.Adapter<File.MyViewHolder> {
+import java.util.List;
 
+public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> {
+
+    List<File> fileList;
+
+    public AdapterFile(List<File> fileList) {
+        this.fileList = fileList;
+
+    }
 
     @NonNull
     @Override
@@ -24,35 +31,31 @@ public class File extends RecyclerView.Adapter<File.MyViewHolder> {
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        String adapterTitle = "asd";
-        String adapterDesc = "asd";
+        String adapterTitle = fileList.get(position).getTitle();
+        String adapterDate = fileList.get(position).getDescription();
+        System.out.println(adapterDate + adapterTitle);
 
 
         holder.adapterTitle.setText(adapterTitle);
-        holder.adapterDesc.setText(adapterDesc);
-
-        holder.adapterRootLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                //TODO: This will be to remove files POSSIBLY or Show an AlertDialog with every information
-            }
-        });
+        holder.adapterDate.setText(adapterDate);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return fileList.size();
     }
 
-    protected  static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView adapterTitle, adapterDesc;
-        ConstraintLayout adapterRootLayout;
+    public void setFileList(List<File> fileList) {
+        this.fileList = fileList;
+    }
+
+    protected static class MyViewHolder extends RecyclerView.ViewHolder{
+        TextView adapterTitle, adapterDate;
 
         public MyViewHolder(@NonNull View view) {
             super(view);
-            adapterRootLayout = view.findViewById(R.id.adapterRootLayout);
             adapterTitle = view.findViewById(R.id.adapterTitle);
-            adapterDesc = view.findViewById(R.id.adapterDate);
+            adapterDate = view.findViewById(R.id.adapterDate);
         }
     }
 }
