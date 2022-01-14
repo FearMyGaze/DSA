@@ -86,4 +86,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/profileUpdate" />
 
+    <TextView
+        android:id="@+id/profileBugList"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="@string/profileBugList"
+        android:textColor="@drawable/custom_text_view_item_on_press"
+        android:textSize="15sp"
+        android:textStyle="italic"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profileDeleteAcc" />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -47,6 +47,7 @@ public class Profile extends Fragment {
         MaterialButton profileLogOut = view.findViewById(R.id.profileLogOut);
 
         TextView profileDeleteAcc = view.findViewById(R.id.profileDeleteAcc);
+        TextView profileBugList = view.findViewById(R.id.profileBugList);
 
         SharedPreferences getSharedPrefs = PreferenceManager.getDefaultSharedPreferences(requireActivity().getApplicationContext());
 
@@ -134,6 +135,14 @@ public class Profile extends Fragment {
                 requireActivity().finish();
             }
         }));
+
+        profileBugList.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                
+            }
+        });
+
         return view;
     }
 }
