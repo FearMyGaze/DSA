@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.fearmygaze.dsa.R;
 import com.fearmygaze.dsa.model.User;
+import com.fearmygaze.dsa.view.adapter.File;
 import com.google.android.material.button.MaterialButton;
 
 public class Files extends Fragment {

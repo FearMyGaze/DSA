@@ -47,4 +47,6 @@
     <string name="noPermission">Η άδεια είναι αναγκαία</string>
     <string name="filesRefreshList">Ανανέωση</string>
     <string name="profileBugList">Εάν έχτε βρεί κάποιο πρόβλημα με την εφαρμογή πατήστε εδώ</string>
+    <string name="adapterNotificationAccess">Παραχώρηση πρόσβασης σε: </string>
+    <string name="adapterNotificationButton">Ναι</string>
 </resources>

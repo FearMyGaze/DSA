@@ -47,6 +47,8 @@
     <string name="filesRefreshList">Refresh</string>
     <string name="sampleDate" translatable="false">2022-01-06 19:27:32</string>
     <string name="profileBugList">If you found a bug please click here</string>
+    <string name="adapterNotificationAccess">Grant access to: </string>
+    <string name="adapterNotificationButton">Yes</string>
 
     <string-array name="url">
         <item>http://192.168.1.10/DSA/UsersRegister.php</item>
