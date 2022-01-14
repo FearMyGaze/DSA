@@ -170,6 +170,43 @@ public class UserController {
 
     /**
      * @param context We need it to get the String from resource file strings.xml
+     * @param email We need the email to specify what user we want to see if exists
+     * @param iVolleyMessage a quick interface to handle the Success/Warning/Error
+     */
+    public static void UserExist(Context context, String email, IVolleyMessage iVolleyMessage){
+        String[] url = context.getResources().getStringArray(R.array.url);
+        String jsonError = context.getResources().getString(R.string.jsonErrorDuring);
+        String errorOnDelete = context.getResources().getString(R.string.errorOnDelete);
+        String volleyError = context.getResources().getString(R.string.volleyError);
+        String successOnDelete = context.getResources().getString(R.string.successOnDelete);
+
+        StringRequest request = new StringRequest(Request.Method.POST, url[5],
+                response -> {
+                    try {
+                        JSONObject jsonResponse = new JSONObject(response);
+                        if (jsonResponse.getString("success").equals("1")) {
+                            iVolleyMessage.onSuccess(successOnDelete);
+                        } else {
+                            iVolleyMessage.onWaring(errorOnDelete);
+                        }
+                    } catch (JSONException e) {
+                        iVolleyMessage.onError(jsonError + " " + e.getMessage());
+                    }
+                },
+                error -> iVolleyMessage.onError(volleyError + error.getMessage())) {
+            @NonNull
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> parameters = new HashMap<>();
+                parameters.put("email", email);
+                return parameters;
+            }
+        };
+        RequestSingleton.getInstance(context).addToRequestQueue(request);
+    }
+
+    /**
+     * @param context We need it to get the String from resource file strings.xml
      * @param email We need the email to specify what user we want to delete
      * @param volleyMessage a quick interface to handle the Success/Warning/Error
      */

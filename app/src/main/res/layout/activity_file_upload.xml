@@ -62,7 +62,7 @@
             android:hint="@string/fileUploadDescription"
             app:endIconMode="clear_text"
             app:counterEnabled="true"
-            app:counterMaxLength="255"
+            app:counterMaxLength="100"
             app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_description_end"
             app:layout_constraintTop_toBottomOf="@+id/uploadTitleError">
 

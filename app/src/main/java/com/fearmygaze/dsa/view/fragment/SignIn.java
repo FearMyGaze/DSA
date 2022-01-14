@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -61,10 +62,27 @@ public class SignIn extends Fragment {
         int prefUserID = getSharedPrefs.getInt("userID",-1);
         
         if(!prefUserEmail.equals("empty") && !prefUserPasswd.equals("empty") && !prefUsername.equals("empty") && prefUserID > -1){ //Remember me func
+            UserController.UserExist(requireActivity(), prefUserEmail, new IVolleyMessage() {
+                @Override
+                public void onWaring(String message) {
+                    SharedPreferences.Editor editor = getSharedPrefs.edit().clear();
+                    editor.apply();
+                    Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show();
+                }
 
-            Intent intent = new Intent(requireActivity(), Main.class);
-            requireActivity().startActivity(intent);
-            requireActivity().finish();
+                @Override
+                public void onError(String message) {
+                    SharedPreferences.Editor editor = getSharedPrefs.edit().clear();
+                    editor.apply();
+                }
+
+                @Override
+                public void onSuccess(String message) {
+                    Intent intent = new Intent(requireActivity(), Main.class);
+                    requireActivity().startActivity(intent);
+                    requireActivity().finish();
+                }
+            });
         }
 
         confirmLogIn.setOnClickListener(v -> {

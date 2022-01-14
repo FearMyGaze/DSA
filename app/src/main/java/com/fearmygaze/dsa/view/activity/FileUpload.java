@@ -83,7 +83,7 @@ public class FileUpload extends AppCompatActivity {
 
             if(!fileUploadTitleError.isErrorEnabled() && !fileUploadDescError.isErrorEnabled()){
                 if(TextHandler.isSmallerThanSetLength(Objects.requireNonNull(fileUploadTitle.getText()).toString(),40 ,fileUploadTitleError ,getApplicationContext())
-                        && TextHandler.isSmallerThanSetLength(Objects.requireNonNull(fileUploadDesc.getText()).toString(),255 ,fileUploadDescError,getApplicationContext())
+                        && TextHandler.isSmallerThanSetLength(Objects.requireNonNull(fileUploadDesc.getText()).toString(),100 ,fileUploadDescError,getApplicationContext())
                         && userID > -1){
 
                     String uploadTitle = Objects.requireNonNull(fileUploadTitle.getText()).toString();
