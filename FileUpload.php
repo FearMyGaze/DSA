@@ -8,7 +8,8 @@
         $fileDesc = $_POST["fileDesc"];
         $fileData = $_POST["fileData"];
 
-        //TODO: sanitize the input
+        $fileTitle = strip_tags($fileTitle);
+        $fileDesc = strip_tags($fileDesc);
 
         $sql = "INSERT INTO files (userID, fileTitle, fileDesc, fileData) VALUES ('$userID', '$fileTitle', '$fileDesc', '$fileData')";
 
