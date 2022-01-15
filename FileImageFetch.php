@@ -1,17 +1,17 @@
 <?php
-
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         require "Connect.php";
         $conn = mysqli_connect($servername, $username, $passwd, "DSA");
 
         $userID = $_POST["userID"];
+        $id = $_POST["id"];
 
-        $sql = "SELECT id,fileTitle,fileDesc,fileDate FROM FILES WHERE userID = '$userID'";
-
+        $sql = "SELECT fileData FROM FILES WHERE id = '$id' && userID = '$userID'";
+    
         $response = mysqli_query($conn, $sql);
 
-        if (mysqli_num_rows($response) > 0 ) {
+        if (mysqli_num_rows($response) === 1 ) {
 
             $json = mysqli_fetch_all ($response, MYSQLI_ASSOC);
             
@@ -32,4 +32,6 @@
             mysqli_close($conn);
 
         }
+
     }
+    

@@ -15,17 +15,13 @@
     
         if (mysqli_query($conn, $sql)) {
         
-
-            // //Send an email to the user
             // $to = $email;
             // $subject = "Welcome to DSA";
             // $message = "Welcome to DSA, your username is: " . $username . " and your password is: " . $passwd . 
             //     "please click the following link to activate your account: http://localhost/DSA/UserActivate.php?username=" . $username;
-            // $headers = "From:
-            // ";
+            // $headers = "From: email@email.com";
             // mail($to, $subject, $message, $headers);
             
-
             $result['userID'] = mysqli_insert_id($conn);
             $result["success"] = "1";
             echo json_encode($result);

@@ -8,7 +8,7 @@
         $passwd = $_POST["passwd"];
 
     
-        $sql = "SELECT * FROM users WHERE email = '$email' AND activated = 1";
+        //$sql = "SELECT * FROM users WHERE email = '$email' AND activated = 1";
     
         $sql = "SELECT * FROM users WHERE email = '$email'";
     

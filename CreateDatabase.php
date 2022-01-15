@@ -38,14 +38,14 @@ if (!$conn) {
             fileTitle VARCHAR(40) NOT NULL, 
             fileDesc VARCHAR(100) NOT NULL,
             fileData LONGTEXT NOT NULL,
-            fileUploadDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+            fileDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
             )";
 
     $sqlCreateBugListings = "CREATE TABLE BugListings (
             id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
             userID INT(6) UNSIGNED NOT NULL REFERENCES Users(id), 
             bugDesc VARCHAR(100) NOT NULL,
-            bugUploadDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+            bugDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
             )";        
 
     if (mysqli_query($conn, $sqlCreateDatabase)) {
