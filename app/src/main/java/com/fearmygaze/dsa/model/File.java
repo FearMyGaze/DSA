@@ -2,21 +2,17 @@ package com.fearmygaze.dsa.model;
 
 import androidx.annotation.NonNull;
 
-import java.util.Date;
-
 public class File {
 
     private final int id;
     private final String title;
     private final String description;
-    private final String data;
-    private final Date date;
+    private final String date;
 
-    public File(int id, String title, String description, String data, Date date) {
+    public File(int id, String title, String description, String date) {
         this.id = id;
         this.title = title;
         this.description = description;
-        this.data = data;
         this.date = date;
     }
 
@@ -32,11 +28,7 @@ public class File {
         return description;
     }
 
-    public String getData() {
-        return data;
-    }
-
-    public Date getDate() {
+    public String getDate() {
         return date;
     }
 
@@ -47,7 +39,6 @@ public class File {
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", description='" + description + '\'' +
-                ", data='" + data + '\'' +
                 ", date=" + date +
                 '}';
     }

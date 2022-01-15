@@ -177,7 +177,7 @@ public class UserController {
     public static void UserExist(Context context, String email, IVolleyMessage iVolleyMessage){
         String[] url = context.getResources().getStringArray(R.array.url);
         String jsonError = context.getResources().getString(R.string.jsonErrorDuring);
-        String errorOnDelete = context.getResources().getString(R.string.errorOnDelete);
+        String errorOnUserNotExisting = context.getResources().getString(R.string.errorOnUserNotExisting);
         String volleyError = context.getResources().getString(R.string.volleyError);
         String successOnDelete = context.getResources().getString(R.string.successOnDelete);
 
@@ -188,7 +188,7 @@ public class UserController {
                         if (jsonResponse.getString("success").equals("1")) {
                             iVolleyMessage.onSuccess(successOnDelete);
                         } else {
-                            iVolleyMessage.onWaring(errorOnDelete);
+                            iVolleyMessage.onWaring(errorOnUserNotExisting);
                         }
                     } catch (JSONException e) {
                         iVolleyMessage.onError(jsonError + " " + e.getMessage());

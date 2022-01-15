@@ -1,7 +1,7 @@
 package com.fearmygaze.dsa.controller;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 
@@ -16,10 +16,7 @@ import com.fearmygaze.dsa.model.RequestSingleton;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -69,23 +66,50 @@ public class FileController {
         RequestSingleton.getInstance(context).addToRequestQueue(request);
     }
 
-    public static void fileDownload (Context context ){
+    public static void fileImageDownload (Context context, int userID, int imageID){
         String[] url = context.getResources().getStringArray(R.array.url);
         String jsonError = context.getResources().getString(R.string.jsonErrorDuring);
-        String errorOnUpload = context.getResources().getString(R.string.errorOnRegister);
+        String errorOnDownloadingImage = context.getResources().getString(R.string.errorOnDownloadingImage);
         String volleyError = context.getResources().getString(R.string.volleyError);
+        String userid = Integer.toString(userID); //This is to convert the int to string
+        String imageid = Integer.toString(imageID); //This is to convert the int to string
 
+        StringRequest request = new StringRequest(Request.Method.POST, url[7],
+                response -> {
+                    try {
+                        JSONObject jsonResponse = new JSONObject(response);
+                        if (jsonResponse.getString("success").equals("1")) {
+                            String Data = jsonResponse.getJSONArray("Files").getJSONObject(0).getString("fileData");
+                            System.out.println(Data.length());
+                        } else {
+                            Toast.makeText(context, errorOnDownloadingImage, Toast.LENGTH_LONG).show();
+                        }
+                    } catch (JSONException e) {
+                        Toast.makeText(context,jsonError + " " + e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                },
+                error -> Toast.makeText(context, volleyError + error.getMessage(),Toast.LENGTH_LONG)) {
+            @NonNull
+            @Override
+            protected Map<String, String> getParams() {
+                Map<String, String> parameters = new HashMap<>();
+                parameters.put("id",imageid);
+                parameters.put("userID", userid);
+                return parameters;
+            }
+        };
+        RequestSingleton.getInstance(context).addToRequestQueue(request);
     }
 
     /**
-     * @param context
-     * @param userID
-     * @param iFile
+     * @param context We need it to get the String from resource file strings.xml
+     * @param userID We need the userID so the db knows who user files will sent
+     * @param iFile a quick interface to handle the Success/Error
      */
     public static void fileFetch(Context context, int userID, IFile iFile){
         String[] url = context.getResources().getStringArray(R.array.url);
         String jsonError = context.getResources().getString(R.string.jsonErrorDuring);
-        String errorOnUpload = context.getResources().getString(R.string.errorOnRegister);
+        String errorOnFetchingFiles = context.getResources().getString(R.string.errorOnFetchingFiles);
         String volleyError = context.getResources().getString(R.string.volleyError);
         String userid = Integer.toString(userID); //This is to convert the int to string
 
@@ -100,19 +124,15 @@ public class FileController {
                                 int id = jsonResponse.getJSONArray("Files").getJSONObject(i).getInt("id");
                                 String title = jsonResponse.getJSONArray("Files").getJSONObject(i).getString("fileTitle");
                                 String desc = jsonResponse.getJSONArray("Files").getJSONObject(i).getString("fileDesc");
-                                String data = jsonResponse.getJSONArray("Files").getJSONObject(i).getString("fileData");
+                                String date = jsonResponse.getJSONArray("Files").getJSONObject(i).getString("fileDate");
 
-                                String pattern = "yyyy-MM-dd HH:mm:ss";
-                                @SuppressLint("SimpleDateFormat") SimpleDateFormat simpleDateFormat = new SimpleDateFormat(pattern);
-                                Date uploadDate = simpleDateFormat.parse(jsonResponse.getJSONArray("Files").getJSONObject(i).getString("fileUploadDate"));
-
-                                fileList.add(new File(id,title,desc,data,uploadDate));
+                                fileList.add(new File(id,title,desc,date));
                             }
                             iFile.getFileList(fileList);
                         } else {
-                            iFile.onError(errorOnUpload);
+                            iFile.onError(errorOnFetchingFiles);
                         }
-                    } catch (JSONException | ParseException e) {
+                    } catch (JSONException e) {
                         iFile.onError(jsonError + " " + e.getMessage());
                     }
                 },

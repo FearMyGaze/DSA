@@ -49,4 +49,7 @@
     <string name="profileBugList">Εάν έχτε βρεί κάποιο πρόβλημα με την εφαρμογή πατήστε εδώ</string>
     <string name="adapterNotificationAccess">Παραχώρηση πρόσβασης σε: </string>
     <string name="adapterNotificationButton">Ναι</string>
+    <string name="errorOnFetchingFiles">Πρόβλημα κατά το κατέβασμα τον εξετάσεων</string>
+    <string name="errorOnDownloadingImage">Πρόβλημα κατά το κατέβασμα της εικόνας</string>
+    <string name="errorOnUserNotExisting">Δεν υπάρχει ο χρήστης</string>
 </resources>

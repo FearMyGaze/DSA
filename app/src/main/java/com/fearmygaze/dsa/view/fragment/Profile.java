@@ -27,7 +27,7 @@ import java.util.Objects;
 
 public class Profile extends Fragment {
     View view;
-    private User me;
+    private final User me;
 
     public Profile(User user) {
         this.me = user;

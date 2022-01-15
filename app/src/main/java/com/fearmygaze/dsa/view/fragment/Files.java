@@ -41,10 +41,11 @@ public class Files extends Fragment {
 
         List<File> fileList = new ArrayList<>();
 
-        adapter = new AdapterFile(fileList);;
-
-
         int prefUserID = getSharedPrefs.getInt("userID",-1);
+
+
+
+        adapter = new AdapterFile(fileList,prefUserID);;
 
         if (prefUserID >= 0){
             fetchFiles(prefUserID);

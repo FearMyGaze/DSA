@@ -49,6 +49,9 @@
     <string name="profileBugList">If you found a bug please click here</string>
     <string name="adapterNotificationAccess">Grant access to: </string>
     <string name="adapterNotificationButton">Yes</string>
+    <string name="errorOnFetchingFiles">Error during fetching</string>
+    <string name="errorOnDownloadingImage">Error during downloading</string>
+    <string name="errorOnUserNotExisting">User doesn\'t exist</string>
 
     <string-array name="url">
         <item>http://192.168.1.10/DSA/UsersRegister.php</item>
@@ -58,5 +61,6 @@
         <item>http://192.168.1.10/DSA/FileUpload.php</item>
         <item>http://192.168.1.10/DSA/UserExist.php</item>
         <item>http://192.168.1.10/DSA/FileFetch.php</item>
+        <item>http://192.168.1.10/DSA/FileImageFetch.php</item>
     </string-array>
 </resources>

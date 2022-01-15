@@ -6,9 +6,11 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fearmygaze.dsa.R;
+import com.fearmygaze.dsa.controller.FileController;
 import com.fearmygaze.dsa.model.File;
 
 import java.util.List;
@@ -17,9 +19,11 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
 
     List<File> fileList;
 
-    public AdapterFile(List<File> fileList) {
-        this.fileList = fileList;
+    int userID;
 
+    public AdapterFile(List<File> fileList, int userID ) {
+        this.fileList = fileList;
+        this.userID = userID;
     }
 
     @NonNull
@@ -32,12 +36,16 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         String adapterTitle = fileList.get(position).getTitle();
-        String adapterDate = fileList.get(position).getDescription();
-        System.out.println(adapterDate + adapterTitle);
-
+        String adapterDate = fileList.get(position).getDate();
+        int adapterID = fileList.get(position).getId();
 
         holder.adapterTitle.setText(adapterTitle);
         holder.adapterDate.setText(adapterDate);
+
+        holder.adapterRootLayout.setOnClickListener(v -> {
+            FileController.fileImageDownload(v.getContext(), userID,adapterID);
+            System.out.println(adapterID+" "+userID);
+        });
     }
 
     @Override
@@ -51,11 +59,13 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
 
     protected static class MyViewHolder extends RecyclerView.ViewHolder{
         TextView adapterTitle, adapterDate;
+        ConstraintLayout adapterRootLayout;
 
         public MyViewHolder(@NonNull View view) {
             super(view);
-            adapterTitle = view.findViewById(R.id.adapterTitle);
-            adapterDate = view.findViewById(R.id.adapterDate);
+            adapterRootLayout = view.findViewById(R.id.adapterFileRootLayout);
+            adapterTitle = view.findViewById(R.id.adapterFileTitle);
+            adapterDate = view.findViewById(R.id.adapterFileDate);
         }
     }
 }

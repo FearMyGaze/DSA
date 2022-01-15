@@ -48,7 +48,7 @@ public class AdapterNotification extends RecyclerView.Adapter<AdapterNotificatio
             super(view);
             adapterRootLayout = view.findViewById(R.id.adapterNotificationRootLayout);
             adapterGrantAccess = view.findViewById(R.id.adapterNotificationGrantAccess);
-            adapterName = view.findViewById(R.id.adapterTitle);
+            adapterName = view.findViewById(R.id.adapterFileTitle);
             adapterButton = view.findViewById(R.id.adapterNotificationButton);
         }
     }
