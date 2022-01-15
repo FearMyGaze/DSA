@@ -34,7 +34,7 @@ if (!$conn) {
 
     $sqlCreateFiles = "CREATE TABLE Files (
             id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            userID INT(6) UNSIGNED NOT NULL REFERENCES Users(id),
+            userID INT(6) UNSIGNED NOT NULL REFERENCES Users(id) ON UPDATE CASCADE ON DELETE CASCADE,
             fileTitle VARCHAR(40) NOT NULL, 
             fileDesc VARCHAR(100) NOT NULL,
             fileData LONGTEXT NOT NULL,
