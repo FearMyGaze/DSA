@@ -1,17 +1,24 @@
 package com.fearmygaze.dsa.view.adapter;
 
+import android.app.Activity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fearmygaze.dsa.R;
 import com.fearmygaze.dsa.controller.FileController;
+import com.fearmygaze.dsa.custom.UserNotification;
 import com.fearmygaze.dsa.model.File;
+import com.fearmygaze.dsa.model.IVolleyMessage;
+import com.fearmygaze.dsa.view.fragment.Files;
+import com.google.android.material.snackbar.Snackbar;
 
 import java.util.List;
 
@@ -43,8 +50,31 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
         holder.adapterDate.setText(adapterDate);
 
         holder.adapterRootLayout.setOnClickListener(v -> {
-            FileController.fileImageDownload(v.getContext(), userID,adapterID);
-            System.out.println(adapterID+" "+userID);
+            FileController.fileImageDownload(v.getContext(), userID, adapterID, new IVolleyMessage() {
+                @Override
+                public void onWaring(String message) {
+                    UserNotification userNotification = new UserNotification((Activity) v.getContext(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                    userNotification.setOnErrorMsg(message);
+                    userNotification.onError();
+                }
+
+                @Override
+                public void onError(String message) {
+                    UserNotification userNotification = new UserNotification((Activity) v.getContext(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                    userNotification.setOnErrorMsg(message);
+                    userNotification.onError();
+                }
+
+                @Override
+                public void onSuccess(String message) {
+
+                }
+            });
+        });
+
+        holder.adapterRootLayout.setOnLongClickListener(v -> {
+            Toast.makeText(v.getContext(), "Long Press", Toast.LENGTH_SHORT).show();
+            return true;
         });
     }
 

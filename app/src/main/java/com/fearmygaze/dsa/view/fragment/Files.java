@@ -43,18 +43,12 @@ public class Files extends Fragment {
 
         int prefUserID = getSharedPrefs.getInt("userID",-1);
 
-
-
         adapter = new AdapterFile(fileList,prefUserID);;
 
-        if (prefUserID >= 0){
-            fetchFiles(prefUserID);
-        }
+        fetchFiles(prefUserID);
 
         filesRefresh.setOnClickListener(v -> {
-            if (prefUserID >= 0){
-                fetchFiles(prefUserID);
-            }
+            fetchFiles(prefUserID); //This is for refreshing the list
         });
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());
@@ -65,21 +59,23 @@ public class Files extends Fragment {
     }
 
     void fetchFiles(int prefUserID){
-        FileController.fileFetch(requireContext(), prefUserID, new IFile() {
-            @SuppressLint("NotifyDataSetChanged")
-            @Override
-            public void getFileList(List<File> fileList) {
-                adapter.setFileList(fileList);
-                adapter.notifyDataSetChanged();
-            }
+        if (prefUserID > -1){
+            FileController.fileFetch(requireContext(), prefUserID, new IFile() {
+                @SuppressLint("NotifyDataSetChanged")
+                @Override
+                public void getFileList(List<File> fileList) {
+                    adapter.setFileList(fileList);
+                    adapter.notifyDataSetChanged();
+                }
 
 
-            @Override
-            public void onError(String message) {
-                UserNotification userNotification = new UserNotification(requireActivity(), view, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
-                userNotification.setOnErrorMsg(message);
-                userNotification.onError();
-            }
-        });
+                @Override
+                public void onError(String message) {
+                    UserNotification userNotification = new UserNotification(requireActivity(), view, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                    userNotification.setOnErrorMsg(message);
+                    userNotification.onError();
+                }
+            });
+        }
     }
 }
