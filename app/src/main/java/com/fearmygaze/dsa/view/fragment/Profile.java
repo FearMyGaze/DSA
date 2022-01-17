@@ -1,5 +1,6 @@
 package com.fearmygaze.dsa.view.fragment;
 
+import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -136,11 +137,26 @@ public class Profile extends Fragment {
             }
         }));
 
-        profileBugList.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                
-            }
+        profileBugList.setOnClickListener(v -> {
+            Dialog dialog = new Dialog(v.getContext());
+            dialog.setContentView(R.layout.custom_bug_dialog);
+            dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            dialog.setCancelable(false);
+
+            TextInputLayout dialogBugDescError = dialog.findViewById(R.id.dialogBugDescConfirmError);
+            TextInputEditText dialogBugDesc = dialog.findViewById(R.id.dialogBugDescConfirm);
+
+            MaterialButton dialogBugCancel = dialog.findViewById(R.id.dialogBugBack);
+            MaterialButton dialogBugConfirm = dialog.findViewById(R.id.dialogBugConfirm);
+
+            dialogBugCancel.setOnClickListener(v1 -> dialog.dismiss());
+            dialogBugConfirm.setOnClickListener(v2 -> {
+                String desc = Objects.requireNonNull(dialogBugDesc.getText()).toString();
+                if (TextHandler.isSmallerThanSetLength(desc,100,dialogBugDescError, v2.getContext())){
+                    //TODO: Sent the bug to the server
+                }
+            });
+            dialog.show();
         });
 
         return view;

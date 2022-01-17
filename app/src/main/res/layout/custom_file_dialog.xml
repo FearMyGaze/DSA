@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/dialogRootLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="10dp">
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_horizontal_dialog_title_begin"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.01" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_horizontal_dialog_description_end"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.35" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_horizontal_dialog_imageView_end"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.8" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/dialogTitleError"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/fileUploadTitle"
+            android:enabled="false"
+            app:layout_constraintBottom_toTopOf="@+id/dialogDescError"
+            app:layout_constraintTop_toBottomOf="@+id/guideline_horizontal_dialog_title_begin">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dialogTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:textColorHint="@color/textColorHint"
+                tools:ignore="TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/dialogDescError"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/fileUploadDescription"
+            android:enabled="false"
+            app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_dialog_description_end"
+            app:layout_constraintTop_toBottomOf="@+id/dialogTitleError">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/dialogDesc"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textMultiLine"
+                android:textColorHint="@color/textColorHint"
+                tools:ignore="TextContrastCheck" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/dialogImageView"
+            android:layout_width="wrap_content"
+            android:layout_height="300dp"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/guideline_horizontal_dialog_description_end"
+            app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_dialog_imageView_end"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dialogDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/dialogDelete"
+            app:cornerRadius="20dp"
+            app:layout_constraintEnd_toStartOf="@+id/dialogDownload"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_dialog_imageView_end" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dialogDownload"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/dialogDownload"
+            app:cornerRadius="20dp"
+            app:layout_constraintStart_toEndOf="@id/dialogDelete"
+            app:layout_constraintEnd_toStartOf="@+id/dialogBack"
+            app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_dialog_imageView_end"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/dialogBack"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:text="@string/dialogBack"
+            app:cornerRadius="20dp"
+            app:layout_constraintStart_toEndOf="@+id/dialogDownload"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_dialog_imageView_end" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

@@ -52,4 +52,9 @@
     <string name="errorOnFetchingFiles">Πρόβλημα κατά το κατέβασμα τον εξετάσεων</string>
     <string name="errorOnDownloadingImage">Πρόβλημα κατά το κατέβασμα της εικόνας</string>
     <string name="errorOnUserNotExisting">Δεν υπάρχει ο χρήστης</string>
+    <string name="dialogDelete">Διαγραφή</string>
+    <string name="dialogBack">Πίσω</string>
+    <string name="dialogDownload">Κατέβασμα</string>
+    <string name="dialogBugDesc">Περιγραφη προβλήματος</string>
+    <string name="dialogBugConfirm">Επιβεβαίωση</string>
 </resources>

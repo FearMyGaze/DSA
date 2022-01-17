@@ -52,6 +52,11 @@
     <string name="errorOnFetchingFiles">Error during fetching</string>
     <string name="errorOnDownloadingImage">Error during downloading</string>
     <string name="errorOnUserNotExisting">User doesn\'t exist</string>
+    <string name="dialogDelete">Delete</string>
+    <string name="dialogBack">Back</string>
+    <string name="dialogDownload">Download</string>
+    <string name="dialogBugDesc">Bug Description</string>
+    <string name="dialogBugConfirm">Confirm</string>
 
     <string-array name="url">
         <item>http://192.168.1.10/DSA/UsersRegister.php</item>

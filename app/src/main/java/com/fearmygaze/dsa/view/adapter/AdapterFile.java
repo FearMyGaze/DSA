@@ -1,6 +1,16 @@
 package com.fearmygaze.dsa.view.adapter;
 
 import android.app.Activity;
+import android.app.Dialog;
+import android.content.ContentResolver;
+import android.content.ContentValues;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.Build;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,7 +18,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.widget.AppCompatImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -17,10 +28,13 @@ import com.fearmygaze.dsa.controller.FileController;
 import com.fearmygaze.dsa.custom.UserNotification;
 import com.fearmygaze.dsa.model.File;
 import com.fearmygaze.dsa.model.IVolleyMessage;
-import com.fearmygaze.dsa.view.fragment.Files;
+import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.OutputStream;
 import java.util.List;
+import java.util.Objects;
 
 public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> {
 
@@ -44,6 +58,7 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
         String adapterTitle = fileList.get(position).getTitle();
         String adapterDate = fileList.get(position).getDate();
+        String adapterDesc = fileList.get(position).getDescription();
         int adapterID = fileList.get(position).getId();
 
         holder.adapterTitle.setText(adapterTitle);
@@ -67,7 +82,44 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
 
                 @Override
                 public void onSuccess(String message) {
+                    Dialog dialog = new Dialog(v.getContext());
+                    dialog.setContentView(R.layout.custom_file_dialog);
+                    dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+                    dialog.setCancelable(false);
 
+                    TextInputEditText dialogTitle = dialog.findViewById(R.id.dialogTitle);
+                    TextInputEditText dialogDesc = dialog.findViewById(R.id.dialogDesc);
+
+                    AppCompatImageView dialogImage = dialog.findViewById(R.id.dialogImageView);
+
+                    MaterialButton dialogDownload = dialog.findViewById(R.id.dialogDownload);
+                    MaterialButton dialogBack = dialog.findViewById(R.id.dialogBack);
+                    MaterialButton dialogDelete = dialog.findViewById(R.id.dialogDelete);
+
+                    dialogTitle.setText(adapterTitle);
+                    dialogDesc.setText(adapterDesc);
+
+                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+                        dialogDownload.setEnabled(false);
+                    }
+
+                    dialogBack.setOnClickListener(v1 -> dialog.dismiss());
+
+                    //This is for decoding the string to image
+                    byte[] decode = Base64.decode(message, Base64.DEFAULT);
+                    Bitmap image = BitmapFactory.decodeByteArray(decode, 0, decode.length);
+                    dialogImage.setImageBitmap(image);
+
+                    dialogDownload.setOnClickListener(v2 -> {
+                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                            saveImage(image, (Activity) v.getContext());
+                        }
+                    });
+
+
+
+
+                    dialog.show();
                 }
             });
         });
@@ -96,6 +148,26 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
             adapterRootLayout = view.findViewById(R.id.adapterFileRootLayout);
             adapterTitle = view.findViewById(R.id.adapterFileTitle);
             adapterDate = view.findViewById(R.id.adapterFileDate);
+        }
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.Q)
+    private void saveImage(Bitmap bitmap, Activity activity){
+        OutputStream outputStream;
+        try {
+            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+                ContentResolver resolver = activity.getContentResolver();
+                ContentValues values = new ContentValues();
+                values.put(MediaStore.MediaColumns.DISPLAY_NAME, System.currentTimeMillis() + ".png");
+                values.put(MediaStore.MediaColumns.MIME_TYPE, "image/png");
+                values.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + java.io.File.separator + "DSA");
+                Uri imageUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
+                outputStream = resolver.openOutputStream(Objects.requireNonNull(imageUri));
+                bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
+                Objects.requireNonNull(outputStream);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
         }
     }
 }
