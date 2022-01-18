@@ -2,14 +2,14 @@ package com.fearmygaze.dsa.model;
 
 import androidx.annotation.NonNull;
 
-public class File {
+public class Exam {
 
     private final int id;
     private final String title;
     private final String description;
     private final String date;
 
-    public File(int id, String title, String description, String date) {
+    public Exam(int id, String title, String description, String date) {
         this.id = id;
         this.title = title;
         this.description = description;

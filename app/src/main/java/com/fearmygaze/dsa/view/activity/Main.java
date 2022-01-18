@@ -13,7 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 
 import com.fearmygaze.dsa.R;
 import com.fearmygaze.dsa.model.User;
-import com.fearmygaze.dsa.view.fragment.Files;
+import com.fearmygaze.dsa.view.fragment.Examinations;
 import com.fearmygaze.dsa.view.fragment.Notifications;
 import com.fearmygaze.dsa.view.fragment.Profile;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -42,7 +42,7 @@ public class Main extends AppCompatActivity {
         User me = new User(userName,userEmail,userId);
 
         profile = new Profile(me);
-        files = new Files();
+        files = new Examinations();
         notifications = new Notifications(me);
 
         mainFilesAdd.setOnClickListener(v -> {

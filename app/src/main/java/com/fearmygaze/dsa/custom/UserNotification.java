@@ -8,6 +8,7 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
+import com.fearmygaze.dsa.Interface.IUserNotification;
 import com.fearmygaze.dsa.R;
 import com.google.android.material.snackbar.Snackbar;
 

@@ -13,10 +13,10 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.fearmygaze.dsa.Interface.IVolleyMessage;
 import com.fearmygaze.dsa.R;
 import com.fearmygaze.dsa.controller.UserController;
 import com.fearmygaze.dsa.custom.UserNotification;
-import com.fearmygaze.dsa.model.IVolleyMessage;
 import com.fearmygaze.dsa.util.RegEx;
 import com.fearmygaze.dsa.util.TextHandler;
 import com.fearmygaze.dsa.view.activity.Main;

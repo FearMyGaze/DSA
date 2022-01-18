@@ -20,10 +20,10 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
+import com.fearmygaze.dsa.Interface.IVolleyMessage;
 import com.fearmygaze.dsa.R;
 import com.fearmygaze.dsa.controller.FileController;
 import com.fearmygaze.dsa.custom.UserNotification;
-import com.fearmygaze.dsa.model.IVolleyMessage;
 import com.fearmygaze.dsa.util.TextHandler;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;

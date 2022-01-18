@@ -6,10 +6,10 @@ import androidx.annotation.NonNull;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;
+import com.fearmygaze.dsa.Interface.IImage;
+import com.fearmygaze.dsa.Interface.IVolleyMessage;
 import com.fearmygaze.dsa.R;
-import com.fearmygaze.dsa.model.File;
-import com.fearmygaze.dsa.model.IFile;
-import com.fearmygaze.dsa.model.IVolleyMessage;
+import com.fearmygaze.dsa.model.Exam;
 import com.fearmygaze.dsa.model.RequestSingleton;
 
 import org.json.JSONException;
@@ -109,9 +109,9 @@ public class FileController {
     /**
      * @param context We need it to get the String from resource file strings.xml
      * @param userID We need the userID so the db knows who user files will sent
-     * @param iFile a quick interface to handle the Success/Error
+     * @param iImage a quick interface to handle the Success/Error
      */
-    public static void fileFetch(Context context, int userID, IFile iFile){
+    public static void fileFetch(Context context, int userID, IImage iImage){
         String[] url = context.getResources().getStringArray(R.array.url);
         String jsonError = context.getResources().getString(R.string.jsonErrorDuring);
         String errorOnFetchingFiles = context.getResources().getString(R.string.errorOnFetchingFiles);
@@ -123,7 +123,7 @@ public class FileController {
                     try {
                         JSONObject jsonResponse = new JSONObject(response);
                         if (jsonResponse.getString("success").equals("1")) {
-                            List<File> fileList = new ArrayList<>();
+                            List<Exam> fileList = new ArrayList<>();
 
                             for (int i = 0; i < jsonResponse.getJSONArray("Files").length(); i++) {
                                 int id = jsonResponse.getJSONArray("Files").getJSONObject(i).getInt("id");
@@ -131,17 +131,17 @@ public class FileController {
                                 String desc = jsonResponse.getJSONArray("Files").getJSONObject(i).getString("fileDesc");
                                 String date = jsonResponse.getJSONArray("Files").getJSONObject(i).getString("fileDate");
 
-                                fileList.add(new File(id,title,desc,date));
+                                fileList.add(new Exam(id,title,desc,date));
                             }
-                            iFile.getFileList(fileList);
+                            iImage.getFileList(fileList);
                         } else {
-                            iFile.onError(errorOnFetchingFiles);
+                            iImage.onError(errorOnFetchingFiles);
                         }
                     } catch (JSONException e) {
-                        iFile.onError(jsonError + " " + e.getMessage());
+                        iImage.onError(jsonError + " " + e.getMessage());
                     }
                 },
-                error -> iFile.onError(volleyError + error.getMessage())) {
+                error -> iImage.onError(volleyError + error.getMessage())) {
             @NonNull
             @Override
             protected Map<String, String> getParams() {

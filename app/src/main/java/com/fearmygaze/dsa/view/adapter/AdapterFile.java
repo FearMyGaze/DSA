@@ -23,26 +23,27 @@ import androidx.appcompat.widget.AppCompatImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.fearmygaze.dsa.Interface.IVolleyMessage;
 import com.fearmygaze.dsa.R;
 import com.fearmygaze.dsa.controller.FileController;
 import com.fearmygaze.dsa.custom.UserNotification;
-import com.fearmygaze.dsa.model.File;
-import com.fearmygaze.dsa.model.IVolleyMessage;
+import com.fearmygaze.dsa.model.Exam;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.File;
 import java.io.OutputStream;
 import java.util.List;
 import java.util.Objects;
 
 public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> {
 
-    List<File> fileList;
+    List<Exam> fileList;
 
     int userID;
 
-    public AdapterFile(List<File> fileList, int userID ) {
+    public AdapterFile(List<Exam> fileList, int userID ) {
         this.fileList = fileList;
         this.userID = userID;
     }
@@ -135,7 +136,7 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
         return fileList.size();
     }
 
-    public void setFileList(List<File> fileList) {
+    public void setFileList(List<Exam> fileList) {
         this.fileList = fileList;
     }
 
@@ -160,7 +161,7 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
                 ContentValues values = new ContentValues();
                 values.put(MediaStore.MediaColumns.DISPLAY_NAME, System.currentTimeMillis() + ".png");
                 values.put(MediaStore.MediaColumns.MIME_TYPE, "image/png");
-                values.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + java.io.File.separator + "DSA");
+                values.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + File.separator + "DSA");
                 Uri imageUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
                 outputStream = resolver.openOutputStream(Objects.requireNonNull(imageUri));
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);

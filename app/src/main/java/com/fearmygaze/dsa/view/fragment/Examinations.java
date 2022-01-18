@@ -12,11 +12,11 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.fearmygaze.dsa.Interface.IImage;
 import com.fearmygaze.dsa.R;
 import com.fearmygaze.dsa.controller.FileController;
 import com.fearmygaze.dsa.custom.UserNotification;
-import com.fearmygaze.dsa.model.File;
-import com.fearmygaze.dsa.model.IFile;
+import com.fearmygaze.dsa.model.Exam;
 import com.fearmygaze.dsa.view.adapter.AdapterFile;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -24,7 +24,7 @@ import com.google.android.material.snackbar.Snackbar;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Files extends Fragment {
+public class Examinations extends Fragment {
 
     View view;
     AdapterFile adapter;
@@ -39,7 +39,7 @@ public class Files extends Fragment {
 
         SharedPreferences getSharedPrefs = PreferenceManager.getDefaultSharedPreferences(requireActivity().getApplicationContext());
 
-        List<File> fileList = new ArrayList<>();
+        List<Exam> fileList = new ArrayList<>();
 
         int prefUserID = getSharedPrefs.getInt("userID",-1);
 
@@ -60,10 +60,10 @@ public class Files extends Fragment {
 
     void fetchFiles(int prefUserID){
         if (prefUserID > -1){
-            FileController.fileFetch(requireContext(), prefUserID, new IFile() {
+            FileController.fileFetch(requireContext(), prefUserID, new IImage() {
                 @SuppressLint("NotifyDataSetChanged")
                 @Override
-                public void getFileList(List<File> fileList) {
+                public void getFileList(List<Exam> fileList) {
                     adapter.setFileList(fileList);
                     adapter.notifyDataSetChanged();
                 }

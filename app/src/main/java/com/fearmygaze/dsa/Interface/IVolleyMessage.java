@@ -1,4 +1,4 @@
-package com.fearmygaze.dsa.model;
+package com.fearmygaze.dsa.Interface;
 
 public interface IVolleyMessage {
     void onWaring(String message);
