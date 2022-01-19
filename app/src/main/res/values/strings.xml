@@ -49,7 +49,7 @@
     <string name="profileBugList">If you found a bug please click here</string>
     <string name="adapterNotificationAccess">Grant access to: </string>
     <string name="adapterNotificationButton">Yes</string>
-    <string name="errorOnFetchingFiles">Error during fetching</string>
+    <string name="errorOnFetchingFiles">No files to fetch</string>
     <string name="errorOnDownloadingImage">Error during downloading</string>
     <string name="errorOnUserNotExisting">User doesn\'t exist</string>
     <string name="dialogDelete">Delete</string>
@@ -57,6 +57,11 @@
     <string name="dialogDownload">Download</string>
     <string name="dialogBugDesc">Bug Description</string>
     <string name="dialogBugConfirm">Confirm</string>
+    <string name="errorOnFileDelete">Error while deleting file</string>
+    <string name="successFileDeletion">Exam deleted successfully</string>
+    <string name="successImageSave">Image saved successfully</string>
+    <string name="successFilingBugReport">Bug report sent successfully</string>
+    <string name="onErrorFilingBugReport">Failed to sent bug report</string>
 
     <string-array name="url">
         <item>http://192.168.1.10/DSA/UsersRegister.php</item>
@@ -67,5 +72,7 @@
         <item>http://192.168.1.10/DSA/UserExist.php</item>
         <item>http://192.168.1.10/DSA/FileFetch.php</item>
         <item>http://192.168.1.10/DSA/FileImageFetch.php</item>
+        <item>http://192.168.1.10/DSA/FileDelete.php</item>
+        <item>http://192.168.1.10/DSA/BugReport.php</item>
     </string-array>
 </resources>

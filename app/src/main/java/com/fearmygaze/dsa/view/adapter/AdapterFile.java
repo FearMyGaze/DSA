@@ -15,7 +15,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -32,7 +31,6 @@ import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
-import java.io.File;
 import java.io.OutputStream;
 import java.util.List;
 import java.util.Objects;
@@ -113,21 +111,42 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
 
                     dialogDownload.setOnClickListener(v2 -> {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                            saveImage(image, (Activity) v.getContext());
+                            saveImage(image, (Activity) v.getContext(), v);
                         }
                     });
 
+                    dialogDelete.setOnClickListener(v3 -> {
+                        FileController.fileDelete(v3.getContext(), userID, adapterID, new IVolleyMessage() {
+                            @Override
+                            public void onWaring(String message) {
+                                UserNotification userNotification = new UserNotification((Activity) v.getContext(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                                userNotification.setOnErrorMsg(message);
+                                userNotification.onError();
+                                dialog.dismiss();
+                            }
 
+                            @Override
+                            public void onError(String message) {
+                                UserNotification userNotification = new UserNotification((Activity) v.getContext(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                                userNotification.setOnWarningMsg(message);
+                                userNotification.onWarning();
+                                dialog.dismiss();
+                            }
+
+                            @Override
+                            public void onSuccess(String message) {
+                                UserNotification userNotification = new UserNotification((Activity) v.getContext(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                                userNotification.setOnSuccessMsg(message);
+                                userNotification.onSuccess();
+                                dialog.dismiss();
+                            }
+                        });
+                    });
 
 
                     dialog.show();
                 }
             });
-        });
-
-        holder.adapterRootLayout.setOnLongClickListener(v -> {
-            Toast.makeText(v.getContext(), "Long Press", Toast.LENGTH_SHORT).show();
-            return true;
         });
     }
 
@@ -153,7 +172,7 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
     }
 
     @RequiresApi(api = Build.VERSION_CODES.Q)
-    private void saveImage(Bitmap bitmap, Activity activity){
+    private void saveImage(Bitmap bitmap, Activity activity, View view){
         OutputStream outputStream;
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -166,6 +185,10 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
                 outputStream = resolver.openOutputStream(Objects.requireNonNull(imageUri));
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
                 Objects.requireNonNull(outputStream);
+
+                UserNotification userNotification = new UserNotification(activity, view, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                userNotification.setOnSuccessMsg(view.getContext().getResources().getString(R.string.successImageSave));
+                userNotification.onSuccess();
             }
         }catch (Exception e){
             e.printStackTrace();

@@ -2,9 +2,9 @@ package com.fearmygaze.dsa.controller;
 
 import android.content.Context;
 import android.content.SharedPreferences;
-import androidx.preference.PreferenceManager;
 
 import androidx.annotation.NonNull;
+import androidx.preference.PreferenceManager;
 
 import com.android.volley.Request;
 import com.android.volley.toolbox.StringRequest;

@@ -3,7 +3,6 @@ package com.fearmygaze.dsa.view.fragment;
 import android.app.Dialog;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import androidx.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,9 +10,11 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
 import com.fearmygaze.dsa.Interface.IVolleyMessage;
 import com.fearmygaze.dsa.R;
+import com.fearmygaze.dsa.controller.BugController;
 import com.fearmygaze.dsa.controller.UserController;
 import com.fearmygaze.dsa.custom.UserNotification;
 import com.fearmygaze.dsa.model.User;
@@ -152,8 +153,31 @@ public class Profile extends Fragment {
             dialogBugCancel.setOnClickListener(v1 -> dialog.dismiss());
             dialogBugConfirm.setOnClickListener(v2 -> {
                 String desc = Objects.requireNonNull(dialogBugDesc.getText()).toString();
-                if (TextHandler.isSmallerThanSetLength(desc,100,dialogBugDescError, v2.getContext())){
-                    //TODO: Sent the bug to the server
+                int userID = getSharedPrefs.getInt("userID",-1);
+                if (TextHandler.isSmallerThanSetLength(desc,100,dialogBugDescError, v2.getContext()) && userID > -1){
+                    BugController.BugReport(v.getContext(), userID, desc, new IVolleyMessage() {
+                        @Override
+                        public void onWaring(String message) {
+                            UserNotification userNotification = new UserNotification(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                            userNotification.setOnWarningMsg(message);
+                            userNotification.onWarning();
+                        }
+
+                        @Override
+                        public void onError(String message) {
+                            UserNotification userNotification = new UserNotification(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                            userNotification.setOnErrorMsg(message);
+                            userNotification.onError();
+                        }
+
+                        @Override
+                        public void onSuccess(String message) {
+                            UserNotification userNotification = new UserNotification(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                            userNotification.setOnSuccessMsg(message);
+                            userNotification.onSuccess();
+                            dialog.dismiss();
+                        }
+                    });
                 }
             });
             dialog.show();
