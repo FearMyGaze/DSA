@@ -25,7 +25,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.fearmygaze.dsa.Interface.IVolleyMessage;
 import com.fearmygaze.dsa.R;
 import com.fearmygaze.dsa.controller.FileController;
-import com.fearmygaze.dsa.custom.UserNotification;
+import com.fearmygaze.dsa.custom.SnackBar;
 import com.fearmygaze.dsa.model.Exam;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -67,14 +67,14 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
             FileController.fileImageDownload(v.getContext(), userID, adapterID, new IVolleyMessage() {
                 @Override
                 public void onWaring(String message) {
-                    UserNotification userNotification = new UserNotification((Activity) v.getContext(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                    SnackBar userNotification = new SnackBar((Activity) v.getContext(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
                     userNotification.setOnErrorMsg(message);
                     userNotification.onError();
                 }
 
                 @Override
                 public void onError(String message) {
-                    UserNotification userNotification = new UserNotification((Activity) v.getContext(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                    SnackBar userNotification = new SnackBar((Activity) v.getContext(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
                     userNotification.setOnErrorMsg(message);
                     userNotification.onError();
                 }
@@ -119,7 +119,7 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
                         FileController.fileDelete(v3.getContext(), userID, adapterID, new IVolleyMessage() {
                             @Override
                             public void onWaring(String message) {
-                                UserNotification userNotification = new UserNotification((Activity) v.getContext(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                                SnackBar userNotification = new SnackBar((Activity) v.getContext(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
                                 userNotification.setOnErrorMsg(message);
                                 userNotification.onError();
                                 dialog.dismiss();
@@ -127,7 +127,7 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
 
                             @Override
                             public void onError(String message) {
-                                UserNotification userNotification = new UserNotification((Activity) v.getContext(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                                SnackBar userNotification = new SnackBar((Activity) v.getContext(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
                                 userNotification.setOnWarningMsg(message);
                                 userNotification.onWarning();
                                 dialog.dismiss();
@@ -135,7 +135,7 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
 
                             @Override
                             public void onSuccess(String message) {
-                                UserNotification userNotification = new UserNotification((Activity) v.getContext(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                                SnackBar userNotification = new SnackBar((Activity) v.getContext(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
                                 userNotification.setOnSuccessMsg(message);
                                 userNotification.onSuccess();
                                 dialog.dismiss();
@@ -186,7 +186,7 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
                 Objects.requireNonNull(outputStream);
 
-                UserNotification userNotification = new UserNotification(activity, view, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                SnackBar userNotification = new SnackBar(activity, view, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
                 userNotification.setOnSuccessMsg(view.getContext().getResources().getString(R.string.successImageSave));
                 userNotification.onSuccess();
             }

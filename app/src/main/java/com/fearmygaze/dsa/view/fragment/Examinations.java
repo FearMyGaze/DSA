@@ -15,7 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.fearmygaze.dsa.Interface.IImage;
 import com.fearmygaze.dsa.R;
 import com.fearmygaze.dsa.controller.FileController;
-import com.fearmygaze.dsa.custom.UserNotification;
+import com.fearmygaze.dsa.custom.SnackBar;
 import com.fearmygaze.dsa.model.Exam;
 import com.fearmygaze.dsa.view.adapter.AdapterFile;
 import com.google.android.material.button.MaterialButton;
@@ -71,7 +71,7 @@ public class Examinations extends Fragment {
 
                 @Override
                 public void onError(String message) {
-                    UserNotification userNotification = new UserNotification(requireActivity(), view, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                    SnackBar userNotification = new SnackBar(requireActivity(), view, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
                     userNotification.setOnErrorMsg(message);
                     userNotification.onError();
                 }

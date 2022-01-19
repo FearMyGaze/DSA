@@ -23,7 +23,7 @@ import androidx.preference.PreferenceManager;
 import com.fearmygaze.dsa.Interface.IVolleyMessage;
 import com.fearmygaze.dsa.R;
 import com.fearmygaze.dsa.controller.FileController;
-import com.fearmygaze.dsa.custom.UserNotification;
+import com.fearmygaze.dsa.custom.SnackBar;
 import com.fearmygaze.dsa.util.TextHandler;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
@@ -95,21 +95,21 @@ public class FileUpload extends AppCompatActivity {
                     FileController.fileUpload(getApplicationContext(), userID, uploadTitle, uploadDesc, uploadFile, new IVolleyMessage() {
                         @Override
                         public void onWaring(String message) {
-                            UserNotification userNotification = new UserNotification(FileUpload.this, v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                            SnackBar userNotification = new SnackBar(FileUpload.this, v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
                             userNotification.setOnWarningMsg(message);
                             userNotification.onWarning();
                         }
 
                         @Override
                         public void onError(String message) {
-                            UserNotification userNotification = new UserNotification(FileUpload.this, v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                            SnackBar userNotification = new SnackBar(FileUpload.this, v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
                             userNotification.setOnErrorMsg(message);
                             userNotification.onError();
                         }
 
                         @Override
                         public void onSuccess(String message) {
-                            UserNotification userNotification = new UserNotification(FileUpload.this, v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                            SnackBar userNotification = new SnackBar(FileUpload.this, v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
                             userNotification.setOnSuccessMsg(message);
                             userNotification.onSuccess();
 
