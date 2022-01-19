@@ -32,20 +32,7 @@ public class SnackBar implements IUserNotification {
         snackbarLayout.setPadding(0, 0, 0, 0);
         snackbarLayout.addView(customSnackView, 0);
     }
-
-    /*TODO: This will be in use only if we need a way with snackbar to add a button*/
-    public SnackBar(Activity activity, View view, int length , int animation, Boolean b){
-        snackbar = Snackbar.make(view, "", length);
-        @SuppressLint("InflateParams") View customSnackView = activity.getLayoutInflater().inflate(R.layout.custom_snackbar, null);
-        snackbarTextView = customSnackView.findViewById(R.id.customSnackBarTextView);
-        snackbarImageView = customSnackView.findViewById(R.id.customSnackBarImage);
-        this.snackbar.getView().setBackgroundColor(Color.TRANSPARENT);
-        this.snackbar.setAnimationMode(animation);
-        Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbar.getView();
-        snackbarLayout.setPadding(0, 0, 0, 0);
-        snackbarLayout.addView(customSnackView, 0);
-    }
-
+    
     @Override
     public void onSuccess() {
         this.snackbarImageView.setImageResource(R.drawable.ic_outline_check_24);
