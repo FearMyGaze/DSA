@@ -8,7 +8,7 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
+import androidx.preference.PreferenceManager;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.widget.Toast;
@@ -121,8 +121,6 @@ public class FileUpload extends AppCompatActivity {
 
                         }
                     });
-                    
-                    System.out.println(uploadFile);
                 }
             }
         });

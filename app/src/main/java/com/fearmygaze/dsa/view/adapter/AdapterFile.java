@@ -156,12 +156,12 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
     private void saveImage(Bitmap bitmap, Activity activity){
         OutputStream outputStream;
         try {
-            if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 ContentResolver resolver = activity.getContentResolver();
                 ContentValues values = new ContentValues();
                 values.put(MediaStore.MediaColumns.DISPLAY_NAME, System.currentTimeMillis() + ".png");
                 values.put(MediaStore.MediaColumns.MIME_TYPE, "image/png");
-                values.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES + File.separator + "DSA");
+                values.put(MediaStore.MediaColumns.RELATIVE_PATH, Environment.DIRECTORY_PICTURES);
                 Uri imageUri = resolver.insert(MediaStore.Images.Media.EXTERNAL_CONTENT_URI, values);
                 outputStream = resolver.openOutputStream(Objects.requireNonNull(imageUri));
                 bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream);
@@ -171,4 +171,6 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
             e.printStackTrace();
         }
     }
+
+
 }
