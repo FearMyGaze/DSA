@@ -1,7 +1,6 @@
 package com.fearmygaze.dsa.view.activity;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -18,7 +17,6 @@ import com.fearmygaze.dsa.view.fragment.Notifications;
 import com.fearmygaze.dsa.view.fragment.Profile;
 import com.fearmygaze.dsa.view.fragment.Upload;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class Main extends AppCompatActivity {
 
