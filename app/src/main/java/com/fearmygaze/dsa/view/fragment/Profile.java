@@ -142,18 +142,16 @@ public class Profile extends Fragment {
             Dialog dialog = new Dialog(v.getContext());
             dialog.setContentView(R.layout.custom_bug_dialog);
             dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-            dialog.setCancelable(false);
 
             TextInputLayout dialogBugDescError = dialog.findViewById(R.id.dialogBugDescConfirmError);
             TextInputEditText dialogBugDesc = dialog.findViewById(R.id.dialogBugDescConfirm);
 
-            MaterialButton dialogBugCancel = dialog.findViewById(R.id.dialogBugBack);
             MaterialButton dialogBugConfirm = dialog.findViewById(R.id.dialogBugConfirm);
 
-            dialogBugCancel.setOnClickListener(v1 -> dialog.dismiss());
             dialogBugConfirm.setOnClickListener(v2 -> {
                 String desc = Objects.requireNonNull(dialogBugDesc.getText()).toString();
                 int userID = getSharedPrefs.getInt("userID",-1);
+
                 if (TextHandler.isSmallerThanSetLength(desc,100,dialogBugDescError, v2.getContext()) && userID > -1){
                     BugController.BugReport(v.getContext(), userID, desc, new IVolleyMessage() {
                         @Override

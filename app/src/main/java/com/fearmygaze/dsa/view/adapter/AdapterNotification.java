@@ -13,6 +13,7 @@ import com.fearmygaze.dsa.R;
 import com.google.android.material.button.MaterialButton;
 
 public class AdapterNotification extends RecyclerView.Adapter<AdapterNotification.MyViewHolder> {
+
     @NonNull
     @Override
     public AdapterNotification.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {

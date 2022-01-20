@@ -18,6 +18,12 @@ import java.util.Map;
 
 public class BugController {
 
+    /**
+     * @param context We need it to get the String from resource file strings.xml
+     * @param userID We need the userID so the db knows in what user the file will be assigned
+     * @param BugDesc We need description so the programmer knows the error tha you encountered
+     * @param iVolleyMessage a quick interface to handle the Success/Warning/Error
+     */
     public static void BugReport(Context context, int userID, String BugDesc, IVolleyMessage iVolleyMessage){
         String[] url = context.getResources().getStringArray(R.array.url);
         String jsonError = context.getResources().getString(R.string.jsonErrorDuring);

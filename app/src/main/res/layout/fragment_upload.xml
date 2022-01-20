@@ -12,21 +12,21 @@
         android:layout_margin="10dp">
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_horizontal_title_begin"
+            android:id="@+id/guideline_horizontal_upload_title_begin"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.01" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_horizontal_description_end"
+            android:id="@+id/guideline_horizontal_upload_description_end"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="horizontal"
             app:layout_constraintGuide_percent="0.45" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline_horizontal_imageView_end"
+            android:id="@+id/guideline_horizontal_upload_imageView_end"
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:orientation="horizontal"
@@ -42,10 +42,10 @@
             app:counterEnabled="true"
             app:counterMaxLength="40"
             app:layout_constraintBottom_toTopOf="@+id/uploadDescError"
-            app:layout_constraintTop_toBottomOf="@+id/guideline_horizontal_title_begin">
+            app:layout_constraintTop_toBottomOf="@+id/guideline_horizontal_upload_title_begin">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/UploadTitle"
+                android:id="@+id/uploadTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
@@ -63,7 +63,7 @@
             app:endIconMode="clear_text"
             app:counterEnabled="true"
             app:counterMaxLength="100"
-            app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_description_end"
+            app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_upload_description_end"
             app:layout_constraintTop_toBottomOf="@+id/uploadTitleError">
 
             <com.google.android.material.textfield.TextInputEditText
@@ -83,7 +83,7 @@
             android:gravity="center"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_description_end"
+            app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_upload_description_end"
             android:text="@string/fileUploadTextView"
             android:textStyle="bold"
             android:textSize="18sp"/>
@@ -97,7 +97,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/uploadTextView"
-            app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_imageView_end"/>
+            app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_upload_imageView_end"/>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/uploadSelectImage"
@@ -108,7 +108,7 @@
             app:cornerRadius="20dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/uploadConfirm"
-            app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_imageView_end" />
+            app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_upload_imageView_end" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/uploadConfirm"
@@ -120,7 +120,7 @@
             app:cornerRadius="20dp"
             app:layout_constraintStart_toEndOf="@id/uploadSelectImage"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_imageView_end" />
+            app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_upload_imageView_end" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

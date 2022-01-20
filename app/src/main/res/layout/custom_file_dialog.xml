@@ -101,19 +101,8 @@
             android:text="@string/dialogDownload"
             app:cornerRadius="20dp"
             app:layout_constraintStart_toEndOf="@id/dialogDelete"
-            app:layout_constraintEnd_toStartOf="@+id/dialogBack"
-            app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_dialog_imageView_end"/>
-
-        <com.google.android.material.button.MaterialButton
-            android:id="@+id/dialogBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text="@string/dialogBack"
-            app:cornerRadius="20dp"
-            app:layout_constraintStart_toEndOf="@+id/dialogDownload"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_dialog_imageView_end" />
+            app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_dialog_imageView_end"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

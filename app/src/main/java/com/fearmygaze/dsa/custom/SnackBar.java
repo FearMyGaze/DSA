@@ -32,7 +32,7 @@ public class SnackBar implements IUserNotification {
         snackbarLayout.setPadding(0, 0, 0, 0);
         snackbarLayout.addView(customSnackView, 0);
     }
-    
+
     @Override
     public void onSuccess() {
         this.snackbarImageView.setImageResource(R.drawable.ic_outline_check_24);

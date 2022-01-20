@@ -35,21 +35,8 @@
         android:layout_marginTop="20dp"
         android:text="@string/dialogBugConfirm"
         app:cornerRadius="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/dialogBugBack"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/dialogBugDescConfirmError" />
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/dialogBugBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:text="@string/dialogBack"
-        app:cornerRadius="20dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/dialogBugConfirm"
-        app:layout_constraintTop_toBottomOf="@id/dialogBugDescConfirmError" />
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

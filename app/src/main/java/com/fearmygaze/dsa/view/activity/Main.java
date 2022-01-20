@@ -16,12 +16,13 @@ import com.fearmygaze.dsa.model.User;
 import com.fearmygaze.dsa.view.fragment.Examinations;
 import com.fearmygaze.dsa.view.fragment.Notifications;
 import com.fearmygaze.dsa.view.fragment.Profile;
+import com.fearmygaze.dsa.view.fragment.Upload;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class Main extends AppCompatActivity {
 
-    public Fragment files, notifications, profile;
+    public Fragment files, notifications, profile, upload;
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -30,8 +31,6 @@ public class Main extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         SharedPreferences getSharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
-        FloatingActionButton mainFilesAdd = findViewById(R.id.mainFilesAdd);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -43,13 +42,9 @@ public class Main extends AppCompatActivity {
 
         profile = new Profile(me);
         files = new Examinations();
-        notifications = new Notifications(me);
+        notifications = new Notifications();
+        upload = new Upload();
 
-        mainFilesAdd.setOnClickListener(v -> {
-            Intent intent = new Intent(Main.this, FileUpload.class);
-            startActivity(intent);
-            finish();
-        });
 
 
         replaceFragment(files);
@@ -76,6 +71,9 @@ public class Main extends AppCompatActivity {
                     return true;
                 case R.id.itemFiles:
                     replaceFragment(files);
+                    return true;
+                case R.id.itemUpload:
+                    replaceFragment(upload);
                     return true;
                 case R.id.itemProfile:
                     replaceFragment(profile);

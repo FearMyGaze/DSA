@@ -31,7 +31,7 @@ public class Examinations extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_files, container, false);
+        view = inflater.inflate(R.layout.fragment_examinations, container, false);
 
         MaterialButton filesRefresh = view.findViewById(R.id.filesRefresh);
 

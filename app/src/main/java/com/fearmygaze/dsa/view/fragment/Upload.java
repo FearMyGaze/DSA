@@ -1,5 +1,6 @@
-package com.fearmygaze.dsa.view.activity;
+package com.fearmygaze.dsa.view.fragment;
 
+import static android.app.Activity.RESULT_OK;
 
 import android.Manifest;
 import android.content.Intent;
@@ -8,17 +9,21 @@ import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
-import android.util.Base64;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.AppCompatImageView;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.fragment.app.Fragment;
 import androidx.preference.PreferenceManager;
+
+import android.provider.MediaStore;
+import android.util.Base64;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.fearmygaze.dsa.Interface.IVolleyMessage;
 import com.fearmygaze.dsa.R;
@@ -34,90 +39,89 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Objects;
 
-public class FileUpload extends AppCompatActivity {
+public class Upload extends Fragment {
+    View view;
 
     AppCompatImageView imageView;
-    MaterialButton fileUploadConfirm;
+    MaterialButton uploadToServer;
 
     String stringConvertedImage;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(com.fearmygaze.dsa.R.layout.activity_file_upload);
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        view = inflater.inflate(R.layout.fragment_upload, container, false);
 
-        TextInputEditText fileUploadTitle = findViewById(R.id.UploadTitle);
-        TextInputLayout fileUploadTitleError = findViewById(R.id.uploadTitleError);
+        TextInputLayout uploadTitleError = view.findViewById(R.id.uploadTitleError);
+        TextInputEditText uploadTitle = view.findViewById(R.id.uploadTitle);
 
-        TextInputEditText fileUploadDesc = findViewById(R.id.uploadDesc);
-        TextInputLayout fileUploadDescError = findViewById(R.id.uploadDescError);
+        TextInputLayout uploadDescError = view.findViewById(R.id.uploadDescError);
+        TextInputEditText uploadDesc = view.findViewById(R.id.uploadDesc);
 
-        MaterialButton fileUploadSelectImage = findViewById(R.id.uploadSelectImage);
-        fileUploadConfirm = findViewById(R.id.uploadConfirm);
+        imageView = view.findViewById(R.id.uploadImageView);
 
-        imageView = findViewById(R.id.uploadImageView);
+        MaterialButton uploadChooseImage = view.findViewById(R.id.uploadSelectImage);
+        uploadToServer = view.findViewById(R.id.uploadConfirm);
 
-        SharedPreferences getSharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
+        SharedPreferences getSharedPrefs = PreferenceManager.getDefaultSharedPreferences(view.getContext().getApplicationContext());
 
         /*
          * The moment the TextInputEditText is filled with a text after an error occurred th error
          *   vanishes from the text that was changed
          * */
-        fileUploadTitle.addTextChangedListener(new TextHandler(fileUploadTitleError));
-        fileUploadDesc.addTextChangedListener(new TextHandler(fileUploadDescError));
+        uploadTitle.addTextChangedListener(new TextHandler(uploadTitleError));
+        uploadDesc.addTextChangedListener(new TextHandler(uploadDescError));
 
-        fileUploadSelectImage.setOnClickListener(v -> {
-            if(ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
-                ActivityCompat.requestPermissions(this ,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},100);
+        uploadChooseImage.setOnClickListener(v -> {
+            if(ContextCompat.checkSelfPermission(v.getContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+                ActivityCompat.requestPermissions(requireActivity() ,new String[]{Manifest.permission.READ_EXTERNAL_STORAGE},100);
             }else{
                 selectImage();
             }
         });
 
-        fileUploadConfirm.setOnClickListener(v -> {
-            TextHandler.IsTextInputEmpty(fileUploadTitle,fileUploadTitleError,getApplicationContext());
-            TextHandler.IsTextInputEmpty(fileUploadDesc,fileUploadDescError,getApplicationContext());
+        uploadToServer.setOnClickListener(v -> {
+            TextHandler.IsTextInputEmpty(uploadTitle,uploadTitleError,v.getContext().getApplicationContext());
+            TextHandler.IsTextInputEmpty(uploadDesc,uploadDescError,v.getContext().getApplicationContext());
 
             int userID = getSharedPrefs.getInt("userID",-1);
 
-            if(!fileUploadTitleError.isErrorEnabled() && !fileUploadDescError.isErrorEnabled()){
-                if(TextHandler.isSmallerThanSetLength(Objects.requireNonNull(fileUploadTitle.getText()).toString(),40 ,fileUploadTitleError ,getApplicationContext())
-                        && TextHandler.isSmallerThanSetLength(Objects.requireNonNull(fileUploadDesc.getText()).toString(),100 ,fileUploadDescError,getApplicationContext())
+            if(!uploadTitleError.isErrorEnabled() && !uploadDescError.isErrorEnabled()){
+                if(TextHandler.isSmallerThanSetLength(Objects.requireNonNull(uploadTitle.getText()).toString(),40 ,uploadTitleError ,v.getContext().getApplicationContext())
+                        && TextHandler.isSmallerThanSetLength(Objects.requireNonNull(uploadDesc.getText()).toString(),100 ,uploadDescError,v.getContext().getApplicationContext())
                         && userID > -1){
 
-                    String uploadTitle = Objects.requireNonNull(fileUploadTitle.getText()).toString();
-                    String uploadDesc = Objects.requireNonNull(fileUploadDesc.getText()).toString();
+                    String toUploadTitle = Objects.requireNonNull(uploadTitle.getText()).toString();
+                    String toUploadDesc = Objects.requireNonNull(uploadDesc.getText().toString());
                     String uploadFile = stringConvertedImage;
 
-                    fileUploadConfirm.setEnabled(false);
+                    uploadToServer.setEnabled(false);
 
-                    FileController.fileUpload(getApplicationContext(), userID, uploadTitle, uploadDesc, uploadFile, new IVolleyMessage() {
+                    FileController.fileUpload(v.getContext().getApplicationContext(), userID, toUploadTitle, toUploadDesc, uploadFile, new IVolleyMessage() {
                         @Override
                         public void onWaring(String message) {
-                            SnackBar userNotification = new SnackBar(FileUpload.this, v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                            SnackBar userNotification = new SnackBar(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
                             userNotification.setOnWarningMsg(message);
                             userNotification.onWarning();
                         }
 
                         @Override
                         public void onError(String message) {
-                            SnackBar userNotification = new SnackBar(FileUpload.this, v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                            SnackBar userNotification = new SnackBar(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
                             userNotification.setOnErrorMsg(message);
                             userNotification.onError();
                         }
 
                         @Override
                         public void onSuccess(String message) {
-                            SnackBar userNotification = new SnackBar(FileUpload.this, v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                            SnackBar userNotification = new SnackBar(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
                             userNotification.setOnSuccessMsg(message);
                             userNotification.onSuccess();
 
-                            fileUploadTitle.setText("");
-                            fileUploadDesc.setText("");
+                            uploadTitle.setText("");
+                            uploadDesc.setText("");
                             imageView.setImageBitmap(null);
 
-                            fileUploadConfirm.setEnabled(true);
+                            uploadToServer.setEnabled(true);
 
                         }
                     });
@@ -125,6 +129,7 @@ public class FileUpload extends AppCompatActivity {
             }
         });
 
+        return view;
     }
 
     private void selectImage() {
@@ -143,17 +148,17 @@ public class FileUpload extends AppCompatActivity {
         if (requestCode == 100 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
             selectImage();
         }else{
-            Toast.makeText(this, message, Toast.LENGTH_SHORT).show();
+            Toast.makeText(view.getContext(), message, Toast.LENGTH_SHORT).show();
         }
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == 100 && resultCode == RESULT_OK && data != null){
             Uri uri = data.getData();
             try {
-                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(),uri);
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(view.getContext().getContentResolver(),uri);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
                 bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
 
@@ -162,17 +167,11 @@ public class FileUpload extends AppCompatActivity {
                 stringConvertedImage = Base64.encodeToString(bytes,Base64.DEFAULT);
 
                 imageView.setImageBitmap(bitmap);
-                fileUploadConfirm.setEnabled(true);
+                uploadToServer.setEnabled(true);
 
             } catch (IOException e) {
-                Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+                Toast.makeText(view.getContext(), e.getMessage(), Toast.LENGTH_LONG).show();
             }
         }
-    }
-
-    @Override
-    public void onBackPressed() {
-        startActivity(new Intent(FileUpload.this,Main.class));
-        finish();
     }
 }

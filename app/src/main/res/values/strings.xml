@@ -62,6 +62,7 @@
     <string name="successImageSave">Image saved successfully</string>
     <string name="successFilingBugReport">Bug report sent successfully</string>
     <string name="onErrorFilingBugReport">Failed to sent bug report</string>
+    <string name="personalNotifications">My Notifications</string>
 
     <string-array name="url">
         <item>http://192.168.1.10/DSA/UsersRegister.php</item>

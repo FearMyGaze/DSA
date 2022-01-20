@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
@@ -84,7 +85,6 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
                     Dialog dialog = new Dialog(v.getContext());
                     dialog.setContentView(R.layout.custom_file_dialog);
                     dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-                    dialog.setCancelable(false);
 
                     TextInputEditText dialogTitle = dialog.findViewById(R.id.dialogTitle);
                     TextInputEditText dialogDesc = dialog.findViewById(R.id.dialogDesc);
@@ -92,7 +92,6 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
                     AppCompatImageView dialogImage = dialog.findViewById(R.id.dialogImageView);
 
                     MaterialButton dialogDownload = dialog.findViewById(R.id.dialogDownload);
-                    MaterialButton dialogBack = dialog.findViewById(R.id.dialogBack);
                     MaterialButton dialogDelete = dialog.findViewById(R.id.dialogDelete);
 
                     dialogTitle.setText(adapterTitle);
@@ -102,8 +101,6 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
                         dialogDownload.setEnabled(false);
                     }
 
-                    dialogBack.setOnClickListener(v1 -> dialog.dismiss());
-
                     //This is for decoding the string to image
                     byte[] decode = Base64.decode(message, Base64.DEFAULT);
                     Bitmap image = BitmapFactory.decodeByteArray(decode, 0, decode.length);
@@ -112,6 +109,7 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
                     dialogDownload.setOnClickListener(v2 -> {
                         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                             saveImage(image, (Activity) v.getContext(), v);
+                            dialog.dismiss();
                         }
                     });
 
@@ -191,7 +189,7 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
                 userNotification.onSuccess();
             }
         }catch (Exception e){
-            e.printStackTrace();
+            Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
 
