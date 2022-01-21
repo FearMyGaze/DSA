@@ -3,32 +3,24 @@
 
         require "Connect.php";
         $conn = mysqli_connect($servername, $username, $passwd, "DSA");
-
+    
         $userID = $_POST["userID"];
+        $id = $_POST["id"];
+        
+        $sql = "DELETE FROM files WHERE id = '$id' && userID = '$userID'";
 
-        $sql = "SELECT id,fileTitle,fileDesc,fileDate FROM FILES WHERE userID = '$userID'";
-
-        $response = mysqli_query($conn, $sql);
-
-        if (mysqli_num_rows($response) > 0 ) {
-
-            $json = mysqli_fetch_all ($response, MYSQLI_ASSOC);
-            
+        if (mysqli_query($conn, $sql)) {
+               
             $result['success'] = "1";
-            
-            $result['Files'] = $json;
-
-            echo json_encode($result);
-
             mysqli_close($conn);
+            
+            echo json_encode($result);
 
         } else {
-
             $result['success'] = "0";
-
-            echo json_encode($result);
-
             mysqli_close($conn);
 
+            echo json_encode($result);
         }
+
     }

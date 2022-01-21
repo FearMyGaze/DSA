@@ -43,10 +43,17 @@ if (!$conn) {
 
     $sqlCreateBugListings = "CREATE TABLE BugListings (
             id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-            userID INT(6) UNSIGNED NOT NULL REFERENCES Users(id), 
+            bugEmail VARCHAR(50) NOT NULL, 
             bugDesc VARCHAR(100) NOT NULL,
             bugDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
-            )";        
+            )";
+     
+    $sqlCreateNotfications = "CREATE TABLE Notifications (
+            id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+            userID INT(6) UNSIGNED NOT NULL REFERENCES Users(id),
+            doctorID INT(6) UNSIGNED NOT NULL REFERENCES Doctors(id), 
+            notficationDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL
+            )"; 
 
     if (mysqli_query($conn, $sqlCreateDatabase)) {
         echo "Database created successfully " . "<br>";
@@ -78,4 +85,10 @@ if (!$conn) {
     } else {
         echo "Error creating table: " . mysqli_error($conn) . "<br>";
     }
+
+    // if (mysqli_query($conn, $sqlCreateNotfications)) {
+    //     echo "Table Notifications created successfully " . "<br>";
+    // } else {
+    //     echo "Error creating table: " . mysqli_error($conn) . "<br>";
+    // }
 }

@@ -19,7 +19,7 @@
             // $subject = "Welcome to DSA";
             // $message = "Welcome to DSA, your username is: " . $username . " and your password is: " . $passwd . 
             //     "please click the following link to activate your account: http://localhost/DSA/UserActivate.php?username=" . $username;
-            // $headers = "From: email@email.com";
+            // $headers = "From: fearMyGaze@outlook.com";
             // mail($to, $subject, $message, $headers);
             
             $result['userID'] = mysqli_insert_id($conn);

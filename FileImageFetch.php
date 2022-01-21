@@ -13,11 +13,11 @@
 
         if (mysqli_num_rows($response) === 1 ) {
 
-            $json = mysqli_fetch_all ($response, MYSQLI_ASSOC);
+            $row = mysqli_fetch_assoc($response);
             
             $result['success'] = "1";
-            
-            $result['Files'] = $json;
+
+            $result['fileData'] = $row['fileData'];
 
             echo json_encode($result);
 
