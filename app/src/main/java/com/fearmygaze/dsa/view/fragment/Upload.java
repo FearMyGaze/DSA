@@ -38,6 +38,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.Objects;
 
+@SuppressWarnings("ALL") //This is for deprecated classes
 public class Upload extends Fragment {
     View view;
 
@@ -93,8 +94,6 @@ public class Upload extends Fragment {
                     String toUploadDesc = Objects.requireNonNull(uploadDesc.getText().toString());
                     String uploadFile = stringConvertedImage;
 
-                    uploadToServer.setEnabled(false);
-
                     FileController.fileUpload(v.getContext().getApplicationContext(), userID, toUploadTitle, toUploadDesc, uploadFile, new IVolleyMessage() {
                         @Override
                         public void onWaring(String message) {
@@ -120,8 +119,7 @@ public class Upload extends Fragment {
                             uploadDesc.setText("");
                             imageView.setImageBitmap(null);
 
-                            uploadToServer.setEnabled(true);
-
+                            uploadToServer.setEnabled(false);
                         }
                     });
                 }

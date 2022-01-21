@@ -68,7 +68,6 @@ public class Examinations extends Fragment {
                     adapter.notifyDataSetChanged();
                 }
 
-
                 @Override
                 public void onError(String message) {
                     SnackBar userNotification = new SnackBar(requireActivity(), view, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);

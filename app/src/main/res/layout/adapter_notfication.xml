@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="80dp"
     android:layout_margin="5dp"
-    android:background="@drawable/custom_adapter_item_on_press">
+    android:background="@drawable/custom_adapter_item_unpressed">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline_horizontal_adapter_notification_row_1_begin"
@@ -75,8 +75,6 @@
         android:layout_height="wrap_content"
         android:text="@string/adapterNotificationButton"
         android:textSize="15sp"
-        android:textColor="@color/black"
-        android:backgroundTint="@color/green"
         app:cornerRadius="20dp"
         app:layout_constraintStart_toEndOf="@id/guideline_vertical_adapter_notification_column_end"
         app:layout_constraintEnd_toEndOf="parent"

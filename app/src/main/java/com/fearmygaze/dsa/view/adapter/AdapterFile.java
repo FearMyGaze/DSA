@@ -1,9 +1,10 @@
 package com.fearmygaze.dsa.view.adapter;
 
+import android.Manifest;
 import android.app.Activity;
-import android.app.Dialog;
 import android.content.ContentResolver;
 import android.content.ContentValues;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -18,9 +19,9 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.fearmygaze.dsa.Interface.IVolleyMessage;
@@ -30,8 +31,9 @@ import com.fearmygaze.dsa.custom.SnackBar;
 import com.fearmygaze.dsa.model.Exam;
 import com.google.android.material.button.MaterialButton;
 import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputEditText;
 
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.OutputStream;
 import java.util.List;
 import java.util.Objects;
@@ -56,96 +58,69 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        String adapterTitle = fileList.get(position).getTitle();
-        String adapterDate = fileList.get(position).getDate();
-        String adapterDesc = fileList.get(position).getDescription();
         int adapterID = fileList.get(position).getId();
+        String adapterTitle = fileList.get(position).getTitle();
+        String adapterDesc = fileList.get(position).getDescription();
+        String adapterDate = fileList.get(position).getDate();
 
         holder.adapterTitle.setText(adapterTitle);
+        holder.adapterDesc.setText(adapterDesc);
         holder.adapterDate.setText(adapterDate);
 
-        holder.adapterRootLayout.setOnClickListener(v -> {
-            FileController.fileImageDownload(v.getContext(), userID, adapterID, new IVolleyMessage() {
-                @Override
-                public void onWaring(String message) {
-                    SnackBar userNotification = new SnackBar((Activity) v.getContext(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
-                    userNotification.setOnErrorMsg(message);
-                    userNotification.onError();
-                }
+        holder.adapterDelete.setOnClickListener(v1 -> FileController.fileDelete(v1.getContext(), userID, adapterID, new IVolleyMessage() {
+            @Override
+            public void onWaring(String message) {
+                SnackBar userNotification = new SnackBar((Activity) v1.getContext(), v1, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                userNotification.setOnWarningMsg(message);
+                userNotification.onWarning();
+            }
 
-                @Override
-                public void onError(String message) {
-                    SnackBar userNotification = new SnackBar((Activity) v.getContext(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
-                    userNotification.setOnErrorMsg(message);
-                    userNotification.onError();
-                }
+            @Override
+            public void onError(String message) {
+                SnackBar userNotification = new SnackBar((Activity) v1.getContext(), v1, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                userNotification.setOnErrorMsg(message);
+                userNotification.onError();
+            }
 
-                @Override
-                public void onSuccess(String message) {
-                    Dialog dialog = new Dialog(v.getContext());
-                    dialog.setContentView(R.layout.custom_file_dialog);
-                    dialog.getWindow().setLayout(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            @Override
+            public void onSuccess(String message) {
+                SnackBar userNotification = new SnackBar((Activity) v1.getContext(), v1, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                userNotification.setOnSuccessMsg(message);
+                userNotification.onSuccess();
+            }
+        }));
 
-                    TextInputEditText dialogTitle = dialog.findViewById(R.id.dialogTitle);
-                    TextInputEditText dialogDesc = dialog.findViewById(R.id.dialogDesc);
+        holder.adapterDownload.setOnClickListener(v2 -> FileController.fileImageDownload(v2.getContext(), userID, adapterID, new IVolleyMessage() {
+            @Override
+            public void onWaring(String message) {
+                SnackBar userNotification = new SnackBar((Activity) v2.getContext(), v2, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                userNotification.setOnErrorMsg(message);
+                userNotification.onError();
+            }
 
-                    AppCompatImageView dialogImage = dialog.findViewById(R.id.dialogImageView);
+            @Override
+            public void onError(String message) {
+                SnackBar userNotification = new SnackBar((Activity) v2.getContext(), v2, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                userNotification.setOnErrorMsg(message);
+                userNotification.onError();
+            }
 
-                    MaterialButton dialogDownload = dialog.findViewById(R.id.dialogDownload);
-                    MaterialButton dialogDelete = dialog.findViewById(R.id.dialogDelete);
-
-                    dialogTitle.setText(adapterTitle);
-                    dialogDesc.setText(adapterDesc);
-
-                    if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
-                        dialogDownload.setEnabled(false);
+            @Override
+            public void onSuccess(String message) {
+                byte[] decode = Base64.decode(message, Base64.DEFAULT); //This is for decoding the string to image
+                Bitmap image = BitmapFactory.decodeByteArray(decode, 0, decode.length);
+                if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q){
+                    if(ContextCompat.checkSelfPermission(v2.getContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED){
+                        ActivityCompat.requestPermissions((Activity) v2.getContext() ,new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},99);
+                    }else{
+                        saveImage(image,(Activity) v2.getContext(),v2);
                     }
-
-                    //This is for decoding the string to image
-                    byte[] decode = Base64.decode(message, Base64.DEFAULT);
-                    Bitmap image = BitmapFactory.decodeByteArray(decode, 0, decode.length);
-                    dialogImage.setImageBitmap(image);
-
-                    dialogDownload.setOnClickListener(v2 -> {
-                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
-                            saveImage(image, (Activity) v.getContext(), v);
-                            dialog.dismiss();
-                        }
-                    });
-
-                    dialogDelete.setOnClickListener(v3 -> {
-                        FileController.fileDelete(v3.getContext(), userID, adapterID, new IVolleyMessage() {
-                            @Override
-                            public void onWaring(String message) {
-                                SnackBar userNotification = new SnackBar((Activity) v.getContext(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
-                                userNotification.setOnErrorMsg(message);
-                                userNotification.onError();
-                                dialog.dismiss();
-                            }
-
-                            @Override
-                            public void onError(String message) {
-                                SnackBar userNotification = new SnackBar((Activity) v.getContext(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
-                                userNotification.setOnWarningMsg(message);
-                                userNotification.onWarning();
-                                dialog.dismiss();
-                            }
-
-                            @Override
-                            public void onSuccess(String message) {
-                                SnackBar userNotification = new SnackBar((Activity) v.getContext(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
-                                userNotification.setOnSuccessMsg(message);
-                                userNotification.onSuccess();
-                                dialog.dismiss();
-                            }
-                        });
-                    });
-
-
-                    dialog.show();
+                }else{//This is for API Q and greater
+                    saveImage(image, (Activity) v2.getContext(), v2);
                 }
-            });
-        });
+            }
+        }));
+
     }
 
     @Override
@@ -158,18 +133,22 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
     }
 
     protected static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView adapterTitle, adapterDate;
+        TextView adapterTitle, adapterDesc, adapterDate;
+        MaterialButton adapterDelete, adapterDownload;
         ConstraintLayout adapterRootLayout;
 
         public MyViewHolder(@NonNull View view) {
             super(view);
-            adapterRootLayout = view.findViewById(R.id.adapterFileRootLayout);
-            adapterTitle = view.findViewById(R.id.adapterFileTitle);
-            adapterDate = view.findViewById(R.id.adapterFileDate);
+            adapterRootLayout   = view.findViewById(R.id.adapterFileRootLayout);
+            adapterTitle        = view.findViewById(R.id.adapterFileTitle);
+            adapterDesc         = view.findViewById(R.id.adapterFileDesc);
+            adapterDate         = view.findViewById(R.id.adapterFileDate);
+
+            adapterDelete       = view.findViewById(R.id.adapterFileDelete);
+            adapterDownload     = view.findViewById(R.id.adapterFileDownload);
         }
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.Q)
     private void saveImage(Bitmap bitmap, Activity activity, View view){
         OutputStream outputStream;
         try {
@@ -187,11 +166,23 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
                 SnackBar userNotification = new SnackBar(activity, view, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
                 userNotification.setOnSuccessMsg(view.getContext().getResources().getString(R.string.successImageSave));
                 userNotification.onSuccess();
+            }else{ //I cant test if that works or not
+                File myDir = new File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).toString());
+                myDir.mkdirs();
+                String fileName = System.currentTimeMillis()+".png";
+                File file = new File(myDir, fileName);
+                try {
+                    FileOutputStream out = new FileOutputStream(file);
+                    bitmap.compress(Bitmap.CompressFormat.PNG, 100, out);
+                    out.flush();
+                    out.close();
+                    Toast.makeText(activity, "IMAGE SAVED", Toast.LENGTH_SHORT).show();
+                } catch (Exception e) {
+                    Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
+                }
             }
         }catch (Exception e){
             Toast.makeText(activity, e.getMessage(), Toast.LENGTH_LONG).show();
         }
     }
-
-
 }

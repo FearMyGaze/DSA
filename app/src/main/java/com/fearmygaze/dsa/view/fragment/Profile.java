@@ -56,6 +56,10 @@ public class Profile extends Fragment {
         profileName.setText(me.getName());
         profileEmail.setText(me.getEmail());
 
+        /*
+         * The moment the TextInputEditText is filled with a text after an error occurred th error
+         *   vanishes from the text that was changed
+         * */
         profileName.addTextChangedListener(new TextHandler(profileNameError));
         profileEmail.addTextChangedListener(new TextHandler(profileEmailError));
 
@@ -148,12 +152,18 @@ public class Profile extends Fragment {
 
             MaterialButton dialogBugConfirm = dialog.findViewById(R.id.dialogBugConfirm);
 
+            /*
+             * The moment the TextInputEditText is filled with a text after an error occurred th error
+             *   vanishes from the text that was changed
+             * */
+            dialogBugDesc.addTextChangedListener(new TextHandler(dialogBugDescError));
+
             dialogBugConfirm.setOnClickListener(v2 -> {
                 String desc = Objects.requireNonNull(dialogBugDesc.getText()).toString();
-                int userID = getSharedPrefs.getInt("userID",-1);
+                String userEmail = getSharedPrefs.getString("userEmail","empty");
 
-                if (TextHandler.isSmallerThanSetLength(desc,100,dialogBugDescError, v2.getContext()) && userID > -1){
-                    BugController.BugReport(v.getContext(), userID, desc, new IVolleyMessage() {
+                if (TextHandler.isSmallerThanSetLength(desc,100,dialogBugDescError, v2.getContext()) && !userEmail.equals("empty")){
+                    BugController.BugReport(v.getContext(), userEmail, desc, new IVolleyMessage() {
                         @Override
                         public void onWaring(String message) {
                             SnackBar userNotification = new SnackBar(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
