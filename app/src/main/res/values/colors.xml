@@ -2,12 +2,10 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="text">#757575</color>
-    <color name="textColorHint">#616161</color>
-    <color name="Red">#B00020</color>
+    <color name="gray">#757575</color>
+    <color name="red">#B00020</color>
     <color name="orange">#FFA500</color>
     <color name="yellow">#FFFF00</color>
-    <color name="richBlack">#010B13</color>
     <color name="twitter">#192734</color>
     <color name="twitterOrange">#CC6201</color>
 </resources>
