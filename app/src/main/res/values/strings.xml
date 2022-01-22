@@ -12,7 +12,7 @@
     <string name="alreadyHaveAccount">If you already have an account click here!</string>
     <string name="passwordNotEqual">Passwords not matching</string>
     <string name="notifications">Notifications</string>
-    <string name="patientFiles">Files</string>
+    <string name="patientFiles">Examinations</string>
     <string name="profile">Profile</string>
     <string name="passwdRegExError"> * min 8 characters \n* 1 lower case \n* 1 upper case \n* 1 digit \n* 1 special character</string>
     <string name="emailRegExError">Your email is invalid</string>
@@ -49,6 +49,20 @@
     <string name="profileBugList">If you found a bug please click here</string>
     <string name="adapterNotificationAccess">Grant access to: </string>
     <string name="adapterNotificationButton">Yes</string>
+    <string name="errorOnFetchingFiles">No files to fetch</string>
+    <string name="errorOnDownloadingImage">Error during downloading</string>
+    <string name="errorOnUserNotExisting">User doesn\'t exist</string>
+    <string name="dialogDelete">Delete</string>
+    <string name="dialogBack">Back</string>
+    <string name="dialogDownload">Download</string>
+    <string name="dialogBugDesc">Bug Description</string>
+    <string name="dialogBugConfirm">Confirm</string>
+    <string name="errorOnFileDelete">Error while deleting file</string>
+    <string name="successFileDeletion">Exam deleted successfully</string>
+    <string name="successImageSave">Image saved successfully</string>
+    <string name="successFilingBugReport">Bug report sent successfully</string>
+    <string name="onErrorFilingBugReport">Failed to sent bug report</string>
+    <string name="personalNotifications">My Notifications</string>
 
     <string-array name="url">
         <item>http://192.168.1.10/DSA/UsersRegister.php</item>
@@ -57,5 +71,9 @@
         <item>http://192.168.1.10/DSA/UserDelete.php</item>
         <item>http://192.168.1.10/DSA/FileUpload.php</item>
         <item>http://192.168.1.10/DSA/UserExist.php</item>
+        <item>http://192.168.1.10/DSA/FileFetch.php</item>
+        <item>http://192.168.1.10/DSA/FileImageFetch.php</item>
+        <item>http://192.168.1.10/DSA/FileDelete.php</item>
+        <item>http://192.168.1.10/DSA/BugReport.php</item>
     </string-array>
 </resources>

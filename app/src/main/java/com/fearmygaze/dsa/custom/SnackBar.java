@@ -8,10 +8,11 @@ import android.widget.TextView;
 
 import androidx.appcompat.widget.AppCompatImageView;
 
+import com.fearmygaze.dsa.Interface.IUserNotification;
 import com.fearmygaze.dsa.R;
 import com.google.android.material.snackbar.Snackbar;
 
-public class UserNotification implements IUserNotification {
+public class SnackBar implements IUserNotification {
 
     private final Snackbar snackbar;
     private final AppCompatImageView snackbarImageView;
@@ -20,20 +21,7 @@ public class UserNotification implements IUserNotification {
     private String onWarningMsg;
     private String onErrorMsg;
 
-    public UserNotification(Activity activity, View view, int length, int animation) {
-        snackbar = Snackbar.make(view, "", length);
-        @SuppressLint("InflateParams") View customSnackView = activity.getLayoutInflater().inflate(R.layout.custom_snackbar, null);
-        snackbarTextView = customSnackView.findViewById(R.id.customSnackBarTextView);
-        snackbarImageView = customSnackView.findViewById(R.id.customSnackBarImage);
-        this.snackbar.getView().setBackgroundColor(Color.TRANSPARENT);
-        this.snackbar.setAnimationMode(animation);
-        Snackbar.SnackbarLayout snackbarLayout = (Snackbar.SnackbarLayout) snackbar.getView();
-        snackbarLayout.setPadding(0, 0, 0, 0);
-        snackbarLayout.addView(customSnackView, 0);
-    }
-
-    /*TODO: This will be in use only if we need a way with snackbar to add a button*/
-    public UserNotification(Activity activity, View view, int length , int animation, Boolean b){
+    public SnackBar(Activity activity, View view, int length, int animation) {
         snackbar = Snackbar.make(view, "", length);
         @SuppressLint("InflateParams") View customSnackView = activity.getLayoutInflater().inflate(R.layout.custom_snackbar, null);
         snackbarTextView = customSnackView.findViewById(R.id.customSnackBarTextView);

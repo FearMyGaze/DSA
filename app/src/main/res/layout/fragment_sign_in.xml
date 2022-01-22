@@ -5,6 +5,7 @@
     android:id="@+id/loginRootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/twitter"
     tools:context=".view.fragment.SignIn">
 
     <androidx.constraintlayout.widget.Guideline
@@ -23,7 +24,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/loginEmailError"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.App.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="@string/email"
@@ -38,14 +39,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:textColorHint="@color/textColorHint"
+            android:textColor="@color/white"
             tools:ignore="TextContrastCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/loginPasswdError"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.App.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
@@ -61,7 +62,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPassword"
-            android:textColorHint="@color/textColorHint"
+            android:textColor="@color/white"
             tools:ignore="TextContrastCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>

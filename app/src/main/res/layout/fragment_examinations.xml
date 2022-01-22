@@ -5,14 +5,15 @@
     android:id="@+id/patientRootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".view.fragment.Files">
+    android:background="@color/twitter"
+    tools:context=".view.fragment.Examinations">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
 
                 <androidx.constraintlayout.widget.Guideline
-                    android:id="@+id/guideline_horizontal_files_recycler_begin"
+                    android:id="@+id/guideline_horizontal_notifications_recycler_begin"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:orientation="horizontal"
@@ -26,11 +27,12 @@
                     android:textAlignment="center"
                     android:textSize="25sp"
                     android:textStyle="bold"
+                    android:textColor="@color/white"
                     android:contentDescription="@string/personalFiles"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/filesRefresh"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_files_recycler_begin"/>
+                    app:layout_constraintBottom_toTopOf="@+id/guideline_horizontal_notifications_recycler_begin"/>
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/filesRefresh"
@@ -40,7 +42,7 @@
                     app:icon="@drawable/ic_outline_refresh_24"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
                     app:layout_constraintStart_toEndOf="@id/filesUploaded"
-                    app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_files_recycler_begin"
+                    app:layout_constraintBottom_toTopOf="@id/guideline_horizontal_notifications_recycler_begin"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"/>
 
@@ -48,9 +50,11 @@
                     android:id="@+id/filesRecycler"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:orientation="vertical"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/guideline_horizontal_files_recycler_begin"/>
+                    app:layout_constraintTop_toBottomOf="@+id/guideline_horizontal_notifications_recycler_begin"
+                    app:layout_constraintBottom_toBottomOf="parent"/>
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

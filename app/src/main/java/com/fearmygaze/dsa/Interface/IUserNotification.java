@@ -1,4 +1,4 @@
-package com.fearmygaze.dsa.custom;
+package com.fearmygaze.dsa.Interface;
 
 public interface IUserNotification {
     void onSuccess();

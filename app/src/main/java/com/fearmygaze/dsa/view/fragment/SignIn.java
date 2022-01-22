@@ -3,7 +3,6 @@ package com.fearmygaze.dsa.view.fragment;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,11 +10,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
+import androidx.preference.PreferenceManager;
 
+import com.fearmygaze.dsa.Interface.IVolleyMessage;
 import com.fearmygaze.dsa.R;
 import com.fearmygaze.dsa.controller.UserController;
-import com.fearmygaze.dsa.custom.UserNotification;
-import com.fearmygaze.dsa.model.IVolleyMessage;
+import com.fearmygaze.dsa.custom.SnackBar;
 import com.fearmygaze.dsa.util.RegEx;
 import com.fearmygaze.dsa.util.TextHandler;
 import com.fearmygaze.dsa.view.activity.Main;
@@ -99,14 +99,14 @@ public class SignIn extends Fragment {
                     UserController.UserLogin(requireActivity(), email, passwd, new IVolleyMessage() {
                         @Override
                         public void onWaring(String message) {
-                            UserNotification userNotification = new UserNotification(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                            SnackBar userNotification = new SnackBar(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
                             userNotification.setOnWarningMsg(message);
                             userNotification.onWarning();
                         }
 
                         @Override
                         public void onError(String message) {
-                            UserNotification userNotification = new UserNotification(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
+                            SnackBar userNotification = new SnackBar(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
                             userNotification.setOnErrorMsg(message);
                             userNotification.onError();
                         }

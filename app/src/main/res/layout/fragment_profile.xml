@@ -5,15 +5,16 @@
     android:id="@+id/profileRootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:layout_marginStart="10dp"
-    android:layout_marginEnd="10dp"
+    android:background="@color/twitter"
     tools:context=".view.fragment.Profile">
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/profileNameError"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.App.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         app:counterEnabled="true"
         app:counterMaxLength="30"
         android:hint="@string/name"
@@ -25,16 +26,18 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textPersonName"
-            android:textColorHint="@color/textColorHint"
+            android:textColor="@color/white"
             tools:ignore="TextContrastCheck,TextContrastCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/profileEmailError"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        style="@style/Widget.App.TextInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
         android:layout_marginTop="25dp"
         app:counterEnabled="true"
         app:counterMaxLength="50"
@@ -47,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress"
-            android:textColorHint="@color/textColorHint"
+            android:textColor="@color/white"
             tools:ignore="TextContrastCheck" />
 
     </com.google.android.material.textfield.TextInputLayout>

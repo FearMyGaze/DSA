@@ -13,7 +13,7 @@
     <string name="alreadyHaveAccount">Εάν έχεις ήδη λογαριασμό πάτα εδώ!</string>
     <string name="passwordNotEqual">Οι κωδικοί πρόσβασης δεν ταιρίαζουν</string>
     <string name="notifications">Ειδοποιήσεις</string>
-    <string name="patientFiles">Αρχεία</string>
+    <string name="patientFiles">Εξετάσεις</string>
     <string name="profile">Προφίλ</string>
     <string name="passwdRegExError">* Λιγότεροο 8 χαρακτήρες \n* 1 μικρό χαρακτήρα \n* 1 κεφαλαίο χαρακτήρα \n* 1 αριθμό \n* 1 ειδικό χαρακτήρα</string>
     <string name="emailRegExError">Το email σου δεν είναι σωστό</string>
@@ -49,4 +49,18 @@
     <string name="profileBugList">Εάν έχτε βρεί κάποιο πρόβλημα με την εφαρμογή πατήστε εδώ</string>
     <string name="adapterNotificationAccess">Παραχώρηση πρόσβασης σε: </string>
     <string name="adapterNotificationButton">Ναι</string>
+    <string name="errorOnFetchingFiles">Δεν υπάρχουν αρχεία</string>
+    <string name="errorOnDownloadingImage">Πρόβλημα κατά το κατέβασμα της εικόνας</string>
+    <string name="errorOnUserNotExisting">Δεν υπάρχει ο χρήστης</string>
+    <string name="dialogDelete">Διαγραφή</string>
+    <string name="dialogBack">Πίσω</string>
+    <string name="dialogDownload">Κατέβασμα</string>
+    <string name="dialogBugDesc">Περιγραφη προβλήματος</string>
+    <string name="dialogBugConfirm">Επιβεβαίωση</string>
+    <string name="errorOnFileDelete">Σφάλμα κατά την διαγραφή αρχείου</string>
+    <string name="successFileDeletion">Η Εξέταση διαγράφηκε με επιτυχία</string>
+    <string name="successImageSave">Η εικόνα αποθηκεύτηκε με επιτυχία</string>
+    <string name="successFilingBugReport">Αναφορά σφάλματος στάλθηκε με επιτυχία</string>
+    <string name="onErrorFilingBugReport">Πρόβλημα κατά την αποστολή αναφορά σφάλματος</string>
+    <string name="personalNotifications">Οι ειδοποιήσεις</string>
 </resources>

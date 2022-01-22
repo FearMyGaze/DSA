@@ -5,6 +5,7 @@
     android:id="@+id/registerRootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/twitter"
     tools:context=".view.fragment.SignUp">
 
     <ScrollView
@@ -31,7 +32,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/registerNameError"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/Widget.App.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/name"
@@ -46,14 +47,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName"
-                    android:textColorHint="@color/textColorHint"
+                    android:textColor="@color/white"
                     tools:ignore="TextContrastCheck,TextContrastCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/registerEmailError"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/Widget.App.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/email"
@@ -68,14 +69,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
-                    android:textColorHint="@color/textColorHint"
+                    android:textColor="@color/white"
                     tools:ignore="TextContrastCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/registerPasswdError"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/Widget.App.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/passwd"
@@ -90,14 +91,14 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:textColorHint="@color/textColorHint"
+                    android:textColor="@color/white"
                     tools:ignore="TextContrastCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/registerConfirmPasswdError"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                style="@style/Widget.App.TextInputLayout"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="@string/confirm_passwd"
@@ -112,7 +113,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:textColorHint="@color/textColorHint"
+                    android:textColor="@color/white"
                     tools:ignore="TextContrastCheck" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -123,6 +124,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="@string/agreeToTOS"
+                android:textColor="@color/white"
                 app:layout_constraintTop_toBottomOf="@id/guideline_horizontal_register_end" />
 
             <com.google.android.material.button.MaterialButton

@@ -1,27 +1,26 @@
 package com.fearmygaze.dsa.view.activity;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.preference.PreferenceManager;
 
 import com.fearmygaze.dsa.R;
 import com.fearmygaze.dsa.model.User;
-import com.fearmygaze.dsa.view.fragment.Files;
+import com.fearmygaze.dsa.view.fragment.Examinations;
 import com.fearmygaze.dsa.view.fragment.Notifications;
 import com.fearmygaze.dsa.view.fragment.Profile;
+import com.fearmygaze.dsa.view.fragment.Upload;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class Main extends AppCompatActivity {
 
-    public Fragment files, notifications, profile;
+    public Fragment files, notifications, profile, upload;
 
     @SuppressLint("NonConstantResourceId")
     @Override
@@ -30,8 +29,6 @@ public class Main extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         SharedPreferences getSharedPrefs = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
-
-        FloatingActionButton mainFilesAdd = findViewById(R.id.mainFilesAdd);
 
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
@@ -42,14 +39,10 @@ public class Main extends AppCompatActivity {
         User me = new User(userName,userEmail,userId);
 
         profile = new Profile(me);
-        files = new Files(me);
-        notifications = new Notifications(me);
+        files = new Examinations();
+        notifications = new Notifications();
+        upload = new Upload();
 
-        mainFilesAdd.setOnClickListener(v -> {
-            Intent intent = new Intent(Main.this, FileUpload.class);
-            startActivity(intent);
-            finish();
-        });
 
 
         replaceFragment(files);
@@ -76,6 +69,9 @@ public class Main extends AppCompatActivity {
                     return true;
                 case R.id.itemFiles:
                     replaceFragment(files);
+                    return true;
+                case R.id.itemUpload:
+                    replaceFragment(upload);
                     return true;
                 case R.id.itemProfile:
                     replaceFragment(profile);
