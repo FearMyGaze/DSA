@@ -29,6 +29,7 @@ public class Examinations extends Fragment {
     View view;
     AdapterFile adapter;
 
+    @SuppressLint("NotifyDataSetChanged")
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_examinations, container, false);
@@ -49,6 +50,7 @@ public class Examinations extends Fragment {
 
         filesRefresh.setOnClickListener(v -> {
             fetchFiles(prefUserID); //This is for refreshing the list
+            adapter.notifyDataSetChanged();
         });
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());

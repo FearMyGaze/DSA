@@ -58,10 +58,10 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
 
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
-        int adapterID = fileList.get(position).getId();
+        int adapterID       = fileList.get(position).getId();
         String adapterTitle = fileList.get(position).getTitle();
-        String adapterDesc = fileList.get(position).getDescription();
-        String adapterDate = fileList.get(position).getDate();
+        String adapterDesc  = fileList.get(position).getDescription();
+        String adapterDate  = fileList.get(position).getDate();
 
         holder.adapterTitle.setText(adapterTitle);
         holder.adapterDesc.setText(adapterDesc);
@@ -133,13 +133,14 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
     }
 
     protected static class MyViewHolder extends RecyclerView.ViewHolder{
+        ConstraintLayout adapterRootLayout;
         TextView adapterTitle, adapterDesc, adapterDate;
         MaterialButton adapterDelete, adapterDownload;
-        ConstraintLayout adapterRootLayout;
 
         public MyViewHolder(@NonNull View view) {
             super(view);
             adapterRootLayout   = view.findViewById(R.id.adapterFileRootLayout);
+
             adapterTitle        = view.findViewById(R.id.adapterFileTitle);
             adapterDesc         = view.findViewById(R.id.adapterFileDesc);
             adapterDate         = view.findViewById(R.id.adapterFileDate);

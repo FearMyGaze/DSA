@@ -45,7 +45,6 @@
     <string name="fileUploadedSuccessfully">File uploaded successfully!</string>
     <string name="noPermission">Permission required</string>
     <string name="filesRefreshList">Refresh</string>
-    <string name="sampleDate" translatable="false">2022-01-06 19:27:32</string>
     <string name="profileBugList">If you found a bug please click here</string>
     <string name="adapterNotificationAccess">Grant access to: </string>
     <string name="adapterNotificationButton">Yes</string>
@@ -62,7 +61,7 @@
     <string name="successImageSave">Image saved successfully</string>
     <string name="successFilingBugReport">Bug report sent successfully</string>
     <string name="onErrorFilingBugReport">Failed to sent bug report</string>
-    <string name="personalNotifications">My Notifications</string>
+    <string name="personalNotifications">Notifications</string>
 
     <string-array name="url">
         <item>http://192.168.1.10/DSA/UsersRegister.php</item>
@@ -76,4 +75,9 @@
         <item>http://192.168.1.10/DSA/FileDelete.php</item>
         <item>http://192.168.1.10/DSA/BugReport.php</item>
     </string-array>
+
+    <string name="sampleDate" translatable="false">2022-01-06 19:27:32</string>
+    <string name="sampleFileTitle" translatable="false">Lorem ipsum dolor sit amet Lorem ipsum </string>
+    <string name="sampleFileDesc" translatable="false">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor </string>
+    <string name="sampleNotificationDocName" translatable="false">Dr. Meowingtons </string>
 </resources>

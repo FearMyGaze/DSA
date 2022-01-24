@@ -62,5 +62,5 @@
     <string name="successImageSave">Η εικόνα αποθηκεύτηκε με επιτυχία</string>
     <string name="successFilingBugReport">Αναφορά σφάλματος στάλθηκε με επιτυχία</string>
     <string name="onErrorFilingBugReport">Πρόβλημα κατά την αποστολή αναφορά σφάλματος</string>
-    <string name="personalNotifications">Οι ειδοποιήσεις</string>
+    <string name="personalNotifications">Ειδοποιήσεις</string>
 </resources>
