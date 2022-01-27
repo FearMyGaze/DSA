@@ -24,10 +24,10 @@ public class FileController {
 
     /**
      * @param context We need it to get the String from resource file strings.xml
-     * @param userID We need the userID so the db knows in what user the file will be assigned
-     * @param title We need the title so the userID or the doctor will know what after some time what was for
-     * @param desc We need the description so the userID or the doctor will know the description of the upload was for
-     * @param file We need the file in String format (after is encoded) so we can upload a file
+     * @param userID This references the userID so the db knows in what user the file will be assigned
+     * @param title This references the title so the userID or the doctor will know what after some time what was for
+     * @param desc This references the description so the userID or the doctor will know the description of the upload was for
+     * @param file This references the file in String format (after is encoded) so we can upload a file
      * @param iVolleyMessage a quick interface to handle the Success/Warning/Error
      */
     public static void fileUpload (Context context, int userID, String title, String desc, String file, IVolleyMessage iVolleyMessage){
@@ -67,8 +67,8 @@ public class FileController {
 
     /**
      * @param context We need it to get the String from resource file strings.xml
-     * @param userID We need the userID so the db knows who user files will sent
-     * @param fileID We need the fileID so the db knows what listing will sent from the db
+     * @param userID This references the userID so the db knows who user files will sent
+     * @param fileID This references the fileID so the db knows what listing will sent from the db
      * @param iVolleyMessage a quick interface to handle the Success/Warning/Error
      */
     public static void fileImageDownload (Context context, int userID, int fileID,IVolleyMessage iVolleyMessage){
@@ -108,7 +108,7 @@ public class FileController {
 
     /**
      * @param context We need it to get the String from resource file strings.xml
-     * @param userID We need the userID so the db knows who user files will sent
+     * @param userID This references the userID so the db knows who user files will sent
      * @param iImage a quick interface to handle the Success/Error
      */
     public static void fileFetch(Context context, int userID, IImage iImage){
@@ -155,8 +155,8 @@ public class FileController {
 
     /**
      * @param context We need it to get the String from resource file strings.xml
-     * @param userID We need the userID so the db knows who user files will sent
-     * @param fileID We need the fileID so the db knows what listing will sent from t
+     * @param userID This references the userID so the db knows who user files will sent
+     * @param fileID This references the fileID so the db knows what listing will sent from t
      * @param iVolleyMessage a quick interface to handle the Success/Warning/Error
      */
     public static void fileDelete (Context context, int userID, int fileID, IVolleyMessage iVolleyMessage){
@@ -192,7 +192,6 @@ public class FileController {
             }
         };
         RequestSingleton.getInstance(context).addToRequestQueue(request);
-
     }
 
 }

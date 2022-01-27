@@ -62,7 +62,7 @@ public class SignIn extends Fragment {
         int prefUserID = getSharedPrefs.getInt("userID",-1);
         
         if(!prefUserEmail.equals("empty") && !prefUserPasswd.equals("empty") && !prefUsername.equals("empty") && prefUserID > -1){ //Remember me func
-            UserController.UserExist(requireActivity(), prefUserEmail, new IVolleyMessage() {
+            UserController.UserExist(requireActivity(), prefUserEmail, prefUserID, new IVolleyMessage() {
                 @Override
                 public void onWaring(String message) {
                     SharedPreferences.Editor editor = getSharedPrefs.edit().clear();

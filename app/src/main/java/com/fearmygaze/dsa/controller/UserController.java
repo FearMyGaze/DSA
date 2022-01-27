@@ -22,10 +22,10 @@ import java.util.Map;
 public class UserController {
 
     /**
-     * @param context We need it to get the String from resource file strings.xml
-     * @param name We need it to set the name of the user
-     * @param email We need it to set the email of the user
-     * @param passwd We need it to set the passwd of the user
+     * @param context This references the String from resource file strings.xml
+     * @param name This references the name of the user
+     * @param email This references the email of the user
+     * @param passwd This references the passwd of the user
      * @param device_id We need it to set the device id of the phone when the user created for safety
      * @param volleyMessage a quick interface to handle the Success/Warning/Error
      */
@@ -73,8 +73,8 @@ public class UserController {
 
     /**
      * @param context We need it to get the String from resource file strings.xml
-     * @param email We need the email of the user to login
-     * @param passwd We need the passwd of the user to login
+     * @param email This references the email of the user to login
+     * @param passwd This references the passwd of the user to login
      * @param volleyMessage a quick interface to handle the Success/Warning/Error
      */
     public static void UserLogin(Context context, String email, String passwd, IVolleyMessage volleyMessage) {
@@ -124,10 +124,10 @@ public class UserController {
 
     /**
      * @param context We need it to get the String from resource file strings.xml
-     * @param username We need the new userName that is gonna replace the oldUsername
-     * @param oldUsername We need the oldUsername because we want the old reference that already exists in the db
-     * @param email We need the email updated or not so the db knows what user we are going to change the credentials
-     * @param oldEmail We need the oldEmail because we want the old reference that already exists in the db
+     * @param username This references the new userName that is gonna replace the oldUsername
+     * @param oldUsername This references the oldUsername because we want the old reference that already exists in the db
+     * @param email This references the email updated or not so the db knows what user we are going to change the credentials
+     * @param oldEmail This references the oldEmail because we want the old reference that already exists in the db
      * @param volleyMessage a quick interface to handle the Success/Warning/Error
      */
     public static void UserUpdate(Context context, String username, String oldUsername, String email, String oldEmail, IVolleyMessage volleyMessage) {
@@ -171,15 +171,17 @@ public class UserController {
 
     /**
      * @param context We need it to get the String from resource file strings.xml
-     * @param email We need the email to specify what user we want to see if exists
+     * @param email This references the email to specify what user we want to see if exists
+     * @param userID This references the unique id the user haves
      * @param iVolleyMessage a quick interface to handle the Success/Warning/Error
      */
-    public static void UserExist(Context context, String email, IVolleyMessage iVolleyMessage){
+    public static void UserExist(Context context, String email, int userID, IVolleyMessage iVolleyMessage){
         String[] url = context.getResources().getStringArray(R.array.url);
         String jsonError = context.getResources().getString(R.string.jsonErrorDuring);
         String errorOnUserNotExisting = context.getResources().getString(R.string.errorOnUserNotExisting);
         String volleyError = context.getResources().getString(R.string.volleyError);
         String successOnDelete = context.getResources().getString(R.string.successOnDelete);
+        String userid = Integer.toString(userID);
 
         StringRequest request = new StringRequest(Request.Method.POST, url[5],
                 response -> {
@@ -200,6 +202,7 @@ public class UserController {
             protected Map<String, String> getParams() {
                 Map<String, String> parameters = new HashMap<>();
                 parameters.put("email", email.toLowerCase(Locale.ROOT));
+                parameters.put("userID",userid);
                 return parameters;
             }
         };
@@ -208,7 +211,7 @@ public class UserController {
 
     /**
      * @param context We need it to get the String from resource file strings.xml
-     * @param email We need the email to specify what user we want to delete
+     * @param email This references the unique email of user we want to delete
      * @param volleyMessage a quick interface to handle the Success/Warning/Error
      */
     public static void UserDelete(Context context, String email, IVolleyMessage volleyMessage) {
