@@ -4,7 +4,7 @@
     android:id="@+id/snackBarRootLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/twitter"
+    android:background="@color/twitterDimOut2"
     android:paddingStart="10dp"
     android:paddingEnd="10dp">
 

@@ -49,8 +49,8 @@ public class Examinations extends Fragment {
         fetchFiles(prefUserID);
 
         filesRefresh.setOnClickListener(v -> {
+            adapter.notifyDataSetChanged(); //This will probably not fix anything
             fetchFiles(prefUserID); //This is for refreshing the list
-            adapter.notifyDataSetChanged();
         });
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(view.getContext());

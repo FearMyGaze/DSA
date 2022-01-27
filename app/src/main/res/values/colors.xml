@@ -6,6 +6,7 @@
     <color name="red">#B00020</color>
     <color name="orange">#FFA500</color>
     <color name="yellow">#FFFF00</color>
-    <color name="twitter">#192734</color>
+    <color name="twitterDimOut">#192734</color>
+    <color name="twitterDimOut2">#111920</color>
     <color name="twitterOrange">#CC6201</color>
 </resources>

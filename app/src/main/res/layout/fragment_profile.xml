@@ -5,7 +5,7 @@
     android:id="@+id/profileRootLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/twitter"
+    android:background="@color/twitterDimOut"
     tools:context=".view.fragment.Profile">
 
     <com.google.android.material.textfield.TextInputLayout
