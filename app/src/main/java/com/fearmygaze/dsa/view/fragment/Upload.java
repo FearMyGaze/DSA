@@ -46,6 +46,7 @@ public class Upload extends Fragment {
     MaterialButton uploadToServer;
 
     String stringConvertedImage;
+    byte[] byteConvertedImage;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -162,6 +163,7 @@ public class Upload extends Fragment {
                 stringConvertedImage = null; //Clears the string from previous conversions
                 byte[] bytes = stream.toByteArray();
                 stringConvertedImage = Base64.encodeToString(bytes,Base64.DEFAULT);
+                //byteConvertedImage = Base64.encode(bytes,Base64.DEFAULT);
 
                 imageView.setImageBitmap(bitmap);
                 uploadToServer.setEnabled(true);

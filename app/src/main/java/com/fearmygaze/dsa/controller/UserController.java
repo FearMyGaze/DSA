@@ -27,9 +27,9 @@ public class UserController {
      * @param email This references the email of the user
      * @param passwd This references the passwd of the user
      * @param device_id We need it to set the device id of the phone when the user created for safety
-     * @param volleyMessage a quick interface to handle the Success/Warning/Error
+     * @param iVolleyMessage a quick interface to handle the Success/Warning/Error
      */
-    public static void UserRegister(Context context, String name, String email, String passwd, String device_id, IVolleyMessage volleyMessage) {
+    public static void UserRegister(Context context, String name, String email, String passwd, String device_id, IVolleyMessage iVolleyMessage) {
         String[] url = context.getResources().getStringArray(R.array.url);
         String jsonError = context.getResources().getString(R.string.jsonErrorDuring);
         String errorOnRegister = context.getResources().getString(R.string.errorOnRegister);
@@ -48,15 +48,16 @@ public class UserController {
                             editor.putString("userPasswd",passwd);
                             editor.putInt("userID",successUserID);
                             editor.apply();
-                            volleyMessage.onSuccess(" ");
+                            iVolleyMessage.onSuccess(" ");
                         } else {
-                            volleyMessage.onWaring(errorOnRegister);
+                            iVolleyMessage.onWaring(errorOnRegister);
                         }
                     } catch (JSONException e) {
-                        volleyMessage.onError(jsonError + " " + e.getMessage());
+                        System.out.println(e.getMessage());
+                        iVolleyMessage.onError(jsonError + " " + e.getMessage());
                     }
                 },
-                error -> volleyMessage.onError(volleyError + error.getMessage())) {
+                error -> iVolleyMessage.onError(volleyError + error.getMessage())) {
             @NonNull
             @Override
             protected Map<String, String> getParams() {

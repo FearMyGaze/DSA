@@ -1,7 +1,5 @@
 package com.fearmygaze.dsa.model;
 
-import androidx.annotation.NonNull;
-
 public class Notification {
     private final int id; //Leave it
     private final int userID;//Leave it

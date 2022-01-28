@@ -87,6 +87,8 @@ public class AdapterFile extends RecyclerView.Adapter<AdapterFile.MyViewHolder> 
                 SnackBar userNotification = new SnackBar((Activity) v1.getContext(), v1, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
                 userNotification.setOnSuccessMsg(message);
                 userNotification.onSuccess();
+                fileList.remove(holder.getAdapterPosition());
+                notifyItemRemoved(holder.getAdapterPosition());
             }
         }));
 

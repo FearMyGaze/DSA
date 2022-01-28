@@ -54,7 +54,5 @@ public class BugController {
             }
         };
         RequestSingleton.getInstance(context).addToRequestQueue(request);
-
-
     }
 }
