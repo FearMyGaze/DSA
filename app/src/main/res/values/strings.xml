@@ -63,6 +63,46 @@
     <string name="onErrorFilingBugReport">Failed to sent bug report</string>
     <string name="personalNotifications">Notifications</string>
 
+    <!-- Navigation Bar -->
+    <string name="notification">Notification</string>
+    <string name="placeHolder">" "</string>
+    <string name="search">Search</string>
+    <string name="home">Home</string>
+    <string name="fabContentDescription">Add file</string>
+
+    <!-- Sign in -->
+    <string name="signInWithGithub">Continue with Github</string>
+    <string name="signInWithEmailHelper">Sign in with your email</string>
+    <string name="signUpEmail">Email</string>
+    <string name="signUpPassword">Password</string>
+    <string name="signInWithEmail">Sign In</string>
+    <string name="iDoNotHaveAnAccount">If you don\'t have an account click here!</string>
+
+    <!-- Sign Up -->
+    <string name="signUpName">Name</string>
+    <string name="signUpWithEmailHelper">Sign up with your email</string>
+    <string name="signUpWithEmail">Sign up</string>
+    <string name="signUpCheckBox"> <b> I agree that am 18+ years old </b> and the app will use my data to create my account and nothing more</string>
+
+    <!-- GitHub Sign In -->
+    <string name="gitLoginUserExist">User exists</string>
+    <string name="gitLoginError">Encounter an error: </string>
+    <string name="gitLoginSuccess">User logged in </string>
+
+    <!-- Email Sign In -->
+    <string name="loginUserError">Encounter an error: </string>
+    <string name="loginUserSuccess">User logged in </string>
+
+    <!-- Email Sign Up -->
+    <string name="createUserSuccess">Registration completed</string>
+    <string name="createUserError">Registration error: </string>
+
+    <!-- Drawer -->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="drawerSignOut">Sign out</string>
+    <string name="drawerSettings">Settings</string>
+
     <string-array name="url">
         <item>http://192.168.1.10/DSA/UsersRegister.php</item>
         <item>http://192.168.1.10/DSA/UserLogin.php</item>
@@ -80,4 +120,5 @@
     <string name="sampleFileTitle" translatable="false">Lorem ipsum dolor sit amet Lorem ipsum </string>
     <string name="sampleFileDesc" translatable="false">Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor sit amet Lorem ipsum dolor </string>
     <string name="sampleNotificationDocName" translatable="false">Dr. Meowingtons </string>
+
 </resources>

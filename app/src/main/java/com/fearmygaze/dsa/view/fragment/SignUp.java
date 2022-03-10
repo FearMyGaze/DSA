@@ -1,125 +1,124 @@
 package com.fearmygaze.dsa.view.fragment;
 
-import android.annotation.SuppressLint;
-import android.content.ContentResolver;
 import android.content.Intent;
 import android.os.Bundle;
-import android.provider.Settings;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
-import com.fearmygaze.dsa.Interface.IVolleyMessage;
 import com.fearmygaze.dsa.R;
-import com.fearmygaze.dsa.controller.UserController;
-import com.fearmygaze.dsa.custom.SnackBar;
-import com.fearmygaze.dsa.util.RegEx;
 import com.fearmygaze.dsa.util.TextHandler;
 import com.fearmygaze.dsa.view.activity.Main;
 import com.fearmygaze.dsa.view.activity.Starting;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.util.Objects;
+
 
 public class SignUp extends Fragment {
     View view;
 
+
+    MaterialButton signUpWithEmail;
+
+    TextInputEditText signUpUserName, signUpUserEmail, signUpUserPassword;
+    TextInputLayout signUpUserNameError, signUpUserEmailError, signUpUserPasswordError;
+
+    TextView signUpGotoSignIn;
+
+    CheckBox signUpCheckTOS;
+
+    FirebaseAuth firebaseAuth;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-
         view = inflater.inflate(R.layout.fragment_sign_up, container, false);
 
-        TextInputEditText registerName = view.findViewById(R.id.registerName);
-        TextInputLayout registerNameError = view.findViewById(R.id.registerNameError);
+        firebaseAuth = FirebaseAuth.getInstance();
 
-        TextInputEditText registerEmail = view.findViewById(R.id.registerEmail);
-        TextInputLayout registerEmailError = view.findViewById(R.id.registerEmailError);
+        signUpUserName = view.findViewById(R.id.signUpUserName);
+        signUpUserNameError = view.findViewById(R.id.signUpUserNameError);
 
-        TextInputEditText registerPasswd = view.findViewById(R.id.registerPasswd);
-        TextInputLayout registerPasswdError = view.findViewById(R.id.registerPasswdError);
+        signUpUserEmail = view.findViewById(R.id.signUpUserEmail);
+        signUpUserEmailError = view.findViewById(R.id.signUpUserEmailError);
 
-        TextInputEditText registerConfirmPasswd = view.findViewById(R.id.registerConfirmPasswd);
-        TextInputLayout registerConfirmPasswdError = view.findViewById(R.id.registerConfirmPasswdError);
+        signUpUserPassword = view.findViewById(R.id.signUpUserPassword);
+        signUpUserPasswordError = view.findViewById(R.id.signUpUserPasswordError);
 
-        TextView gotoLogIn = view.findViewById(R.id.gotoLogIn);
+        signUpWithEmail = view.findViewById(R.id.signUpContinueWithEmail);
 
-        CheckBox registerTOS = view.findViewById(R.id.registerTOS);
+        signUpGotoSignIn = view.findViewById(R.id.signUpGotoSignIn);
 
-        MaterialButton confirmRegistration = view.findViewById(R.id.confirmRegistration);
-
-        ContentResolver resolver = requireActivity().getContentResolver();
+        signUpCheckTOS = view.findViewById(R.id.signUpCheck);
 
 
         /*
          * The moment the TextInputEditText is filled with a text after an error occurred the error
          *   vanishes from the text that was changed
          * */
-        registerName.addTextChangedListener(new TextHandler(registerNameError));
-        registerEmail.addTextChangedListener(new TextHandler(registerEmailError));
-        registerPasswd.addTextChangedListener(new TextHandler(registerPasswdError));
-        registerConfirmPasswd.addTextChangedListener(new TextHandler(registerConfirmPasswdError));
+        signUpUserName.addTextChangedListener(new TextHandler(signUpUserNameError));
+        signUpUserEmail.addTextChangedListener(new TextHandler(signUpUserEmailError));
+        signUpUserPassword.addTextChangedListener(new TextHandler(signUpUserPasswordError));
 
-        gotoLogIn.setOnClickListener(v -> ((Starting) requireActivity()).replaceFragment(((Starting) requireActivity()).singInFragment));
+        signUpCheckTOS.setOnCheckedChangeListener((buttonView, isChecked) -> {
+           if (isChecked){
+               signUpWithEmail.setEnabled(true);
+               signUpWithEmail.setOnClickListener(v -> {
+                   TextHandler.isTextInputEmpty(signUpUserName,signUpUserNameError,requireActivity());
+                   TextHandler.isTextInputEmpty(signUpUserEmail,signUpUserEmailError,requireActivity());
+                   TextHandler.isTextInputEmpty(signUpUserPassword,signUpUserPasswordError,requireActivity());
 
-        registerTOS.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            if (isChecked) {
-                confirmRegistration.setEnabled(true);
-                confirmRegistration.setOnClickListener(v -> {
+                   if (!signUpUserNameError.isErrorEnabled() || !signUpUserEmailError.isErrorEnabled() || !signUpUserPasswordError.isErrorEnabled())
+                       userRegister();
+               });
+           }else {
+               signUpWithEmail.setEnabled(false);
+           }
 
-                    TextHandler.IsMultipleTextInputsEmpty(
-                            registerName, registerNameError,
-                            registerEmail, registerEmailError,
-                            registerPasswd, registerPasswdError,
-                            registerConfirmPasswd, registerConfirmPasswdError,
-                            requireActivity());
-
-                    if (!registerNameError.isErrorEnabled() && !registerEmailError.isErrorEnabled() &&
-                            !registerPasswdError.isErrorEnabled() && !registerConfirmPasswdError.isErrorEnabled() &&
-                            !TextHandler.IsTextInputsEqual(registerPasswd, registerConfirmPasswd, registerConfirmPasswdError, requireActivity())) {
-
-                        String name = Objects.requireNonNull(registerName.getText()).toString().trim();
-                        String email = Objects.requireNonNull(registerEmail.getText()).toString().trim();
-                        String passwd = Objects.requireNonNull(registerPasswd.getText()).toString().trim();
-                        @SuppressLint("HardwareIds") String deviceID = Settings.Secure.getString(resolver, Settings.Secure.ANDROID_ID);
-
-                        if (RegEx.IsEmailValid(email,50, registerEmailError, requireActivity()) && RegEx.IsPasswdValid(passwd,255, registerPasswdError, requireActivity()) &&
-                                RegEx.IsNameValid(name,30, registerNameError, requireActivity())) {
-
-                            UserController.UserRegister(requireActivity(), name, email, passwd, deviceID, new IVolleyMessage() {
-                                @Override
-                                public void onWaring(String message) {
-                                    SnackBar userNotification = new SnackBar(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
-                                    userNotification.setOnWarningMsg(message);
-                                    userNotification.onWarning();
-                                }
-
-                                @Override
-                                public void onError(String message) {
-                                    SnackBar userNotification = new SnackBar(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
-                                    userNotification.setOnErrorMsg(message);
-                                    userNotification.onError();
-                                }
-
-                                @Override
-                                public void onSuccess(String message) {
-                                    Intent intent = new Intent(requireActivity(), Main.class);
-                                    requireActivity().startActivity(intent);
-                                    requireActivity().finish();
-                                }
-                            });
-                        }
-                    }
-                });
-
-            } else confirmRegistration.setEnabled(false);
         });
+
+        signUpGotoSignIn.setOnClickListener(v -> ((Starting) requireActivity()).replaceFragment(((Starting) requireActivity()).signIn));
+
         return view;
+    }
+
+    private void userRegister() {
+        String name = Objects.requireNonNull(signUpUserName.getText()).toString();
+        String email = Objects.requireNonNull(signUpUserEmail.getText()).toString();
+        String password = Objects.requireNonNull(signUpUserPassword.getText()).toString();
+
+        /*
+        * TODO: Add regEx Password and check the name of the user for inappropriate name
+        * */
+
+        firebaseAuth
+                .createUserWithEmailAndPassword(email,password)
+                .addOnSuccessListener(authResult -> {
+                    FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                    if (user != null){
+                        UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
+                                .setDisplayName(name)
+                                .build();
+                        user.updateProfile(profileChangeRequest);
+
+                        startActivity(new Intent(requireActivity(), Main.class));
+                        requireActivity().finish();
+                        Toast.makeText(requireActivity(), getResources().getText(R.string.createUserSuccess), Toast.LENGTH_SHORT).show();
+                    }
+                })
+                .addOnFailureListener(e -> Toast.makeText(requireActivity(), getResources().getText(R.string.createUserError), Toast.LENGTH_LONG).show());
+
     }
 }

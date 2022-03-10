@@ -1,5 +1,6 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -43,6 +44,12 @@ dependencies {
     implementation 'com.android.volley:volley:1.2.1'
     
     implementation 'androidx.preference:preference:1.2.0'
+
+    implementation 'de.hdodenhof:circleimageview:3.1.0' //https://github.com/hdodenhof/CircleImageView
+
+    implementation 'com.google.firebase:firebase-auth:21.0.1' //Firebase
+    implementation 'com.google.firebase:firebase-firestore:24.0.1' //Firebase
+    implementation 'com.google.firebase:firebase-storage:20.0.0' //Firebase
 
    // debugImplementation 'com.squareup.leakcanary:leakcanary-android:2.8.1'
 

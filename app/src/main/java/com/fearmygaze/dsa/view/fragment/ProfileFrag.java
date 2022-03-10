@@ -27,11 +27,11 @@ import com.google.android.material.textfield.TextInputLayout;
 
 import java.util.Objects;
 
-public class Profile extends Fragment {
+public class ProfileFrag extends Fragment {
     View view;
     private final User me;
 
-    public Profile(User user) {
+    public ProfileFrag(User user) {
         this.me = user;
     }
 

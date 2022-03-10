@@ -81,8 +81,8 @@ public class Upload extends Fragment {
         });
 
         uploadToServer.setOnClickListener(v -> {
-            TextHandler.IsTextInputEmpty(uploadTitle,uploadTitleError,v.getContext().getApplicationContext());
-            TextHandler.IsTextInputEmpty(uploadDesc,uploadDescError,v.getContext().getApplicationContext());
+            TextHandler.isTextInputEmpty(uploadTitle,uploadTitleError,v.getContext().getApplicationContext());
+            TextHandler.isTextInputEmpty(uploadDesc,uploadDescError,v.getContext().getApplicationContext());
 
             int userID = getSharedPrefs.getInt("userID",-1);
 
@@ -158,7 +158,7 @@ public class Upload extends Fragment {
             try {
                 Bitmap bitmap = MediaStore.Images.Media.getBitmap(view.getContext().getContentResolver(),uri);
                 ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bitmap.compress(Bitmap.CompressFormat.JPEG,100,stream);
+                bitmap.compress(Bitmap.CompressFormat.WEBP_LOSSLESS,100,stream);
 
                 stringConvertedImage = null; //Clears the string from previous conversions
                 byte[] bytes = stream.toByteArray();

@@ -18,7 +18,7 @@ public class TextHandler implements TextWatcher {
         this.textInputLayout = textInputLayout;
     }
 
-    public static void IsTextInputEmpty(TextInputEditText textInputEditText, TextInputLayout textInputLayout, Context context) {
+    public static void isTextInputEmpty(TextInputEditText textInputEditText, TextInputLayout textInputLayout, Context context) {
         if (Objects.requireNonNull(textInputEditText.getText()).toString().isEmpty()) {
             textInputLayout.setError(context.getString(R.string.emptyTextInputEditText));
             textInputLayout.setErrorEnabled(true);

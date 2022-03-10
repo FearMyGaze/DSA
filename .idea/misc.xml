@@ -24,13 +24,18 @@
         <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/drawable/custom_rounded_button.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/drawable/custom_rounded_snackbar.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/drawable/custom_text_view_item_on_press.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/drawable/custom_text_view_on_press.xml" value="0.2145" />
+        <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/drawable/ic_outline_event_note_24.xml" value="0.2145" />
         <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/drawable/ic_outline_file_upload_24.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/drawable/ic_outline_info_40.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/drawable/ic_outline_new_file_24.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/drawable/item_text_view_on_touch.xml" value="0.38697916666666665" />
         <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/layout/activity_file_chooser.xml" value="0.37083333333333335" />
         <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/layout/activity_file_upload.xml" value="0.37083333333333335" />
-        <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/layout/activity_main.xml" value="0.37083333333333335" />
+        <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/layout/activity_post.xml" value="0.371875" />
+        <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/layout/activity_profile.xml" value="0.25104166666666666" />
+        <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/layout/activity_settings.xml" value="0.371875" />
         <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/layout/activity_starting.xml" value="0.33" />
         <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/layout/adapter_file.xml" value="0.37083333333333335" />
         <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/layout/adapter_for_files.xml" value="0.228125" />
@@ -40,14 +45,22 @@
         <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/layout/custom_dialog.xml" value="0.36018518518518516" />
         <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/layout/custom_file_dialog.xml" value="0.20833333333333334" />
         <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/layout/custom_snackbar.xml" value="0.37083333333333335" />
+        <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/layout/dialog.xml" value="0.371875" />
         <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/layout/fragment_examinations.xml" value="0.37083333333333335" />
         <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/layout/fragment_files.xml" value="0.25" />
+        <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/layout/fragment_home.xml" value="0.371875" />
+        <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/layout/fragment_message.xml" value="0.371875" />
+        <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/layout/fragment_notification.xml" value="0.371875" />
         <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/layout/fragment_notifications.xml" value="0.37083333333333335" />
         <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/layout/fragment_profile.xml" value="0.36512820512820515" />
         <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/layout/fragment_sign_in.xml" value="0.36512820512820515" />
-        <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/layout/fragment_sign_up.xml" value="0.39666357738646896" />
+        <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/layout/fragment_sign_up.xml" value="0.33" />
         <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/layout/fragment_upload.xml" value="0.37083333333333335" />
+        <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/layout/nav_header.xml" value="0.371875" />
         <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.20833333333333334" />
+        <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/menu/main_bottom_navigation.xml" value="0.371875" />
+        <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/menu/main_drawer.xml" value="0.371875" />
+        <entry key="..\:/Users/fearm/Documents/GitHub/DSA/app/src/main/res/menu/main_toolbar.xml" value="0.371875" />
       </map>
     </option>
   </component>

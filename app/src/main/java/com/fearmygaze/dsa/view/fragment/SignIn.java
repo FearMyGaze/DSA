@@ -1,7 +1,6 @@
 package com.fearmygaze.dsa.view.fragment;
 
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,118 +9,115 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.preference.PreferenceManager;
 
-import com.fearmygaze.dsa.Interface.IVolleyMessage;
 import com.fearmygaze.dsa.R;
-import com.fearmygaze.dsa.controller.UserController;
-import com.fearmygaze.dsa.custom.SnackBar;
-import com.fearmygaze.dsa.util.RegEx;
 import com.fearmygaze.dsa.util.TextHandler;
 import com.fearmygaze.dsa.view.activity.Main;
 import com.fearmygaze.dsa.view.activity.Starting;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.button.MaterialButton;
-import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.OAuthProvider;
+import com.google.firebase.auth.UserProfileChangeRequest;
 
 import java.util.Objects;
 
+
 public class SignIn extends Fragment {
     View view;
+
+    MaterialButton signInWithEmail, signInWithGithub;
+
+    TextInputEditText signInUserEmail, signInUserPassword;
+    TextInputLayout signInUserEmailError, signInUserPasswordError;
+
+    TextView signInGotoSignUp;
+
+    FirebaseAuth firebaseAuth;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_sign_in, container, false);
 
-        TextInputEditText loginEmail = view.findViewById(R.id.loginEmail);
-        TextInputLayout loginEmailError = view.findViewById(R.id.loginEmailError);
+        firebaseAuth = FirebaseAuth.getInstance();
 
-        TextInputEditText loginPasswd = view.findViewById(R.id.loginPasswd);
-        TextInputLayout loginPasswdError = view.findViewById(R.id.loginPasswdError);
+        signInUserEmail = view.findViewById(R.id.signInUserEmail);
+        signInUserEmailError = view.findViewById(R.id.signInUserEmailError);
 
-        MaterialButton confirmLogIn = view.findViewById(R.id.confirmLogIn);
+        signInUserPassword = view.findViewById(R.id.signInUserPassword);
+        signInUserPasswordError = view.findViewById(R.id.signInUserPasswordError);
 
-        TextView gotoRegister = view.findViewById(R.id.gotoRegister);
+        signInGotoSignUp = view.findViewById(R.id.signInGotoSignUp);
 
-        SharedPreferences getSharedPrefs = PreferenceManager.getDefaultSharedPreferences(requireActivity().getApplicationContext());
-
-        gotoRegister.setOnClickListener(v -> ((Starting) requireActivity()).replaceFragment(((Starting) requireActivity()).signUpFragment));
+        signInWithEmail = view.findViewById(R.id.signInWithEmail);
+        signInWithGithub = view.findViewById(R.id.signInWithGithub);
 
         /*
-         * The moment the TextInputEditText is filled with a text after an error occurred th error
+         * The moment the TextInputEditText is filled with a text after an error occurred the error
          *   vanishes from the text that was changed
          * */
+        signInUserEmail.addTextChangedListener(new TextHandler(signInUserEmailError));
+        signInUserPassword.addTextChangedListener(new TextHandler(signInUserPasswordError));
 
-        loginEmail.addTextChangedListener(new TextHandler(loginEmailError));
-        loginPasswd.addTextChangedListener(new TextHandler(loginPasswdError));
-
-        String prefUserEmail = getSharedPrefs.getString("userEmail","empty");
-        String prefUserPasswd = getSharedPrefs.getString("userPasswd","empty");
-        String prefUsername = getSharedPrefs.getString("userName","empty");
-        int prefUserID = getSharedPrefs.getInt("userID",-1);
-        
-        if(!prefUserEmail.equals("empty") && !prefUserPasswd.equals("empty") && !prefUsername.equals("empty") && prefUserID > -1){ //Remember me func
-            UserController.UserExist(requireActivity(), prefUserEmail, prefUserID, new IVolleyMessage() {
-                @Override
-                public void onWaring(String message) {
-                    SharedPreferences.Editor editor = getSharedPrefs.edit().clear();
-                    editor.apply();
-                    Toast.makeText(requireActivity(), message, Toast.LENGTH_LONG).show();
-                }
-
-                @Override
-                public void onError(String message) {
-                    SharedPreferences.Editor editor = getSharedPrefs.edit().clear();
-                    editor.apply();
-                }
-
-                @Override
-                public void onSuccess(String message) {
-                    Intent intent = new Intent(requireActivity(), Main.class);
-                    requireActivity().startActivity(intent);
-                    requireActivity().finish();
-                }
-            });
-        }
-
-        confirmLogIn.setOnClickListener(v -> {
-
-            TextHandler.IsTextInputEmpty(loginEmail, loginEmailError, SignIn.this.requireActivity());
-            TextHandler.IsTextInputEmpty(loginPasswd, loginPasswdError, SignIn.this.requireActivity());
-
-            if (!loginEmailError.isErrorEnabled() && !loginPasswdError.isErrorEnabled()) {
-                String email = Objects.requireNonNull(loginEmail.getText()).toString().trim();
-                String passwd = Objects.requireNonNull(loginPasswd.getText()).toString().trim();
-
-                if (RegEx.IsEmailValid(email,50, loginEmailError, SignIn.this.requireActivity())
-                        && RegEx.IsPasswdValid(passwd,255, loginPasswdError, SignIn.this.requireActivity())) {
-                    UserController.UserLogin(requireActivity(), email, passwd, new IVolleyMessage() {
-                        @Override
-                        public void onWaring(String message) {
-                            SnackBar userNotification = new SnackBar(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
-                            userNotification.setOnWarningMsg(message);
-                            userNotification.onWarning();
-                        }
-
-                        @Override
-                        public void onError(String message) {
-                            SnackBar userNotification = new SnackBar(requireActivity(), v, Snackbar.LENGTH_LONG, Snackbar.ANIMATION_MODE_FADE);
-                            userNotification.setOnErrorMsg(message);
-                            userNotification.onError();
-                        }
-
-                        @Override
-                        public void onSuccess(String message) {
-                            Intent intent = new Intent(requireActivity(), Main.class);
-                            requireActivity().startActivity(intent);
-                            requireActivity().finish();
-                        }
-                    });
-                }
-            }
+        signInWithGithub.setOnClickListener(v -> gitLogin());
+        signInWithEmail.setOnClickListener(v -> {
+            TextHandler.isTextInputEmpty(signInUserEmail,signInUserEmailError,requireActivity());
+            TextHandler.isTextInputEmpty(signInUserPassword,signInUserPasswordError,requireActivity());
+            if (!signInUserEmailError.isErrorEnabled() || !signInUserPasswordError.isErrorEnabled())
+                loginUser();
         });
 
+        signInGotoSignUp.setOnClickListener(v -> ((Starting) requireActivity()).replaceFragment(((Starting) requireActivity()).signUp));
+
         return view;
+    }
+
+    private void loginUser() {
+        String email = Objects.requireNonNull(signInUserEmail.getText()).toString();
+        String password = Objects.requireNonNull(signInUserPassword.getText()).toString();
+
+        firebaseAuth
+                .signInWithEmailAndPassword(email,password)
+                .addOnFailureListener(e -> Toast.makeText(requireActivity(), getResources().getText(R.string.loginUserError) +" "+ e.getMessage(), Toast.LENGTH_LONG).show())
+                .addOnSuccessListener(authResult -> {
+                    Toast.makeText(requireActivity(), getResources().getText(R.string.loginUserSuccess), Toast.LENGTH_SHORT).show();
+                    startActivity(new Intent(requireActivity(), Main.class));
+                    requireActivity().finish();
+                });
+
+    }
+
+    private void gitLogin() {
+        OAuthProvider provider = OAuthProvider.newBuilder("github.com").build();
+        Task<AuthResult> resultTask = firebaseAuth.getPendingAuthResult();
+        if (resultTask != null){
+            resultTask
+                    .addOnSuccessListener(authResult -> Toast.makeText(requireActivity(), getResources().getText(R.string.gitLoginUserExist), Toast.LENGTH_LONG).show())
+                    .addOnFailureListener(e -> Toast.makeText(requireActivity(), getResources().getText(R.string.gitLoginError), Toast.LENGTH_LONG).show());
+        }else{
+            firebaseAuth
+                    .startActivityForSignInWithProvider(requireActivity(),provider)
+                    .addOnFailureListener(e -> Toast.makeText(requireActivity(), getResources().getText(R.string.gitLoginError)+" "+e.getMessage(), Toast.LENGTH_LONG).show())
+                    .addOnSuccessListener(authResult -> {
+                        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+
+                        if (user != null){
+                            UserProfileChangeRequest profileChangeRequest = new UserProfileChangeRequest.Builder()
+                                    .setDisplayName(Objects.requireNonNull(authResult.getUser()).getDisplayName())
+                                    .build();
+                            user.updateProfile(profileChangeRequest);
+
+                            startActivity(new Intent(requireActivity(), Main.class));
+                            requireActivity().finish();
+                            Toast.makeText(requireActivity(), getResources().getText(R.string.gitLoginSuccess), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+        }
+
+
     }
 }
